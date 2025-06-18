@@ -1,0 +1,472 @@
+2025-05-28 15:09:26,192 — INFO — 📥 Received file: uploads/cv_1.pdf
+2025-05-28 15:09:26,193 — INFO — 🔐 Original SHA-256: 75b093ab2295f251bf6e056db739e5f8b4d876ac2f22a56d770cc347c0269e22
+2025-05-28 15:10:19,178 — INFO — 📥 Received file: uploads/cv_1.pdf
+2025-05-28 15:10:19,179 — INFO — 🔐 Original SHA-256: 75b093ab2295f251bf6e056db739e5f8b4d876ac2f22a56d770cc347c0269e22
+2025-05-28 15:10:19,317 — INFO — ✅ Processed file hash: 102096cec6614986e48d8c95a48a467ecc3e3dde8f953abacff21017addc2309
+2025-05-28 15:10:19,317 — INFO — 🕵️ Watermark detected: False
+2025-05-28 15:10:19,317 — INFO — 📁 Saved and published: E:\Work\AcedClass\cleaned\cv_1_flattened_nometadata.pdf
+2025-05-28 16:30:47,788 — INFO — 📥 Received file: uploads/cv_1.pdf
+2025-05-28 16:30:47,789 — INFO — 🔐 Original SHA-256: 75b093ab2295f251bf6e056db739e5f8b4d876ac2f22a56d770cc347c0269e22
+2025-05-28 16:42:29,285 — INFO — 📥 Received file: uploads/cv_1.pdf
+2025-05-28 16:42:29,286 — INFO — 🔐 Original SHA-256: 75b093ab2295f251bf6e056db739e5f8b4d876ac2f22a56d770cc347c0269e22
+2025-05-28 16:45:12,660 — INFO — 📥 Received file: uploads/cv_1.pdf
+2025-05-28 16:45:12,661 — INFO — 🔐 Original SHA-256: 75b093ab2295f251bf6e056db739e5f8b4d876ac2f22a56d770cc347c0269e22
+2025-05-28 16:45:14,782 — INFO — ✅ Processed file hash: dc3827854883a0e7847da44ebc9197a8b99f223401328e72480e688d19eaf16f
+2025-05-28 16:45:14,782 — INFO — 🕵️ Watermark detected: False
+2025-05-28 16:45:14,782 — INFO — 📁 Saved and published: E:\Work\AcedClass\cleaned\cv_1_flattened_nometadata.pdf
+2025-05-28 16:47:47,177 — INFO — 📥 Received file: uploads/sample_with_metadata_watermark.pdf
+2025-05-28 16:47:47,178 — INFO — 🔐 Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-05-28 16:47:49,517 — INFO — ✅ Processed file hash: fd1f622a2adfb658fa33918632ecbcf1370f874f4d40f2b9642946bab5ad6f84
+2025-05-28 16:47:49,518 — INFO — 🕵️ Watermark detected: False
+2025-05-28 16:47:49,518 — INFO — 📁 Saved and published: E:\Work\AcedClass\cleaned\sample_with_metadata_watermark_flattened_nometadata.pdf
+2025-05-28 17:58:01,949 — INFO — Received file: uploads/sample.pdf
+2025-05-28 17:58:19,053 — INFO — Received file: uploads/sample_with_metadata_watermark.pdf
+2025-05-28 17:58:19,053 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-05-28 17:59:15,760 — INFO — Received file: uploads/sample_with_metadata_watermark.pdf
+2025-05-28 17:59:15,760 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-05-28 17:59:51,185 — INFO — Received file: uploads/sample_with_metadata_watermark.pdf
+2025-05-28 17:59:51,185 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-05-28 18:04:47,001 — INFO — Received file: uploads/sample_with_metadata_watermark.pdf
+2025-05-28 18:04:47,001 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-05-28 18:15:30,957 — INFO — Received file: uploads/sample_with_metadata_watermark.pdf
+2025-05-28 18:15:30,958 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-05-28 18:20:55,581 — INFO — Received file: uploads/sample_with_metadata_watermark.pdf
+2025-05-28 18:20:55,582 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-05-28 18:22:20,207 — INFO — Received file: uploads/sample_with_metadata_watermark.pdf
+2025-05-28 18:22:20,207 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-05-28 18:22:35,215 — INFO — Received file: uploads/sample_with_metadata_watermark.pdf
+2025-05-28 18:22:35,215 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-05-28 18:24:15,217 — INFO — Received file: uploads/sample_with_metadata_watermark.pdf
+2025-05-28 18:24:15,218 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-05-28 18:24:37,946 — INFO — Received file: uploads/sample_with_metadata_watermark.pdf
+2025-05-28 18:24:37,946 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-05-28 18:31:49,511 — INFO — Received file: uploads/sample_with_metadata_watermark.pdf
+2025-05-28 18:31:49,511 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-05-28 18:32:21,643 — INFO — Received file: uploads/sample_with_metadata_watermark.pdf
+2025-05-28 18:32:21,643 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-05-28 18:40:28,051 — INFO — Received file: uploads/sample_with_metadata_watermark.pdf
+2025-05-28 18:40:28,052 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-05-28 18:40:36,098 — INFO — Received file: uploads/sample_with_metadata_watermark.pdf
+2025-05-28 18:40:36,099 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-05-28 18:40:37,847 — INFO — Processed SHA-256: 4b893c0798e3e3191732702d3aa9c7febaff308c65f9774aa631692e0d8d67d5
+2025-05-28 18:40:37,847 — INFO — Watermark detected: False
+2025-05-28 18:40:37,847 — INFO — Processed file saved: E:\Work\AcedClass\cleaned\sample_with_metadata_watermark_flattened_nometadata_watermarked.pdf
+2025-05-28 18:42:51,650 — INFO — Received file: uploads/sample_with_metadata_watermark.pdf
+2025-05-28 18:42:51,651 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-05-28 18:42:55,337 — INFO — Processed SHA-256: 5fc1de11e59ca030a31155abc908c02150601f6da5ebd295759048f49a3cb32c
+2025-05-28 18:42:55,337 — INFO — Watermark detected: False
+2025-05-28 18:42:55,337 — INFO — Processed file saved: E:\Work\AcedClass\cleaned\sample_with_metadata_watermark_flattened_nometadata_watermarked.pdf
+2025-05-28 18:47:33,164 — INFO — Received file: uploads/sample_with_metadata_watermark.pdf
+2025-05-28 18:47:33,164 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-05-28 18:47:36,895 — INFO — Processed SHA-256: 4efe9e6dccb803970c7632837d0deda2a1f17a1994d73ba3c8e31219e2365271
+2025-05-28 18:47:36,895 — INFO — Watermark detected: False
+2025-05-28 18:47:36,895 — INFO — Processed file saved: E:\Work\AcedClass\cleaned\sample_with_metadata_watermark_flattened_nometadata_watermarked.pdf
+2025-05-28 18:49:20,279 — INFO — Received file: uploads/sample_with_metadata_watermark.pdf
+2025-05-28 18:49:20,279 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-05-28 18:49:21,920 — INFO — Processed SHA-256: 78aae4c067fa4237a27661046a0098ced4d2ff8209cf9adf4f86e927f97b469f
+2025-05-28 18:49:21,920 — INFO — Watermark detected: False
+2025-05-28 18:49:21,920 — INFO — Processed file saved: E:\Work\AcedClass\cleaned\sample_with_metadata_watermark_flattened_nometadata_watermarked.pdf
+2025-05-28 18:52:11,885 — INFO — Received file: uploads/sample_with_metadata_watermark.pdf
+2025-05-28 18:52:11,885 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-05-28 18:52:15,647 — INFO — Processed SHA-256: cea6d9f57c7e6152d37b1530f3c827a3add9057bcaab86af75575da16d670547
+2025-05-28 18:52:15,647 — INFO — Watermark detected: False
+2025-05-28 18:52:15,647 — INFO — Processed file saved: E:\Work\AcedClass\cleaned\sample_with_metadata_watermark_flattened_nometadata_watermarked.pdf
+2025-05-28 18:53:07,859 — INFO — Received file: uploads/sample_with_metadata_watermark.pdf
+2025-05-28 18:53:07,860 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-05-28 18:53:15,579 — INFO — Received file: uploads/sample_with_metadata_watermark.pdf
+2025-05-28 18:53:15,580 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-05-28 18:53:17,310 — INFO — Processed SHA-256: 0bc2d321b77cffbe26b91a787a8852d1da873739ede40eb184152be9e4f1862a
+2025-05-28 18:53:17,310 — INFO — Watermark detected: False
+2025-05-28 18:53:17,310 — INFO — Processed file saved: E:\Work\AcedClass\cleaned\sample_with_metadata_watermark_flattened_nometadata_watermarked.pdf
+2025-05-28 18:54:43,507 — INFO — Received file: uploads/sample_with_metadata_watermark.pdf
+2025-05-28 18:54:43,507 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-05-28 18:54:46,205 — INFO — Processed SHA-256: d9d5cdbf1282b7c6d3aafd32681d58822c43b6ba3b69975076bc0b799f3a0129
+2025-05-28 18:54:46,205 — INFO — Watermark detected: False
+2025-05-28 18:54:46,205 — INFO — Processed file saved: E:\Work\AcedClass\cleaned\sample_with_metadata_watermark_flattened_nometadata_watermarked.pdf
+2025-05-28 19:00:30,564 — INFO — Received file: uploads/sample_with_metadata_watermark.pdf
+2025-05-28 19:00:30,564 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-05-28 19:00:36,285 — INFO — Received file: uploads/sample_with_metadata_watermark.pdf
+2025-05-28 19:00:36,285 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-05-28 19:00:38,701 — INFO — Processed SHA-256: e5bb6738bccaa0197431b0d4cfa70f5922656c23ca45943da756b937b5c1776a
+2025-05-28 19:00:38,701 — INFO — Watermark detected: False
+2025-05-28 19:00:38,701 — INFO — Processed file saved: E:\Work\AcedClass\cleaned\sample_with_metadata_watermark_flattened_nometadata_watermarked.pdf
+2025-05-29 11:37:12,695 — INFO — Received file: uploads/sample_with_metadata_watermark.pdf
+2025-05-29 11:37:12,696 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-05-29 11:37:16,921 — INFO — Processed SHA-256: 0d2967e5e9e7a219638dbdadc94ee90bb9c1a528d70c1184be511c36fd4d107e
+2025-05-29 11:37:16,921 — INFO — Watermark detected: False
+2025-05-29 11:37:16,921 — INFO — Processed file saved: E:\Work\AcedClass\cleaned\sample_with_metadata_watermark_flattened_nometadata_watermarked.pdf
+2025-05-29 11:48:12,948 — INFO — Received file: uploads/sample_with_metadata_watermark.pdf
+2025-05-29 11:48:12,948 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-05-29 11:48:15,408 — INFO — Processed SHA-256: 17b500d6d57b7f178c9342ec8e6aeedd600950c59982346ec294c230b560397f
+2025-05-29 11:48:15,408 — INFO — Watermark detected: False
+2025-05-29 11:48:15,408 — INFO — Processed file saved: E:\Work\AcedClass\cleaned\sample_with_metadata_watermark_flattened_nometadata_watermarked.pdf
+2025-05-29 11:50:57,273 — INFO — Received file: uploads/sample_with_metadata_watermark.pdf
+2025-05-29 11:50:57,274 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-05-29 11:50:59,684 — INFO — Processed SHA-256: 8ef98bcc9e05a05f52fc59dc81cada4ccf003249959032e383afea16f5b9ac10
+2025-05-29 11:50:59,684 — INFO — Watermark detected: False
+2025-05-29 11:50:59,684 — INFO — Processed file saved: E:\Work\AcedClass\cleaned\sample_with_metadata_watermark_flattened_nometadata_watermarked.pdf
+2025-05-29 11:51:20,747 — INFO — Received file: uploads/sample_with_metadata_watermark.pdf
+2025-05-29 11:51:20,747 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-05-29 11:51:23,174 — INFO — Processed SHA-256: 4e9beed67c8a62f9c6fb172780cd729fc20d1ae87eac8fea7fdeefdf787710c4
+2025-05-29 11:51:23,174 — INFO — Watermark detected: False
+2025-05-29 11:51:23,174 — INFO — Processed file saved: E:\Work\AcedClass\cleaned\sample_with_metadata_watermark_flattened_nometadata_watermarked.pdf
+2025-05-29 11:52:33,360 — INFO — Received file: uploads/sample_with_metadata_watermark.pdf
+2025-05-29 11:52:33,360 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-05-29 11:52:36,054 — INFO — Processed SHA-256: c8c9d3d7815899e897a9be3a8399b35b69cd5e07e12820180c6985a92d750a93
+2025-05-29 11:52:36,054 — INFO — Watermark detected: False
+2025-05-29 11:52:36,054 — INFO — Processed file saved: E:\Work\AcedClass\cleaned\sample_with_metadata_watermark_flattened_nometadata_watermarked.pdf
+2025-05-29 11:53:02,466 — INFO — Received file: uploads/sample_with_metadata_watermark.pdf
+2025-05-29 11:53:02,466 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-05-29 11:53:09,919 — INFO — Received file: uploads/sample_with_metadata_watermark.pdf
+2025-05-29 11:53:09,919 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-05-29 11:53:12,406 — INFO — Processed SHA-256: 5a2b7b0478c3e2f4ec3be7dec71100fe001db2df2ee66c90c250f68287e6310b
+2025-05-29 11:53:12,406 — INFO — Watermark detected: False
+2025-05-29 11:53:12,406 — INFO — Processed file saved: E:\Work\AcedClass\cleaned\sample_with_metadata_watermark_flattened_nometadata_watermarked.pdf
+2025-05-29 11:53:19,719 — INFO — Received file: uploads/sample_with_metadata_watermark.pdf
+2025-05-29 11:53:19,719 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-05-29 11:53:27,927 — INFO — Received file: uploads/sample_with_metadata_watermark.pdf
+2025-05-29 11:53:27,927 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-05-29 11:53:30,278 — INFO — Processed SHA-256: 754c61f9816784a5a7e926c9a374f2c9177da7e93d55ef0367eb368d0d3eb97e
+2025-05-29 11:53:30,278 — INFO — Watermark detected: False
+2025-05-29 11:53:30,279 — INFO — Processed file saved: E:\Work\AcedClass\cleaned\sample_with_metadata_watermark_flattened_nometadata_watermarked.pdf
+2025-05-29 11:54:40,580 — INFO — Received file: uploads/sample_with_metadata_watermark.pdf
+2025-05-29 11:54:40,581 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-05-29 11:54:42,939 — INFO — Processed SHA-256: 72b97f6fb8477d9c939fe8a71ed56db432c25aeca728518c8bbf2d3151ad95a0
+2025-05-29 11:54:42,939 — INFO — Watermark detected: False
+2025-05-29 11:54:42,939 — INFO — Processed file saved: E:\Work\AcedClass\cleaned\sample_with_metadata_watermark_flattened_nometadata_watermarked.pdf
+2025-05-29 11:55:22,078 — INFO — Received file: uploads/sample_with_metadata_watermark.pdf
+2025-05-29 11:55:22,078 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-05-29 11:55:41,260 — INFO — Received file: uploads/sample_with_metadata_watermark.pdf
+2025-05-29 11:55:41,260 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-05-29 11:55:44,276 — INFO — Processed SHA-256: 44a97f083b14176d4e0412639eb431feaa316cfb6d6065738c3b4cb4a534e710
+2025-05-29 11:55:44,276 — INFO — Watermark detected: False
+2025-05-29 11:55:44,276 — INFO — Processed file saved: E:\Work\AcedClass\cleaned\sample_with_metadata_watermark_flattened_nometadata_watermarked.pdf
+2025-05-29 11:58:22,151 — INFO — Received file: uploads/sample_with_metadata_watermark.pdf
+2025-05-29 11:58:22,151 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-05-29 11:58:25,792 — INFO — Processed SHA-256: 83b334725b81039903ad3fc85edac3ba3d7476db429d4b85270c82ff3ef5501e
+2025-05-29 11:58:25,792 — INFO — Watermark detected: True
+2025-05-29 11:58:25,792 — INFO — Processed file saved: E:\Work\AcedClass\cleaned\sample_with_metadata_watermark_flattened_nometadata_cleaned_watermarked.pdf
+2025-05-29 12:22:10,473 — INFO — Received file: uploads/sample_with_metadata_watermark.pdf
+2025-05-29 12:22:10,473 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-05-29 12:22:38,538 — INFO — Processed SHA-256: 7c8f44e48bdb52263a21391309e922c02b41e306130a637129854ad776a0fb63
+2025-05-29 12:22:38,538 — INFO — Watermark detected: True
+2025-05-29 12:22:38,538 — INFO — Processed file saved: E:\Work\AcedClass\cleaned\sample_with_metadata_watermark_flattened_nometadata_cleaned_watermarked.pdf
+2025-05-29 12:27:27,782 — INFO — Received file: uploads/sample_with_metadata_watermark.pdf
+2025-05-29 12:27:27,782 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-05-29 12:27:43,681 — INFO — Processed SHA-256: dde73750494dbd3749b3e1aa5ce8b9c72716b0916db63d54bd4d59fadeb27e53
+2025-05-29 12:27:43,681 — INFO — Watermark detected: True
+2025-05-29 12:27:43,681 — INFO — Processed file saved: E:\Work\AcedClass\cleaned\sample_with_metadata_watermark_flattened_nometadata_cleaned_watermarked.pdf
+2025-05-29 12:59:34,956 — INFO — Received file: uploads/sample_with_metadata_watermark.pdf
+2025-05-29 12:59:34,956 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-05-29 13:05:58,023 — INFO — Received file: uploads/sample_with_metadata_watermark.pdf
+2025-05-29 13:05:58,023 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-05-29 13:10:53,424 — INFO — Received file: uploads/sample_with_metadata_watermark.pdf
+2025-05-29 13:10:53,425 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-05-29 13:17:44,350 — INFO — Received file: uploads/sample_with_metadata_watermark.pdf
+2025-05-29 13:17:44,350 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-05-29 13:18:14,522 — INFO — Received file: uploads/sample_with_metadata_watermark.pdf
+2025-05-29 13:18:14,523 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-05-29 13:51:38,170 — INFO — Received file: uploads/sample_with_metadata_watermark.pdf
+2025-05-29 13:51:38,170 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-05-29 13:51:48,830 — INFO — Received file: uploads/sample_with_metadata_watermark.pdf
+2025-05-29 13:51:48,830 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-05-29 13:52:07,492 — INFO — Processed SHA-256: 02497f9c827fb9b0156d2a36223f19eca23b72aa62b590216515e47058c4bb61
+2025-05-29 13:52:07,492 — INFO — Watermark detected: True
+2025-05-29 13:52:07,492 — INFO — Processed file saved: E:\Work\AcedClass\cleaned\sample_with_metadata_watermark_flattened_nometadata_cleaned_watermarked.pdf
+2025-05-29 14:09:40,913 — INFO — Received file: uploads/sample_with_metadata_watermark.pdf
+2025-05-29 14:09:40,913 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-05-29 14:10:07,597 — INFO — Received file: uploads/sample_with_metadata_watermark.pdf
+2025-05-29 14:10:07,598 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-05-29 14:10:26,779 — INFO — Processed SHA-256: 4ce26abd96c47a715d8a3743a5ece43e17547b6ef3a7d696d20d8db593ac3ccb
+2025-05-29 14:10:26,779 — INFO — Watermark detected: True
+2025-05-29 14:10:26,779 — INFO — Processed file saved: E:\Work\AcedClass\cleaned\sample_with_metadata_watermark_flattened_nometadata_cleaned_watermarked.pdf
+2025-05-29 14:10:52,360 — INFO — Received file: uploads/sample_with_metadata_watermark.pdf
+2025-05-29 14:10:52,360 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-05-29 14:11:10,306 — INFO — Processed SHA-256: 7b463c9dbf40123979575c30b17f65cd63008be508e105c038259d6494e22b8d
+2025-05-29 14:11:10,306 — INFO — Watermark detected: True
+2025-05-29 14:11:10,306 — INFO — Processed file saved: E:\Work\AcedClass\cleaned\sample_with_metadata_watermark_flattened_nometadata_cleaned_watermarked.pdf
+2025-06-02 10:47:07,536 — INFO — Received file: uploads/sample_with_metadata_watermark.pdf
+2025-06-02 10:47:07,537 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-06-02 11:26:18,886 — INFO — Received file: uploads/sample_with_metadata_watermark.pdf
+2025-06-02 11:26:18,886 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-06-02 11:26:36,355 — INFO — Processed SHA-256: 840e00ad0e762119c23ab0bcc84f8afc6bb569fc809c7fddb0bef9fbeb60e94a
+2025-06-02 11:26:36,356 — INFO — Watermark detected: True
+2025-06-02 11:26:36,356 — INFO — Processed file saved: E:\Work\AcedClass\cleaned\sample_with_metadata_watermark_flattened_nometadata_cleaned_watermarked.pdf
+2025-06-02 11:35:06,248 — INFO — Received file: uploads/sample_with_metadata_watermark.pdf
+2025-06-02 11:35:06,248 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-06-02 11:35:36,871 — INFO — Received file: uploads/sample_with_metadata_watermark.pdf
+2025-06-02 11:35:36,872 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-06-02 11:36:47,026 — INFO — Received file: uploads/sample_with_metadata_watermark.pdf
+2025-06-02 11:36:47,026 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-06-02 11:36:53,153 — INFO — Received file: uploads/sample_with_metadata_watermark.pdf
+2025-06-02 11:36:53,153 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-06-02 11:37:08,816 — INFO — Processed SHA-256: fd6e872244ae0548df657e36741b7ceaf169dc066ce07380074113ef3383c541
+2025-06-02 11:37:08,816 — INFO — Watermark detected: True
+2025-06-02 11:37:08,816 — INFO — Processed file saved: E:\Work\AcedClass\cleaned\sample_with_metadata_watermark_flattened_nometadata_cleaned_watermarked.pdf
+2025-06-02 11:42:09,671 — INFO — Received file: uploads/sample_with_metadata_watermark.pdf
+2025-06-02 11:42:09,671 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-06-02 11:42:38,052 — INFO — Processed SHA-256: b33428447dfcb05492fc801a7a0bafd114b875e2caafe54fcbd2fd2f934b86de
+2025-06-02 11:42:38,052 — INFO — Watermark detected: True
+2025-06-02 11:42:38,052 — INFO — Processed file saved: E:\Work\AcedClass\cleaned\sample_with_metadata_watermark_flattened_nometadata_cleaned_watermarked.pdf
+2025-06-02 11:54:55,289 — INFO — Received file: uploads/sample_with_metadata_watermark.pdf
+2025-06-02 11:59:20,541 — INFO — Received file: uploads/sample.pdf
+2025-06-02 11:59:20,541 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-06-02 11:59:51,555 — INFO — Processed SHA-256: fd0ee994522ac9657b6fbb0997d84b3b3297c1b866f3454b8b12b1e765a55887
+2025-06-02 11:59:51,555 — INFO — Watermark detected: True
+2025-06-02 11:59:51,555 — INFO — Processed file saved: E:\Work\AcedClass\cleaned\sample_flattened_nometadata_cleaned_watermarked.pdf
+2025-06-02 12:11:53,218 — INFO — Received file: uploads/sample.pdf
+2025-06-02 12:11:53,219 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-06-02 12:28:02,779 — INFO — Received file: uploads/sample.pdf
+2025-06-02 12:28:02,779 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-06-02 12:28:59,337 — INFO — Received file: uploads/sample.pdf
+2025-06-02 12:28:59,337 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-06-02 12:29:07,701 — INFO — Received file: uploads/sample.pdf
+2025-06-02 12:29:07,701 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-06-02 12:44:20,148 — INFO — Received file: uploads/sample.pdf
+2025-06-02 12:44:20,149 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-06-02 12:45:06,551 — INFO — Received file: uploads/sample.pdf
+2025-06-02 12:45:06,552 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-06-02 12:47:59,710 — INFO — Received file: uploads/sample.pdf
+2025-06-02 12:47:59,711 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-06-02 12:48:10,290 — INFO — Received file: uploads/sample.pdf
+2025-06-02 12:48:10,290 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-06-02 12:51:54,620 — INFO — Received file: uploads/sample.pdf
+2025-06-02 12:51:54,620 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-06-02 12:52:01,067 — INFO — Received file: uploads/sample.pdf
+2025-06-02 12:52:01,067 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-06-02 12:52:33,763 — INFO — Processed SHA-256: 1f98e0f473426c4c52474ac6030491b8c23434e92605c1be19d187f55a88f807
+2025-06-02 12:52:33,763 — INFO — Watermark detected: True
+2025-06-02 12:52:33,763 — INFO — Processed file saved: E:\Work\AcedClass\cleaned\tmpcyzknw2p_watermarked.pdf
+2025-06-02 12:56:39,500 — INFO — Received file: uploads/sample.pdf
+2025-06-02 12:56:39,500 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-06-02 12:57:09,572 — INFO — Processed SHA-256: d0f1e1787b985a0da27ecb97db87ace903b59e8540212e7490826c50eae92562
+2025-06-02 12:57:09,572 — INFO — Watermark detected: True
+2025-06-02 12:57:09,572 — INFO — Processed file saved: E:\Work\AcedClass\cleaned\sample_flattened_nometadata_cleaned_watermarked.pdf
+2025-06-02 12:57:46,819 — INFO — Received file: uploads/sample.pdf
+2025-06-02 12:57:46,820 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-06-02 12:57:56,147 — INFO — Processed SHA-256: 6c569572595638729c82505aa2403205e18c52cc3f4f66fb5a5e9647124c1fea
+2025-06-02 12:57:56,147 — INFO — Watermark detected: True
+2025-06-02 12:57:56,147 — INFO — Processed file saved: E:\Work\AcedClass\cleaned\sample_flattened_nometadata_cleaned_watermarked.pdf
+2025-06-02 13:25:01,139 — INFO — Received file: uploads/sample.pdf
+2025-06-02 13:25:01,139 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-06-02 13:25:47,672 — INFO — Received file: uploads/sample.pdf
+2025-06-02 13:25:47,672 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-06-02 13:26:15,892 — INFO — Processed SHA-256: ef57f44aeeb15491d439f5a5eae33a69e924eb4be0fdda368950fc730a10928a
+2025-06-02 13:26:15,892 — INFO — Watermark detected: True
+2025-06-02 13:26:15,892 — INFO — Processed file saved: E:\Work\AcedClass\cleaned\sample_flattened_cleaned_watermarked.pdf
+2025-06-02 13:29:45,577 — INFO — Received file: uploads/sample.pdf
+2025-06-02 13:29:45,578 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-06-02 13:30:17,039 — INFO — Processed SHA-256: 6b9d6b3065559fd083db6b5f419c4bc82bbf818245ad0e60eef14e49aa98dfa3
+2025-06-02 13:30:17,039 — INFO — Watermark detected: True
+2025-06-02 13:30:17,039 — INFO — Processed file saved: E:\Work\AcedClass\cleaned\sample_flattened_cleaned_watermarked.pdf
+2025-06-02 13:44:24,475 — INFO — Received file: uploads/sample.pdf
+2025-06-02 13:44:24,475 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-06-02 13:44:53,983 — INFO — Processed SHA-256: a895e312f9d758d9a18f613dc47bf0c9a267c3937e0612c52c0f00bfab204e6a
+2025-06-02 13:44:53,983 — INFO — Watermark detected: True
+2025-06-02 13:44:53,983 — INFO — Processed file saved: E:\Work\AcedClass\cleaned\sample_cleaned_watermarked.pdf
+2025-06-02 13:46:16,764 — INFO — Received file: uploads/sample.pdf
+2025-06-02 13:46:16,764 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-06-02 13:46:46,029 — INFO — Processed SHA-256: 3ec9459d7d663d5e4d0705661ed14076c26357d8a2807afdb4f6e49b68649fe5
+2025-06-02 13:46:46,029 — INFO — Watermark detected: True
+2025-06-02 13:46:46,029 — INFO — Processed file saved: E:\Work\AcedClass\cleaned\sample_cleaned_watermarked.pdf
+2025-06-02 13:49:44,406 — INFO — Received file: uploads/sample.pdf
+2025-06-02 13:49:44,406 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-06-02 13:49:46,800 — INFO — Processed SHA-256: 85955fd23b937cd3a2322e5bf3d79c2d83924e81692e546452fa7b3b11c010ef
+2025-06-02 13:49:46,800 — INFO — Watermark detected: False
+2025-06-02 13:49:46,800 — INFO — Processed file saved: E:\Work\AcedClass\cleaned\sample_flattened_watermarked.pdf
+2025-06-02 13:50:40,148 — INFO — Received file: uploads/sample.pdf
+2025-06-02 13:50:40,148 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-06-02 13:50:55,237 — INFO — Processed SHA-256: 6ea43273a16c734c43beec9702537daef59614a1edf2754d0b01e75b93d7bd73
+2025-06-02 13:50:55,237 — INFO — Watermark detected: True
+2025-06-02 13:50:55,237 — INFO — Processed file saved: E:\Work\AcedClass\cleaned\sample_flattened_watermarked.pdf
+2025-06-02 14:00:29,187 — INFO — Received file: uploads/sample.pdf
+2025-06-02 14:00:29,188 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-06-02 14:02:04,958 — INFO — Received file: uploads/sample.pdf
+2025-06-02 14:02:04,958 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-06-02 14:07:33,886 — INFO — Received file: uploads/sample.pdf
+2025-06-02 14:07:33,886 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-06-02 14:19:06,550 — INFO — Received file: uploads/sample.pdf
+2025-06-02 14:19:06,550 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-06-02 14:22:30,009 — INFO — Received file: uploads/sample.pdf
+2025-06-02 14:22:30,010 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-06-02 14:24:14,899 — INFO — Received file: uploads/sample.pdf
+2025-06-02 14:24:14,899 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-06-02 14:24:49,831 — INFO — Processed SHA-256: a3f55cb67cbb2b4c032320abcbdaed8c1c81cad1b733c0666374f4806a774c45
+2025-06-02 14:24:49,831 — INFO — Watermark detected: True
+2025-06-02 14:24:49,831 — INFO — Processed file saved: E:\Work\AcedClass\cleaned\sample_flattened_cleaned_watermarked.pdf
+2025-06-02 16:45:10,966 — INFO — Received file: uploads/BUSN100_Quiz_1.pdf
+2025-06-02 16:45:10,966 — INFO — Original SHA-256: 6be4c6d99eadc0d2a8908cde70326ea10279c2dcc944abbaeda2703e93971302
+2025-06-02 16:47:48,313 — INFO — Received file: uploads/BUSN100_Quiz_1.pdf
+2025-06-02 16:47:48,314 — INFO — Original SHA-256: 6be4c6d99eadc0d2a8908cde70326ea10279c2dcc944abbaeda2703e93971302
+2025-06-02 16:47:58,980 — INFO — Received file: uploads/BUSN100_Quiz_1.pdf
+2025-06-02 16:47:58,981 — INFO — Original SHA-256: 6be4c6d99eadc0d2a8908cde70326ea10279c2dcc944abbaeda2703e93971302
+2025-06-02 16:51:19,540 — INFO — Processed SHA-256: d15479d27d09466a33293784e3a73baff28c39620d359ed77aa42d59fce5a553
+2025-06-02 16:51:19,540 — INFO — Watermark detected: True
+2025-06-02 16:51:19,541 — INFO — Processed file saved: E:\Work\AcedClass\cleaned\BUSN100_Quiz_1_flattened_cleaned_watermarked.pdf
+2025-06-02 18:59:28,976 — INFO — Received file: uploads/BUSN100_Quiz_1.pdf
+2025-06-02 18:59:28,976 — INFO — Original SHA-256: 6be4c6d99eadc0d2a8908cde70326ea10279c2dcc944abbaeda2703e93971302
+2025-06-02 19:00:07,898 — INFO — Received file: uploads/BUSN100_Quiz_1.pdf
+2025-06-02 19:00:07,898 — INFO — Original SHA-256: 6be4c6d99eadc0d2a8908cde70326ea10279c2dcc944abbaeda2703e93971302
+2025-06-02 19:03:00,666 — INFO — Processed SHA-256: 1064410c84b7d6b4475290cb9fb0a2c2d11128bcc9bba909957cd296b73c6273
+2025-06-02 19:03:00,666 — INFO — Watermark detected: True
+2025-06-02 19:03:00,666 — INFO — Processed file saved: E:\Work\AcedClass\cleaned\BUSN100_Quiz_1_flattened_cleaned_watermarked.pdf
+2025-06-02 19:26:25,971 — INFO — Received file: uploads/Letter.docx
+2025-06-02 19:26:25,971 — INFO — Original SHA-256: 36eda846efbbbfc452733aa4909cd7345d5cc52b9c5c93f73c3ca2edbe764fd5
+2025-06-02 19:30:01,719 — INFO — Received file: uploads/Letter.docx
+2025-06-02 19:30:01,720 — INFO — Original SHA-256: 36eda846efbbbfc452733aa4909cd7345d5cc52b9c5c93f73c3ca2edbe764fd5
+2025-06-02 19:34:05,580 — INFO — Received file: uploads/Letter.docx
+2025-06-02 19:34:05,580 — INFO — Original SHA-256: 36eda846efbbbfc452733aa4909cd7345d5cc52b9c5c93f73c3ca2edbe764fd5
+2025-06-02 19:34:29,451 — INFO — Received file: uploads/Letter.docx
+2025-06-02 19:34:29,452 — INFO — Original SHA-256: 36eda846efbbbfc452733aa4909cd7345d5cc52b9c5c93f73c3ca2edbe764fd5
+2025-06-02 19:35:29,763 — INFO — Received file: uploads/Letter.docx
+2025-06-02 19:35:29,763 — INFO — Original SHA-256: 36eda846efbbbfc452733aa4909cd7345d5cc52b9c5c93f73c3ca2edbe764fd5
+2025-06-03 11:27:22,085 — INFO — Received file: uploads/sample.pdf
+2025-06-03 11:27:22,085 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-06-03 11:29:09,620 — INFO — Received file: uploads/sample.pdf
+2025-06-03 11:29:09,621 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-06-03 11:29:16,739 — INFO — Received file: uploads/sample.pdf
+2025-06-03 11:29:16,739 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-06-03 11:29:50,090 — INFO — Processed SHA-256: 167c1a9703749594bb32ad63566cc0348f280da4a1e28c952cc732dcb75865ac
+2025-06-03 11:29:50,090 — INFO — Watermark detected: True
+2025-06-03 11:29:50,090 — INFO — Processed file saved: E:\Work\AcedClass\cleaned\sample_flattened_cleaned_watermarked.pdf
+2025-06-03 11:30:32,499 — INFO — Received file: uploads/BUSN100_Quiz_1.pdf
+2025-06-03 11:30:32,500 — INFO — Original SHA-256: 6be4c6d99eadc0d2a8908cde70326ea10279c2dcc944abbaeda2703e93971302
+2025-06-03 11:33:41,620 — INFO — Processed SHA-256: 76a549bf1d6e6fae0bb1cadb26dabce179903d9a48d27d07bcae4af8e3a5619c
+2025-06-03 11:33:41,620 — INFO — Watermark detected: True
+2025-06-03 11:33:41,620 — INFO — Processed file saved: E:\Work\AcedClass\cleaned\BUSN100_Quiz_1_flattened_cleaned_watermarked.pdf
+2025-06-03 11:48:42,713 — INFO — Received file: uploads/Letter.docx
+2025-06-03 11:48:42,714 — INFO — Original SHA-256: 36eda846efbbbfc452733aa4909cd7345d5cc52b9c5c93f73c3ca2edbe764fd5
+2025-06-03 11:51:09,607 — INFO — Received file: uploads/Letter.docx
+2025-06-03 11:51:09,607 — INFO — Original SHA-256: 36eda846efbbbfc452733aa4909cd7345d5cc52b9c5c93f73c3ca2edbe764fd5
+2025-06-03 11:57:19,069 — INFO — Received file: uploads/Letter.docx
+2025-06-03 11:57:19,069 — INFO — Original SHA-256: 36eda846efbbbfc452733aa4909cd7345d5cc52b9c5c93f73c3ca2edbe764fd5
+2025-06-03 12:05:06,633 — INFO — Received file: uploads/Letter.docx
+2025-06-03 12:05:06,633 — INFO — Original SHA-256: 36eda846efbbbfc452733aa4909cd7345d5cc52b9c5c93f73c3ca2edbe764fd5
+2025-06-03 12:09:49,802 — INFO — Received file: uploads/Letter.docx
+2025-06-03 12:09:49,803 — INFO — Original SHA-256: 36eda846efbbbfc452733aa4909cd7345d5cc52b9c5c93f73c3ca2edbe764fd5
+2025-06-03 12:10:15,039 — INFO — Processed SHA-256: 1dd883879e204e451d53cf9db26fb70c7f8f36b39575918c44ca5390352ad18a
+2025-06-03 12:10:15,039 — INFO — Watermark detected: False
+2025-06-03 12:10:15,039 — INFO — Processed file saved: E:\Work\AcedClass\cleaned\Letter_flattened_watermarked.pdf
+2025-06-03 13:09:55,287 — INFO — Received file: uploads/Letter.docx
+2025-06-03 13:09:55,287 — INFO — Original SHA-256: 36eda846efbbbfc452733aa4909cd7345d5cc52b9c5c93f73c3ca2edbe764fd5
+2025-06-03 13:13:56,237 — INFO — Received file: uploads/Книга1.xlsx
+2025-06-03 13:13:56,237 — INFO — Original SHA-256: c32afb225223d7a0d46718210d4e4d02bb49f34f2dff4d18902f9e59de72313e
+2025-06-03 13:17:58,833 — INFO — Received file: uploads/Книга1.xlsx
+2025-06-03 13:18:18,500 — INFO — Received file: uploads/Книга1.xlsx.xlsx
+2025-06-03 13:18:18,500 — INFO — Original SHA-256: c32afb225223d7a0d46718210d4e4d02bb49f34f2dff4d18902f9e59de72313e
+2025-06-03 13:19:15,240 — INFO — Received file: uploads/Книга1.xlsx.xlsx
+2025-06-03 13:19:15,240 — INFO — Original SHA-256: c32afb225223d7a0d46718210d4e4d02bb49f34f2dff4d18902f9e59de72313e
+2025-06-03 13:19:34,826 — INFO — Received file: uploads/Книга1.xlsx.xlsx
+2025-06-03 13:19:34,826 — INFO — Original SHA-256: c32afb225223d7a0d46718210d4e4d02bb49f34f2dff4d18902f9e59de72313e
+2025-06-03 13:21:18,185 — INFO — Received file: uploads/Книга1.xlsx.xlsx
+2025-06-03 13:21:18,185 — INFO — Original SHA-256: c32afb225223d7a0d46718210d4e4d02bb49f34f2dff4d18902f9e59de72313e
+2025-06-03 13:21:18,198 — INFO — Processed SHA-256: ebeb76c5d1b0b1dc1f94a01146ff56eef63dd4520f9e225ee72ea15be420d373
+2025-06-03 13:21:18,198 — INFO — Watermark detected: None
+2025-06-03 13:21:18,198 — INFO — Processed file saved: output\excel_cleaned\Книга1_cleaned.xlsx
+2025-06-03 13:28:11,099 — INFO — Received file: uploads/Книга1.xlsx.xlsx
+2025-06-03 13:28:11,099 — INFO — Original SHA-256: c32afb225223d7a0d46718210d4e4d02bb49f34f2dff4d18902f9e59de72313e
+2025-06-03 13:28:11,111 — INFO — Processed SHA-256: 87e9cdd8f4562f96bc415df6102184a14d8a4fa807703e30fddf13ebf76116a7
+2025-06-03 13:28:11,112 — INFO — Watermark detected: None
+2025-06-03 13:28:11,112 — INFO — Processed file saved: cleaned\Книга1_cleaned.xlsx
+2025-06-03 13:31:31,351 — INFO — Received file: uploads/Книга1.xls.xls
+2025-06-03 13:31:31,352 — INFO — Original SHA-256: 5d00aa5d95eb75c2496d137a74acc1744a3f5d48c0f9a804f07ef62f3646d982
+2025-06-03 13:31:33,030 — INFO — Processed SHA-256: 811c8d4311d31831fefeedbafbe7444c98ec019ffc8b202d0c8c06f19bd5b4ec
+2025-06-03 13:31:33,030 — INFO — Watermark detected: None
+2025-06-03 13:31:33,030 — INFO — Processed file saved: cleaned\Книга1.xls_cleaned.xlsx
+2025-06-03 13:32:21,183 — INFO — Received file: uploads/Книга1.xls.xls
+2025-06-03 13:32:21,184 — INFO — Original SHA-256: 33a669e6b767983a2d860b9990324ad2f580b60e944182bc71c3aa9c3bc1c11f
+2025-06-03 13:32:22,644 — INFO — Processed SHA-256: 570ecb3774ac381a31c8c532b74bc12d091c279419a3dd9f665fe2ac7850a1b0
+2025-06-03 13:32:22,644 — INFO — Watermark detected: None
+2025-06-03 13:32:22,644 — INFO — Processed file saved: cleaned\Книга1_cleaned.xlsx
+2025-06-03 13:32:35,899 — INFO — Received file: uploads/Книга1.xls.xls
+2025-06-03 13:32:35,900 — INFO — Original SHA-256: 32edab124d50f97ff214c03ff6270705975409da9e16a53d5a061f219548d811
+2025-06-03 13:32:36,714 — INFO — Processed SHA-256: 27d7700f68ab2ed84a88a2900160fab3ae0b5a0bf0be15c6f48fa91b18edd40c
+2025-06-03 13:32:36,714 — INFO — Watermark detected: None
+2025-06-03 13:32:36,714 — INFO — Processed file saved: cleaned\Книга1_cleaned.xlsx
+2025-06-03 17:06:17,462 — INFO — Received file: uploads/Small Business Plan.pptx
+2025-06-03 17:06:17,466 — INFO — Original SHA-256: 2d81ea3249cca25edf64bf84b5c81773b58e0e97440e56d4e72f0e016df52617
+2025-06-03 17:07:21,961 — INFO — Received file: uploads/Small Business Plan.pptx
+2025-06-03 17:07:21,966 — INFO — Original SHA-256: 2d81ea3249cca25edf64bf84b5c81773b58e0e97440e56d4e72f0e016df52617
+2025-06-03 17:12:48,792 — INFO — Processed SHA-256: db256c10a514e41be027c0d968e4d4f90e88d3cf3e06826b82a6d4294bed4d76
+2025-06-03 17:12:48,792 — INFO — Watermark detected: True
+2025-06-03 17:12:48,792 — INFO — Processed file saved: E:\Work\AcedClass\cleaned\cleaned_flattened_cleaned_watermarked.pdf
+2025-06-03 17:21:18,892 — INFO — Received file: uploads/Business Conference Slide.pptx
+2025-06-03 17:21:18,898 — INFO — Original SHA-256: 7247856a39490c6b93b43be657f3405b577a0baca6551225270b0d87cf458aba
+2025-06-03 17:31:10,614 — INFO — Received file: uploads/Business Conference Slide.pptx
+2025-06-03 17:31:10,618 — INFO — Original SHA-256: b806682400993e42f41467bfb6db9cdc9676cb5660699d1ec90111076f26b632
+2025-06-03 17:32:51,336 — INFO — Processed SHA-256: e82d9ba5cc3853fc2f336f7a009706cae3a475fac7864f6cf0941f65c32e5808
+2025-06-03 17:32:51,336 — INFO — Watermark detected: False
+2025-06-03 17:32:51,336 — INFO — Processed file saved: E:\Work\AcedClass\cleaned\Business Conference Slide_cleaned_flattened_watermarked.pdf
+2025-06-06 12:53:59,782 — INFO — Received file: uploads/BUSN100_Quiz_1.pdf
+2025-06-06 12:53:59,783 — INFO — Original SHA-256: 6be4c6d99eadc0d2a8908cde70326ea10279c2dcc944abbaeda2703e93971302
+2025-06-06 12:55:31,569 — INFO — Processed SHA-256: cdbf6aedd3acd3a551ab62f65a603417be810956a159eb822ea3fb9aecfd4369
+2025-06-06 12:55:31,569 — INFO — Watermark detected: True
+2025-06-06 12:55:31,569 — INFO — Processed file saved: E:\Work\AcedClass\cleaned\BUSN100_Quiz_1_flattened_cleaned_watermarked.pdf
+2025-06-06 13:12:14,109 — INFO — Received file: uploads/BUSN100_Quiz_1.pdf
+2025-06-06 13:12:14,109 — INFO — Original SHA-256: 6be4c6d99eadc0d2a8908cde70326ea10279c2dcc944abbaeda2703e93971302
+2025-06-06 13:13:44,621 — INFO — Processed SHA-256: 4870afb0a1a084c77b43120552e324afdb307a65379b2223879b5df1bcc78f8d
+2025-06-06 13:13:44,621 — INFO — Watermark detected: True
+2025-06-06 13:13:44,621 — INFO — Processed file saved: E:\Work\AcedClass\cleaned\BUSN100_Quiz_1_flattened_cleaned_watermarked.pdf
+2025-06-06 13:18:21,020 — INFO — Received file: uploads/BUSN100_Quiz_1.pdf
+2025-06-06 13:18:21,020 — INFO — Original SHA-256: 6be4c6d99eadc0d2a8908cde70326ea10279c2dcc944abbaeda2703e93971302
+2025-06-06 13:19:51,819 — INFO — Processed SHA-256: 7b73ca1729f17da5ff2ead49e964839d700fe75ffad0d0a3ae6a337f97395db3
+2025-06-06 13:19:51,819 — INFO — Watermark detected: True
+2025-06-06 13:19:51,819 — INFO — Processed file saved: E:\Work\AcedClass\cleaned\BUSN100_Quiz_1_flattened_cleaned_watermarked.pdf
+2025-06-06 13:22:30,804 — INFO — Received file: uploads/BUSN100_Quiz_1.pdf
+2025-06-06 13:22:30,804 — INFO — Original SHA-256: 6be4c6d99eadc0d2a8908cde70326ea10279c2dcc944abbaeda2703e93971302
+2025-06-06 13:24:02,222 — INFO — Processed SHA-256: bb6923620b50b9689293c963e75fab2656759843b9cdb69314d1045388bde909
+2025-06-06 13:24:02,222 — INFO — Watermark detected: True
+2025-06-06 13:24:02,222 — INFO — Processed file saved: E:\Work\AcedClass\cleaned\BUSN100_Quiz_1_flattened_cleaned_watermarked.pdf
+2025-06-06 14:20:40,247 — INFO — Received file: uploads/sample.pdf
+2025-06-06 14:20:40,248 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-06-06 14:20:56,769 — INFO — Processed SHA-256: bdcd3c45524d0ae361f7edfab1120e99bab4c0894ea657e85e2958d63b818b41
+2025-06-06 14:20:56,769 — INFO — Watermark detected: True
+2025-06-06 14:20:56,769 — INFO — Processed file saved: E:\Work\AcedClass\cleaned\sample_flattened_cleaned_watermarked.pdf
+2025-06-09 09:03:02,253 — INFO — Received file: uploads/sample.pdf
+2025-06-09 09:03:02,254 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-06-09 09:03:19,169 — INFO — Processed SHA-256: b996656420dffb0291d0c13180830bc8fc14f0cc465f83d3c3aa62a227bd0842
+2025-06-09 09:03:19,170 — INFO — Watermark detected: True
+2025-06-09 09:03:19,170 — INFO — Processed file saved: E:\Work\AcedClass\cleaned\sample_flattened_cleaned_watermarked.pdf
+2025-06-09 09:05:51,217 — INFO — Received file: uploads/sample.pdf
+2025-06-09 09:05:51,218 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-06-09 09:06:09,592 — INFO — Processed SHA-256: fe9d6cc22b8f377bafc7b120bd0b867c27ea0d8939da500af99a7660809f65b3
+2025-06-09 09:06:09,592 — INFO — Watermark detected: True
+2025-06-09 09:06:09,592 — INFO — Processed file saved: E:\Work\AcedClass\cleaned\sample_flattened_cleaned_watermarked.pdf
+2025-06-09 11:00:49,761 — INFO — Received file: uploads/sample.pdf
+2025-06-09 11:00:49,762 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-06-09 11:01:06,180 — INFO — Processed SHA-256: 3e67b36b194f20893859ed23d96844f0cd538e83a51db4d26d8f64afef860c91
+2025-06-09 11:01:06,180 — INFO — Watermark detected: True
+2025-06-09 11:01:06,180 — INFO — Processed file saved: E:\Work\AcedClass\cleaned\sample_flattened_cleaned_watermarked.pdf
+2025-06-11 10:18:33,944 — INFO — Received file: uploads/sample.pdf
+2025-06-11 10:18:33,947 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-06-11 10:18:53,052 — INFO — Processed SHA-256: 93d81ffb957e5668e897ff19f23911fac91cecb127f1f9771f47beacd5d48529
+2025-06-11 10:18:53,052 — INFO — Watermark detected: True
+2025-06-11 10:18:53,052 — INFO — Processed file saved: E:\Work\AcedClass\cleaned\sample_flattened_cleaned_watermarked.pdf
+2025-06-11 11:19:19,842 — INFO — Received file: uploads/sample.pdf
+2025-06-11 11:19:19,843 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-06-11 11:19:36,761 — INFO — Processed SHA-256: a3530ef28c3e4ac52b0bf10c7ef4f0d7a488221300cd4911f6c5e24f65fa7dbf
+2025-06-11 11:19:36,761 — INFO — Watermark detected: True
+2025-06-11 11:19:36,761 — INFO — Processed file saved: E:\Work\AcedClass\cleaned\sample_flattened_cleaned_watermarked.pdf
+2025-06-11 11:20:45,323 — INFO — Received file: uploads/BUSN100_Quiz_1.pdf
+2025-06-11 11:20:45,325 — INFO — Original SHA-256: 6be4c6d99eadc0d2a8908cde70326ea10279c2dcc944abbaeda2703e93971302
+2025-06-11 11:22:16,126 — INFO — Processed SHA-256: 0097cf24959bacce346aea4e9277cff588498d3a7c6afa7baa0f040669d2922b
+2025-06-11 11:22:16,126 — INFO — Watermark detected: True
+2025-06-11 11:22:16,126 — INFO — Processed file saved: E:\Work\AcedClass\cleaned\BUSN100_Quiz_1_flattened_cleaned_watermarked.pdf
+2025-06-11 16:17:08,997 — INFO — Received file: uploads/sample.pdf
+2025-06-11 16:17:08,998 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-06-11 16:17:32,092 — INFO — Processed SHA-256: 50aef058f5f58764f04ad9164910d53390c5c0fd29c623c2191942586c3bd912
+2025-06-11 16:17:32,095 — INFO — Watermark detected: True
+2025-06-11 16:17:32,095 — INFO — Processed file saved: E:\Work\AcedClass\cleaned\sample_flattened_cleaned_watermarked.pdf
+2025-06-11 16:28:01,904 — INFO — Received file: uploads/sample.pdf
+2025-06-11 16:28:01,904 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-06-11 18:40:57,075 — INFO — Received file: uploads/sample.pdf
+2025-06-11 18:40:57,076 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-06-11 19:04:05,367 — INFO — Received file: uploads/sample.pdf
+2025-06-11 19:04:05,367 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-06-12 11:22:16,538 — INFO — Received file: uploads/sample.pdf
+2025-06-12 11:22:16,540 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-06-13 12:47:40,326 — INFO — Received file: uploads/BUSN100_Quiz_1.pdf
+2025-06-13 12:47:40,326 — INFO — Original SHA-256: 6be4c6d99eadc0d2a8908cde70326ea10279c2dcc944abbaeda2703e93971302
+2025-06-13 12:49:35,885 — INFO — Processed SHA-256: 0efbfd072d377a665f397d67883878d08b26ccc811c5d554f867896b061c241e
+2025-06-13 12:49:35,885 — INFO — Watermark detected: True
+2025-06-13 12:49:35,885 — INFO — Processed file saved: E:\Work\AcedClass\cleaned\BUSN100_Quiz_1_flattened_cleaned_watermarked.pdf
