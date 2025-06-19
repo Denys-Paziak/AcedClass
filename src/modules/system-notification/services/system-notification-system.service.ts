@@ -1,0 +1,24 @@
+import { Injectable } from '@nestjs/common'
+import { InjectRepository } from '@nestjs/typeorm'
+import { TSystemNotificationData } from 'src/interfaces/TSystemNotificationData'
+import { EntityManager, Repository } from 'typeorm'
+
+import { SystemNotification } from '../entities/System-notification.entity'
+
+@Injectable()
+export class SystemNotificationSystemService {
+	constructor(
+		@InjectRepository(SystemNotification)
+		private readonly complaintRepository: Repository<SystemNotification>
+	) {}
+
+	async createSystemNotification(userId: number, data: TSystemNotificationData, manager?: EntityManager) {
+		const repo = manager?.getRepository(SystemNotification) || this.complaintRepository
+
+		await repo.save({
+			type: data.type,
+			data: data,
+			user: { id: userId }
+		})
+	}
+}
