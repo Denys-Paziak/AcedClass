@@ -3,24 +3,24 @@ import { IsEmail, IsString, MaxLength, MinLength } from 'class-validator'
 
 export class RegistrationDto {
 	@ApiProperty({
-		description: 'Електронна пошта нового користувача',
+		description: "New user's email address",
 		example: 'newuser@example.com',
 		type: String,
 		format: 'email'
 	})
-	@IsString({ message: 'Email must be a string.' })
-	@IsEmail({}, { message: 'Invalid email format.' })
+	@IsString()
+	@IsEmail()
 	email: string
 
 	@ApiProperty({
-		description: 'Пароль нового користувача',
+		description: 'New user password',
 		example: 'StrongPass123',
 		minLength: 6,
 		maxLength: 64,
 		type: String
 	})
-	@IsString({ message: 'Password must be a string.' })
-	@MinLength(6, { message: 'Password must be at least 6 characters long.' })
-	@MaxLength(64, { message: 'Password must not exceed 64 characters.' })
+	@IsString()
+	@MinLength(6)
+	@MaxLength(64)
 	password: string
 }

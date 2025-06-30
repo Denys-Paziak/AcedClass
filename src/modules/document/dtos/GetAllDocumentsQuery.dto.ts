@@ -5,73 +5,73 @@ import { EDocumentStatuses } from 'src/interfaces/EDocumentStatuses'
 
 export class GetAllDocumentsQueryDto {
 	@ApiPropertyOptional({
-		description: 'Фільтрація за назвою університету',
+		description: 'Filter by university name',
 		type: String,
 		example: 'Harvard University'
 	})
 	@IsOptional()
-	@IsString({ message: 'University must be a string' })
+	@IsString()
 	university?: string
 
 	@ApiPropertyOptional({
-		description: 'Фільтрація за назвою курсу',
+		description: 'Filter by course name',
 		type: String,
 		example: 'Macroeconomics'
 	})
 	@IsOptional()
-	@IsString({ message: 'Course name must be a string' })
+	@IsString()
 	courseName?: string
 
 	@ApiPropertyOptional({
-		description: 'Дата створення документа для фільтрації',
+		description: 'Filter by document creation date',
 		type: String,
 		format: 'date-time',
 		example: '2024-06-15T00:00:00.000Z'
 	})
 	@IsOptional()
 	@Type(() => Date)
-	@IsDate({ message: 'CreatedAt must be a valid date' })
+	@IsDate()
 	createdAt?: Date
 
 	@ApiPropertyOptional({
-		description: 'Статус документа для фільтрації',
+		description: 'Filter by document status',
 		enum: EDocumentStatuses,
 		example: EDocumentStatuses.PENDING
 	})
 	@IsOptional()
-	@IsEnum(EDocumentStatuses, { message: 'Status must be a valid document status' })
+	@IsEnum(EDocumentStatuses)
 	status?: EDocumentStatuses
 
 	@ApiPropertyOptional({
-		description: 'Пошуковий рядок для фільтрації документів',
+		description: 'Search string to filter documents',
 		type: String,
 		example: 'calculus'
 	})
 	@IsOptional()
-	@IsString({ message: 'Search string must be a string' })
+	@IsString()
 	search?: string
 
 	@ApiPropertyOptional({
-		description: 'Кількість елементів на сторінку',
+		description: 'Number of items per page',
 		type: Number,
 		minimum: 0,
 		example: 10
 	})
 	@IsOptional()
 	@Type(() => Number)
-	@IsInt({ message: 'Limit must be an integer' })
-	@Min(0, { message: 'The value cannot be less than zero.' })
+	@IsInt()
+	@Min(0)
 	limit?: number
 
 	@ApiPropertyOptional({
-		description: 'Номер сторінки для пагінації',
+		description: 'Page number for pagination',
 		type: Number,
 		minimum: 0,
 		example: 1
 	})
 	@IsOptional()
 	@Type(() => Number)
-	@IsInt({ message: 'Page must be an integer' })
-	@Min(0, { message: 'The value cannot be less than zero.' })
+	@IsInt()
+	@Min(0)
 	page?: number
 }

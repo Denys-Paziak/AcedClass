@@ -8,7 +8,7 @@ import { UserResponse } from 'src/responses/User.response'
 class SimpleDocument {
 	@Expose({ name: 'id' })
 	@ApiProperty({
-		description: 'Унікальний ідентифікатор документа',
+		description: 'Unique document identifier',
 		example: 1,
 		type: Number
 	})
@@ -16,7 +16,7 @@ class SimpleDocument {
 
 	@Expose({ name: 'name' })
 	@ApiProperty({
-		description: 'Назва документа',
+		description: 'Document name',
 		example: 'Example Document',
 		type: String
 	})
@@ -26,7 +26,7 @@ class SimpleDocument {
 class SimpleUser {
 	@Expose({ name: 'id' })
 	@ApiProperty({
-		description: 'Унікальний ідентифікатор користувача',
+		description: 'Unique user identifier',
 		example: 1,
 		type: Number
 	})
@@ -34,7 +34,7 @@ class SimpleUser {
 
 	@Expose({ name: 'username' })
 	@ApiProperty({
-		description: 'Username користувача',
+		description: "User's username",
 		example: 'john_doe',
 		type: String
 	})
@@ -44,7 +44,7 @@ class SimpleUser {
 class Document {
 	@Expose({ name: 'id' })
 	@ApiProperty({
-		description: 'Унікальний ідентифікатор документа',
+		description: 'Unique document identifier',
 		example: 1,
 		type: Number
 	})
@@ -52,7 +52,7 @@ class Document {
 
 	@Expose({ name: 'name' })
 	@ApiProperty({
-		description: 'Назва документа',
+		description: 'Document name',
 		example: 'Example Document',
 		type: String
 	})
@@ -60,7 +60,7 @@ class Document {
 
 	@Expose({ name: 'status' })
 	@ApiProperty({
-		description: 'Статус документа',
+		description: 'Document status',
 		example: EDocumentStatuses.APPROVED,
 		enum: EDocumentStatuses,
 		type: String
@@ -69,7 +69,7 @@ class Document {
 
 	@Expose({ name: 'createdAt' })
 	@ApiProperty({
-		description: 'Дата створення документа',
+		description: 'Document creation date',
 		example: '2023-10-01T12:00:00Z',
 		type: Date
 	})
@@ -77,7 +77,7 @@ class Document {
 
 	@Expose({ name: 'upvotesCount' })
 	@ApiProperty({
-		description: 'Кількість дізлайків',
+		description: 'Number of upvotes',
 		example: 10,
 		type: Number
 	})
@@ -85,7 +85,7 @@ class Document {
 
 	@Expose({ name: 'downvotesCount' })
 	@ApiProperty({
-		description: 'Кількість лайків',
+		description: 'Number of downvotes',
 		example: 10,
 		type: Number
 	})
@@ -95,7 +95,7 @@ class Document {
 class UnlockedDocument {
 	@Expose({ name: 'id' })
 	@ApiProperty({
-		description: 'Унікальний ідентифікатор розблокованого документа',
+		description: 'Unique identifier of the unlocked document',
 		example: 1,
 		type: Number
 	})
@@ -104,7 +104,7 @@ class UnlockedDocument {
 	@Expose({ name: 'document' })
 	@Type(() => SimpleDocument)
 	@ApiProperty({
-		description: 'Документ, який був розблокований',
+		description: 'Document that was unlocked',
 		type: SimpleDocument
 	})
 	document: SimpleDocument
@@ -112,14 +112,14 @@ class UnlockedDocument {
 	@Expose({ name: 'user' })
 	@Type(() => SimpleUser)
 	@ApiProperty({
-		description: 'Користувач, який розблокував документ',
+		description: 'User who unlocked the document',
 		type: SimpleUser
 	})
 	user: SimpleUser
 
 	@Expose({ name: 'createdAt' })
 	@ApiProperty({
-		description: 'Дата розблокування документа',
+		description: 'Date when the document was unlocked',
 		example: '2023-10-01T12:00:00Z',
 		type: Date
 	})
@@ -129,7 +129,7 @@ class UnlockedDocument {
 export class GetUserInfoResponse extends UserResponse {
 	@Expose({ name: 'role' })
 	@ApiProperty({
-		description: 'Роль користувача',
+		description: "User's role",
 		example: ERoleNames.USER,
 		enum: ERoleNames,
 		type: String
@@ -138,7 +138,7 @@ export class GetUserInfoResponse extends UserResponse {
 
 	@Expose({ name: 'registrationType' })
 	@ApiProperty({
-		description: 'Тип реєстрації користувача',
+		description: "User's registration type",
 		example: ERegistrationTypes.PASSWORD,
 		enum: ERegistrationTypes,
 		type: String
@@ -147,7 +147,7 @@ export class GetUserInfoResponse extends UserResponse {
 
 	@Expose({ name: 'dailyLimitUploads' })
 	@ApiProperty({
-		description: 'Щоденний ліміт завантажень користувача',
+		description: "User's daily upload limit",
 		example: 10,
 		type: Number
 	})
@@ -155,7 +155,7 @@ export class GetUserInfoResponse extends UserResponse {
 
 	@Expose({ name: 'availableUploads' })
 	@ApiProperty({
-		description: 'Доступні завантаження користувача',
+		description: "User's available uploads",
 		example: 5,
 		type: Number
 	})
@@ -163,7 +163,7 @@ export class GetUserInfoResponse extends UserResponse {
 
 	@Expose({ name: 'accountBlocking' })
 	@ApiProperty({
-		description: 'Дата до якої акаунт користувача заблоковано',
+		description: "Date until which the user's account is blocked",
 		example: '2023-10-01T12:00:00Z',
 		type: Date,
 		required: false,
@@ -173,8 +173,8 @@ export class GetUserInfoResponse extends UserResponse {
 
 	@Expose({ name: 'reasonBlocking' })
 	@ApiProperty({
-		description: 'Причина блокування акаунту користувача',
-		example: 'Порушення правил користування сервісом.',
+		description: "Reason for blocking the user's account",
+		example: 'Violation of service usage rules.',
 		type: String,
 		required: false,
 		nullable: true
@@ -183,24 +183,26 @@ export class GetUserInfoResponse extends UserResponse {
 
 	@Expose({ name: 'uploadBlocking' })
 	@ApiProperty({
-		description: 'Дата до якої можливість завантаження документів користувачем заблоковано',
+		description: "Date until which the user's ability to upload documents is blocked",
 		example: '2023-10-01T12:00:00Z',
 		type: Date,
-		required: false
+		required: false,
+		nullable: true
 	})
 	uploadBlocking: Date | null
 
 	@Expose({ name: 'strikeCounter' })
 	@ApiProperty({
-		description: 'Кількість штрафних балів користувача',
+		description: "User's strike points count",
 		example: 2,
-		type: Number
+		type: Number,
+		nullable: true
 	})
 	strikeCounter: number | null
 
 	@Expose({ name: 'emailNotifications' })
 	@ApiProperty({
-		description: 'Вказує, чи користувач хоче отримувати email-сповіщення',
+		description: "Indicates whether the user wants to receive email notifications",
 		example: true,
 		type: Boolean
 	})
@@ -208,7 +210,7 @@ export class GetUserInfoResponse extends UserResponse {
 
 	@Expose({ name: 'documentApprovalAlerts' })
 	@ApiProperty({
-		description: 'Вказує, чи користувач хоче отримувати сповіщення про затвердження документів',
+		description: "Indicates whether the user wants to receive notifications about document approvals",
 		example: true,
 		type: Boolean
 	})
@@ -217,7 +219,7 @@ export class GetUserInfoResponse extends UserResponse {
 	@Expose({ name: 'documents' })
 	@Type(() => Document)
 	@ApiProperty({
-		description: 'Список документів користувача',
+		description: "List of user's documents",
 		type: [Document]
 	})
 	documents: Document[]
@@ -225,7 +227,7 @@ export class GetUserInfoResponse extends UserResponse {
 	@Expose({ name: 'unlockedDocuments' })
 	@Type(() => UnlockedDocument)
 	@ApiProperty({
-		description: 'Список розблокованих документів користувача',
+		description: "List of user's unlocked documents",
 		type: [UnlockedDocument]
 	})
 	unlockedDocuments: UnlockedDocument[]

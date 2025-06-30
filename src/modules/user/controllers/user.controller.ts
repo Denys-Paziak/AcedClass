@@ -1,5 +1,5 @@
 import { Body, Controller, Delete, Get, InternalServerErrorException, Patch, Req, Res } from '@nestjs/common'
-import { ApiCookieAuth, ApiOperation, ApiResponse, ApiTags, OmitType } from '@nestjs/swagger'
+import { ApiCookieAuth, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
 import { Request, Response } from 'express'
 import { Authorization } from 'src/decorators/auth.decorator'
 import { ERoleNames } from 'src/interfaces/ERoleNames'
@@ -23,11 +23,11 @@ export class UserController {
 
 	@Authorization(ERoleNames.USER)
 	@Get('/')
-	@ApiOperation({ summary: 'Отримати інформацію про користувача' })
+	@ApiOperation({ summary: 'Get user information' })
 	@ApiResponse({
 		status: 200,
 		type: GetSelfResponse,
-		description: 'Отримати інформацію про користувача'
+		description: 'Get user information'
 	})
 	async getSelf(@Req() request: Request): Promise<GetSelfResponse> {
 		const userFromToken = request.user as ITokenUser
@@ -37,15 +37,15 @@ export class UserController {
 
 	@Authorization(ERoleNames.USER)
 	@Patch('info')
-	@ApiOperation({ summary: 'Оновити інформацію про користувача' })
+	@ApiOperation({ summary: 'Update user information' })
 	@ApiResponse({
 		status: 200,
-		description: 'Інформація про користувача успішно оновлена',
+		description: 'User information successfully updated',
 		type: UpdateUserInfoDto
 	})
 	@ApiResponse({
 		status: 404,
-		description: 'Користувача не знайдено'
+		description: 'User not found'
 	})
 	async updateInfo(@Req() request: Request, @Body() dto: UpdateUserInfoDto) {
 		const userFromToken = request.user as ITokenUser
@@ -55,19 +55,19 @@ export class UserController {
 
 	@Authorization(ERoleNames.USER)
 	@Patch('email')
-	@ApiOperation({ summary: 'Оновити інформацію та email користувача' })
+	@ApiOperation({ summary: 'Update user information and email' })
 	@ApiResponse({
 		status: 200,
-		description: 'Інформація та email користувача успішно оновлені',
+		description: 'User information and email successfully updated',
 		type: UpdateUserInfoAndEmailDto
 	})
 	@ApiResponse({
 		status: 400,
-		description: 'Невірний пароль'
+		description: 'Invalid password'
 	})
 	@ApiResponse({
 		status: 404,
-		description: 'Користувача не знайдено'
+		description: 'User not found'
 	})
 	async updateInfoAndEmail(@Req() request: Request, @Body() dto: UpdateUserInfoAndEmailDto) {
 		const userFromToken = request.user as ITokenUser
@@ -77,15 +77,15 @@ export class UserController {
 
 	@Authorization(ERoleNames.USER)
 	@Patch('notification-preferences')
-	@ApiOperation({ summary: 'Оновити налаштування сповіщень користувача' })
+	@ApiOperation({ summary: 'Update user notification preferences' })
 	@ApiResponse({
 		status: 200,
-		description: 'Налаштування сповіщень користувача успішно оновлені',
+		description: 'User notification preferences successfully updated',
 		type: UpdateNotificationPreferencesDto
 	})
 	@ApiResponse({
 		status: 404,
-		description: 'Користувача не знайдено'
+		description: 'User not found'
 	})
 	async updateNotificationPreferences(@Req() request: Request, @Body() dto: UpdateNotificationPreferencesDto) {
 		const userFromToken = request.user as ITokenUser
@@ -95,10 +95,10 @@ export class UserController {
 
 	@Authorization(ERoleNames.USER)
 	@Delete('/')
-	@ApiOperation({ summary: 'Видалити користувача' })
+	@ApiOperation({ summary: 'Delete user' })
 	@ApiResponse({
 		status: 204,
-		description: 'Користувач успішно видалений'
+		description: 'User successfully deleted'
 	})
 	async deleteUser(@Req() request: Request, @Res({ passthrough: true }) response: Response) {
 		const userFromToken = request.user as ITokenUser

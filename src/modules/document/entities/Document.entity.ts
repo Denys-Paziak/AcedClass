@@ -24,6 +24,9 @@ export class Document {
 	@Column({ type: 'varchar', length: 255 })
 	name: string
 
+	@Column({ type: 'varchar', length: 255, default: '' })
+	description: string
+
 	@Column({ type: 'varchar', length: 300, unique: true, name: 'system_name' })
 	systemName: string
 

@@ -1,4 +1,5 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post, Query, Req, Res } from '@nestjs/common'
+import { ApiCookieAuth, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
 import { Request } from 'express'
 import { Response } from 'express'
 import { Parser } from 'json2csv'
@@ -14,7 +15,6 @@ import { PostComplaintDto } from '../dtos/PostComplaint.dto'
 import { GetAllComplaintsResponse } from '../responses/GetAllComplaints.response'
 import { ComplaintCommandService } from '../services/complaint-command.service'
 import { ComplaintQueryService } from '../services/complaint-query.service'
-import { ApiCookieAuth, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
 
 @ApiCookieAuth()
 @ApiTags('Complaints Admin')
@@ -27,11 +27,11 @@ export class ComplaintAdminController {
 
 	@Authorization(ERoleNames.ADMIN)
 	@Get('/')
-	@ApiOperation({ summary: 'Отримати всі скарги' })
+	@ApiOperation({ summary: 'Receive all complaints' })
 	@ApiResponse({
 		status: 200,
 		type: GetAllComplaintsResponse,
-		description: 'Отримати всі скарги'
+		description: 'Complaints successfully received'
 	})
 	async getAllComplaints(@Query() query: GetAllComplaintsQueryDto): Promise<GetAllComplaintsResponse> {
 		return await this.complaintQueryService.getAllComplaints(query)
@@ -39,10 +39,10 @@ export class ComplaintAdminController {
 
 	@Authorization(ERoleNames.ADMIN)
 	@Get('export-csv')
-	@ApiOperation({ summary: 'Експортувати всі скарги у CSV' })
+	@ApiOperation({ summary: 'Export all complaints to CSV' })
 	@ApiResponse({
 		status: 200,
-		description: 'Експорт всіх скарг у CSV',
+		description: 'Successfully exported to CSV',
 		content: {
 			'text/csv': {}
 		}
@@ -68,10 +68,10 @@ export class ComplaintAdminController {
 
 	@Authorization(ERoleNames.ADMIN)
 	@Post('/')
-	@ApiOperation({ summary: 'Створити нову скаргу' })
+	@ApiOperation({ summary: 'Create a new complaint' })
 	@ApiResponse({
 		status: 201,
-		description: 'Скарга успішно створена'
+		description: 'Complaint successfully created'
 	})
 	async postComplaint(@Req() request: Request, @Body() dto: PostComplaintDto) {
 		const userFromToken = request.user as ITokenUser
@@ -84,7 +84,7 @@ export class ComplaintAdminController {
 	@ApiOperation({ summary: 'Змінити статус скарги' })
 	@ApiResponse({
 		status: 200,
-		description: 'Статус скарги успішно змінено'
+		description: 'Complaint status successfully changed'
 	})
 	async changeStatusComplaint(@Param() params: IdParamDto, @Body() dto: ChangeStatusComplaintDto) {
 		await this.complaintCommandService.changeStatusComplaint(params.id, dto.status)
@@ -92,10 +92,10 @@ export class ComplaintAdminController {
 
 	@Authorization(ERoleNames.ADMIN)
 	@Delete(':id')
-	@ApiOperation({ summary: 'Видалити скаргу' })
+	@ApiOperation({ summary: 'Delete the complaint' })
 	@ApiResponse({
 		status: 200,
-		description: 'Скарга успішно видалена'
+		description: 'Complaint successfully removed'
 	})
 	async deleteComplaint(@Param() params: IdParamDto) {
 		await this.complaintCommandService.deleteComplaint(params.id)
@@ -103,10 +103,10 @@ export class ComplaintAdminController {
 
 	@Authorization(ERoleNames.ADMIN)
 	@Patch(':id')
-	@ApiOperation({ summary: 'Додати коментар адміністратора до скарги' })
+	@ApiOperation({ summary: "Add an administrator's comment to the complaint" })
 	@ApiResponse({
 		status: 200,
-		description: 'Коментар адміністратора успішно додано'
+		description: 'Administrator comment successfully added'
 	})
 	async addAdminComment(@Param() params: IdParamDto, @Body() dto: AddAdminCommentDto) {
 		await this.complaintCommandService.addAdminComment(params.id, dto)

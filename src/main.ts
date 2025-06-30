@@ -7,16 +7,24 @@ import { json, urlencoded } from 'express'
 import * as getRawBody from 'raw-body'
 
 import { AppModule } from './modules/app.module'
+import { LoggerInterceptor } from './modules/logger/logger.interceptor'
+import { WinstonLogger } from './modules/logger/winston.logger'
 
 async function bootstrap() {
-	const app = await NestFactory.create(AppModule)
+	const app = await NestFactory.create(AppModule, {
+		bufferLogs: true
+	})
 
 	const config = app.get(ConfigService)
+
+	const winstonLogger = app.get(WinstonLogger)
+	//app.useLogger(winstonLogger);
+	app.useGlobalInterceptors(new LoggerInterceptor(winstonLogger))
 
 	app.useGlobalPipes(new ValidationPipe({ transform: true }))
 	app.enableCors({
 		credentials: true,
-		origin: 'http://localhost:3000',
+		origin: config.getOrThrow('FRONT_ORIGIN_URL'),
 		methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH']
 	})
 	app.use(cookieParser())

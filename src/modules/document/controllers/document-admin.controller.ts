@@ -25,7 +25,7 @@ export class DocumentAdminController {
 
 	@Authorization(ERoleNames.ADMIN)
 	@Get('/')
-	@ApiOperation({ summary: 'Отримати всі документи з фільтрацією' })
+	@ApiOperation({ summary: 'Get all documents with filtering' })
 	@ApiResponse({ status: 200, type: GetAllDocumentsResponse })
 	async getAllDocuments(@Query() query: GetAllDocumentsQueryDto): Promise<GetAllDocumentsResponse> {
 		return await this.documentQueryService.getAllDocuments(query)
@@ -33,10 +33,10 @@ export class DocumentAdminController {
 
 	@Authorization(ERoleNames.ADMIN)
 	@Get('export-csv')
-	@ApiOperation({ summary: 'Експортувати всі документи в CSV' })
+	@ApiOperation({ summary: 'Export all documents to CSV' })
 	@ApiResponse({
 		status: 200,
-		description: 'CSV файл з усіма документами',
+		description: 'CSV file with all documents',
 		content: {
 			'text/csv': {}
 		}
@@ -60,36 +60,37 @@ export class DocumentAdminController {
 
 	@Authorization(ERoleNames.ADMIN)
 	@Get(':id')
-	@ApiOperation({ summary: 'Отримати документ за ID' })
+	@ApiOperation({ summary: 'Get document by ID' })
 	@ApiResponse({ status: 200, type: GetOneDocumentReponse })
-	@ApiResponse({ status: 404, description: 'Документ не знайдено' })
+	@ApiResponse({ status: 404, description: 'Document not found' })
 	async getOneDocument(@Param() params: IdParamDto): Promise<GetOneDocumentReponse> {
 		return await this.documentQueryService.getOneDocument(params.id)
 	}
 
 	@Authorization(ERoleNames.ADMIN)
 	@Patch(':id/change-info')
-	@ApiOperation({ summary: 'Змінити інформацію про документ' })
-	@ApiResponse({ status: 200, description: 'Інформація про документ успішно змінена' })
-	@ApiResponse({ status: 404, description: 'Документ не знайдено' })
+	@ApiOperation({ summary: 'Update document information' })
+	@ApiResponse({ status: 200, description: 'Document information successfully updated' })
+	@ApiResponse({ status: 404, description: 'Document not found' })
 	async changeInfoDocument(@Param() params: IdParamDto, @Body() dto: ChangeInfoDocumentDto) {
 		return await this.documentCommandService.changeInfo(params.id, dto)
 	}
 
 	@Authorization(ERoleNames.ADMIN)
 	@Patch(':id/change-status')
-	@ApiOperation({ summary: 'Змінити статус документа' })
-	@ApiResponse({ status: 200, description: 'Статус документа успішно змінено' })
-	@ApiResponse({ status: 404, description: 'Документ не знайдено' })
+	@ApiOperation({ summary: 'Change document status' })
+	@ApiResponse({ status: 200, description: 'Document status successfully changed' })
+	@ApiResponse({ status: 404, description: 'Document not found' })
 	async changeStatusDocument(@Param() params: IdParamDto, @Body() dto: ChangeStatusDocumentDto) {
 		this.documentCommandService.changeStatus(params.id, dto.status)
 	}
 
 	@Authorization(ERoleNames.ADMIN)
 	@Delete(':id')
-	@ApiOperation({ summary: 'Видалити документ' })
-	@ApiResponse({ status: 200, description: 'Документ успішно видалено' })
+	@ApiOperation({ summary: 'Delete document' })
+	@ApiResponse({ status: 200, description: 'Document successfully deleted' })
 	async deleteDocument(@Param() param: IdParamDto) {
 		this.documentCommandService.deleteDocument(param.id)
 	}
 }
+

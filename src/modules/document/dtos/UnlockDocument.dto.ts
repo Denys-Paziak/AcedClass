@@ -6,20 +6,20 @@ import { Document } from '../../document/entities/Document.entity'
 
 export class UnlockDocumentDto {
 	@ApiProperty({
-		description: 'Тип використаних поінтів для розблокування',
+		description: 'Type of points used to unlock',
 		enum: EPointTypes,
 		example: EPointTypes.POINT
 	})
-	@IsEnum(EPointTypes, { message: 'Point type must be a valid EPointTypes value' })
+	@IsEnum(EPointTypes)
 	pointType: EPointTypes
 
 	@ApiProperty({
-		description: 'ID документа, який потрібно розблокувати',
+		description: 'ID of the document to be unlocked',
 		type: Number,
 		example: 8,
 		minimum: 0
 	})
-	@IsInt({ message: 'The document identifier must be an integer' })
-	@Min(0, { message: 'The value cannot be less than zero.' })
+	@IsInt()
+	@Min(0)
 	documentId: Document['id']
 }

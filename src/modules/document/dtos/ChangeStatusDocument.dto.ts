@@ -4,10 +4,10 @@ import { EDocumentStatuses } from 'src/interfaces/EDocumentStatuses'
 
 export class ChangeStatusDocumentDto {
 	@ApiProperty({
-		description: 'Новий статус документа',
+		description: 'New status of the document',
 		enum: EDocumentStatuses,
 		example: EDocumentStatuses.APPROVED
 	})
-	@IsEnum(EDocumentStatuses, { message: 'Invalid document status.' })
+	@IsEnum(EDocumentStatuses)
 	status: EDocumentStatuses
 }

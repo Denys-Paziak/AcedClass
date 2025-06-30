@@ -1,5 +1,6 @@
 import { EPointTypes } from 'src/interfaces/EPointTypes'
 import { TPointSource } from 'src/interfaces/TPointSource'
+import { TRevealSource } from 'src/interfaces/TRevealSource'
 import { User } from 'src/modules/user/entities/User.entity'
 import { Column, CreateDateColumn, Entity, Index, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm'
 
@@ -25,7 +26,7 @@ export class Point {
 	type: EPointTypes
 
 	@Column({ type: 'jsonb', default: "{}" })
-	source: TPointSource
+	source: TPointSource | TRevealSource
 
 	@Column({ type: 'boolean', default: false })
 	frozen: boolean

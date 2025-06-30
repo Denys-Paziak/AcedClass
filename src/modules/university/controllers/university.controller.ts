@@ -13,15 +13,15 @@ export class UniversityController {
 	constructor(private readonly universityService: UniversityService) {}
 
 	@Get('search')
-	@ApiOperation({ summary: 'Пошук університетів' })
-	@ApiResponse({ status: 200, type: [SearchUniversitiesResponse], description: 'Список університетів' })
+	@ApiOperation({ summary: 'Search universities' })
+	@ApiResponse({ status: 200, type: [SearchUniversitiesResponse], description: 'List of universities' })
 	async searchUniversities(@Query() query: SearchUniversitiesQueryDto): Promise<SearchUniversitiesResponse[]> {
 		return await this.universityService.searchUniversities(query)
 	}
 
 	@Get('top')
-	@ApiOperation({ summary: 'Отримати топ університетів' })
-	@ApiResponse({ status: 200, type: [TopUniversitiesResponse], description: 'Топ університетів' })
+	@ApiOperation({ summary: 'Get top universities' })
+	@ApiResponse({ status: 200, type: [TopUniversitiesResponse], description: 'List of top universities' })
 	async topUniversities(@Query() query: TopUniversitiesQueryDto): Promise<TopUniversitiesResponse[]> {
 		return await this.universityService.topUniversities(query)
 	}

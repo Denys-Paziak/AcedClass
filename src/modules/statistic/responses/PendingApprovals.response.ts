@@ -4,7 +4,7 @@ import { Expose } from 'class-transformer'
 export class PendingApprovalsResponse {
 	@Expose({ name: 'count' })
 	@ApiProperty({
-		description: 'Кількість документів, що очікують на затвердження',
+		description: 'Number of documents pending approval',
 		example: 5,
 		type: Number
 	})

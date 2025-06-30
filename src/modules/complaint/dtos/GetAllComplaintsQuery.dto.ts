@@ -5,9 +5,9 @@ import { EComplaintStatus } from "src/interfaces/EComplaintStatus"
 
 export class GetAllComplaintsQueryDto {
 	@IsOptional()
-	@IsEnum(EComplaintStatus, { message: 'Invalid complaint status.' })
+	@IsEnum(EComplaintStatus)
 	@ApiProperty({
-		description: 'Статус скарги',
+		description: 'Status of the complaint',
 		example: EComplaintStatus.PENDING,
 		enum: EComplaintStatus,
 		required: false
@@ -15,11 +15,9 @@ export class GetAllComplaintsQueryDto {
     status?: EComplaintStatus
 
 	@IsOptional()
-    @IsEnum(['document', 'user'], {
-		message: 'Type must be one of the following values: document, user'
-	})
+    @IsEnum(['document', 'user'])
 	@ApiProperty({
-		description: 'Тип скарги',
+		description: 'Type of complaint',
 		example: 'document',
 		enum: ['document', 'user'],
 		required: false
@@ -28,9 +26,9 @@ export class GetAllComplaintsQueryDto {
 
 	@IsOptional()
 	@Type(() => Date)
-	@IsDate({ message: 'Start date must be a valid date' })
+	@IsDate()
 	@ApiProperty({
-		description: 'Початкова дата для фільтрації скарг',
+		description: 'Start date for filtering complaints',
 		example: '2023-01-01T00:00:00Z',
 		type: Date,
 		required: false
@@ -39,9 +37,9 @@ export class GetAllComplaintsQueryDto {
 
     @IsOptional()
 	@Type(() => Date)
-	@IsDate({ message: 'End date must be a valid date' })
+	@IsDate()
 	@ApiProperty({
-		description: 'Кінцева дата для фільтрації скарг',
+		description: 'Deadline for filtering complaints',
 		example: '2023-12-31T23:59:59Z',
 		type: Date,
 		required: false
@@ -49,9 +47,9 @@ export class GetAllComplaintsQueryDto {
 	endDate?: Date
 
 	@IsOptional()
-	@IsString({ message: 'Search string must be a string' })
+	@IsString()
 	@ApiProperty({
-		description: 'Пошуковий запит для фільтрації скарг',
+		description: 'Search query for filtering complaints',
 		example: 'example search',
 		type: String,
 		required: false
@@ -60,10 +58,10 @@ export class GetAllComplaintsQueryDto {
 
 	@IsOptional()
 	@Type(() => Number)
-	@IsInt({ message: 'Limit must be an integer' })
-	@Min(0, { message: 'The value cannot be less than zero.' })
+	@IsInt()
+	@Min(0)
 	@ApiProperty({
-		description: 'Кількість скарг на сторінці',
+		description: 'Number of complaints per page',
 		example: 10,
 		type: Number,
 		required: false,
@@ -73,10 +71,10 @@ export class GetAllComplaintsQueryDto {
 
 	@IsOptional()
 	@Type(() => Number)
-	@IsInt({ message: 'Page must be an integer' })
-	@Min(0, { message: 'The value cannot be less than zero.' })
+	@IsInt()
+	@Min(0)
 	@ApiProperty({
-		description: 'Номер сторінки для пагінації',
+		description: 'Page number for pagination',
 		example: 1,
 		type: Number,
 		required: false,

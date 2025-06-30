@@ -2,51 +2,51 @@ import { ApiProperty } from '@nestjs/swagger'
 import { IsEmail, IsOptional, IsPhoneNumber, IsString, MaxLength, MinLength } from 'class-validator'
 
 export class UpdateUserInfoAndEmailDto {
-	@IsString({ message: 'The name must be a string.' })
+	@IsString()
 	@IsOptional()
 	@ApiProperty({
-		description: "Ім'я користувача",
+		description: "User's first name",
 		example: 'John',
 		type: String,
 		required: false
 	})
 	firstName?: string
 
-	@IsString({ message: 'The last name must be a string.' })
+	@IsString()
 	@IsOptional()
 	@ApiProperty({
-		description: 'Прізвище користувача',
+		description: "User's last name",
 		example: 'Doe',
 		type: String,
 		required: false
 	})
 	lastName?: string
 
-	@IsPhoneNumber(undefined, { message: 'Incorrect phone format.' })
+	@IsPhoneNumber()
 	@IsOptional()
 	@ApiProperty({
-		description: 'Номер телефону користувача',
+		description: "User's phone number",
 		example: '+380501234567',
 		type: String,
 		required: false
 	})
 	phone?: string
 
-	@IsString({ message: 'Email must be a string.' })
-	@IsEmail({}, { message: 'The email format is incorrect.' })
+	@IsString()
+	@IsEmail()
 	@ApiProperty({
-		description: 'Електронна пошта користувача',
+		description: "User's email address",
 		example: 'user@example.com',
 		type: String,
 		format: 'email'
 	})
 	email: string
 
-	@IsString({ message: 'Password must be a string.' })
-	@MinLength(6, { message: 'Password must be at least 6 characters long.' })
-	@MaxLength(64, { message: 'Password must not exceed 64 characters.' })
+	@IsString()
+	@MinLength(6)
+	@MaxLength(64)
 	@ApiProperty({
-		description: 'Пароль користувача',
+		description: "User's password",
 		example: 'StrongPass123',
 		minLength: 6,
 		maxLength: 64,

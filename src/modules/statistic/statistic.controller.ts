@@ -18,24 +18,24 @@ export class StatisticController {
 
 	@Authorization(ERoleNames.ADMIN)
 	@Get('activity')
-	@ApiOperation({ summary: 'Отримати статистику активності платформи' })
-	@ApiResponse({ status: 200, type: PlatformActivityResponse, description: 'Статистика активності платформи' })
+	@ApiOperation({ summary: 'Get statistics on platform activity' })
+	@ApiResponse({ status: 200, type: PlatformActivityResponse, description: 'Platform activity statistics' })
 	async platformActivity(@Query() query: PlatformActivityQueryDto): Promise<PlatformActivityResponse> {
 		return await this.statisticService.platformActivity(query)
 	}
 
 	@Authorization(ERoleNames.ADMIN)
 	@Get('pending-approvals')
-	@ApiOperation({ summary: 'Отримати кількість документів що очікують перевірки' })
-	@ApiResponse({ status: 200, type: PendingApprovalsResponse, description: 'Кількість документів що очікують перевірки' })
+	@ApiOperation({ summary: 'Get the number of documents awaiting verification' })
+	@ApiResponse({ status: 200, type: PendingApprovalsResponse, description: 'Number of documents awaiting review' })
 	async pendingApprovals(): Promise<PendingApprovalsResponse> {
 		return await this.statisticService.pendingApprovals()
 	}
 
 	@Authorization(ERoleNames.ADMIN)
 	@Get('top-users')
-	@ApiOperation({ summary: 'Отримати топ користувачів' })
-	@ApiResponse({ status: 200, type: TopUsersResponse, description: 'Топ користувачів' })
+	@ApiOperation({ summary: 'Get the top users' })
+	@ApiResponse({ status: 200, type: TopUsersResponse, description: 'Top users' })
 	async topUsers(@Query() query: TopUsersQueryDto): Promise<TopUsersResponse> {
 		return await this.statisticService.topUsers(query)
 	}

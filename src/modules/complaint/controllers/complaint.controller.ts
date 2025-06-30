@@ -22,10 +22,10 @@ export class ComplaintController {
 	@Authorization(ERoleNames.USER)
 	@Recaptcha()
 	@Post('/')
-	@ApiOperation({ summary: 'Подати скаргу' })
+	@ApiOperation({ summary: 'File a complaint' })
 	@ApiResponse({
 		status: 201,
-		description: 'Скарга успішно подана'
+		description: 'Complaint successfully filed'
 	})
 	async postComplaint(@Req() request: Request, @Body() dto: PostComplaintDto) {
 		const userFromToken = request.user as ITokenUser

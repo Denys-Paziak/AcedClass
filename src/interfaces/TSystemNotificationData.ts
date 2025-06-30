@@ -3,6 +3,7 @@ import { Point } from 'src/modules/point/entities/Point.entity'
 
 import { ESystemNotificationTypes } from './ESystemNotificationTypes'
 import { TPointSource } from './TPointSource'
+import { TRevealSource } from './TRevealSource'
 
 export type TSystemNotificationData =
 	| {
@@ -15,7 +16,7 @@ export type TSystemNotificationData =
 	| {
 			type: ESystemNotificationTypes.ADD_REVEALS
 			totalEarned: number
-			source: TPointSource
+			source: TRevealSource
 			pointsId: Point['id']
 			burningDate: Date
 	  }

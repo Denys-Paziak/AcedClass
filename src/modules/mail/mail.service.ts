@@ -3,12 +3,15 @@ import { Injectable, InternalServerErrorException } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import { render } from '@react-email/components'
 
+import { SystemSettingQueryService } from '../system-setting/services/system-setting-query.service'
 import { Token } from '../token/entities/Token.entity'
 import { User } from '../user/entities/User.entity'
 
+import { AdminAlertTemplate } from './templates/AdminAlert.template'
 import { AdminVerificationCodeTemplate } from './templates/AdminVerificationCode.template'
 import { ForgotPasswordTemplate } from './templates/ForgotPassword.template'
 import { MessageContactSupportTemplate } from './templates/MessageContactSupport.template'
+import { AdminSendEmailToUsersTemplate } from './templates/AdminSendEmailToUsers.template'
 
 @Injectable()
 export class MailService {
@@ -17,14 +20,14 @@ export class MailService {
 		private readonly configService: ConfigService
 	) {}
 
-	async sendEmailForgotPassword(email: User['email'], token: Token['tokenOrCode']) {
+	async sendEmailForgotPassword(email: string, token: Token['tokenOrCode']) {
 		try {
 			await this.mailerService.sendMail({
 				to: email,
 				subject: '',
 				html: await render(
 					ForgotPasswordTemplate({
-						link: 'http://localhost:3000/auth/forgot-password/' + token
+						link: this.configService.getOrThrow('FORGOT_PASSWORD_FRONT_URL') + token
 					})
 				)
 			})
@@ -33,7 +36,7 @@ export class MailService {
 		}
 	}
 
-	async sendAdminVerificationCode(email: User['email'], code: Token['tokenOrCode']) {
+	async sendAdminVerificationCode(email: string, code: Token['tokenOrCode']) {
 		try {
 			await this.mailerService.sendMail({
 				to: email,
@@ -49,7 +52,7 @@ export class MailService {
 		}
 	}
 
-	async sendMessageContactSupport(userEmail: User['email'], subject: string, message: string) {
+	async sendMessageContactSupport(userEmail: string, subject: string, message: string) {
 		try {
 			await this.mailerService.sendMail({
 				to: this.configService.getOrThrow<string>('MAIL_SUPPORT'),
@@ -59,6 +62,37 @@ export class MailService {
 						subject,
 						message,
 						userEmail
+					})
+				)
+			})
+		} catch {
+			throw new InternalServerErrorException('For some reason, we were unable to send an email to the support team.')
+		}
+	}
+
+	async adminAlert(documentPending: number, adminNotificationRecipients: string[]) {
+		try {
+			await this.mailerService.sendMail({
+				to: adminNotificationRecipients,
+				html: await render(
+					AdminAlertTemplate({
+						documentPending
+					})
+				)
+			})
+		} catch {
+			throw new InternalServerErrorException('For some reason, we were unable to send an email to the support team.')
+		}
+	}
+
+	async adminSendEmailToUsers(userEmails: string[], subject: string, message: string) {
+		try {
+			await this.mailerService.sendMail({
+				to: userEmails,
+				html: await render(
+					AdminSendEmailToUsersTemplate({
+						subject,
+						message
 					})
 				)
 			})

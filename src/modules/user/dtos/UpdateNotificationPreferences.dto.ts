@@ -2,23 +2,23 @@ import { ApiProperty } from '@nestjs/swagger'
 import { IsBoolean, IsOptional } from 'class-validator'
 
 export class UpdateNotificationPreferencesDto {
-	@IsBoolean({ message: 'emailNotifications must be a boolean value.' })
+	@IsBoolean()
 	@IsOptional()
 	@ApiProperty({
-		description: 'Вказує, чи користувач хоче отримувати email-сповіщення',
+		description: 'Indicates whether the user wants to receive email notifications',
 		example: true,
 		type: Boolean,
 		required: false
 	})
-	emailNotifications: boolean
+	emailNotifications?: boolean
 
-	@IsBoolean({ message: 'documentApprovalAlerts must be a boolean value.' })
+	@IsBoolean()
 	@IsOptional()
 	@ApiProperty({
-		description: 'Вказує, чи користувач хоче отримувати сповіщення про затвердження документів',
+		description: 'Indicates whether the user wants to receive notifications about document approvals',
 		example: true,
 		type: Boolean,
 		required: false
 	})
-	documentApprovalAlerts: boolean
+	documentApprovalAlerts?: boolean
 }

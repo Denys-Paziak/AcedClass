@@ -137,12 +137,13 @@ export class AuthService {
 				select: {
 					id: true,
 					role: true,
-					password: true
+					password: true,
+					accountBlocking: true
 				}
 			},
 			new UnauthorizedException('Incorrect login or password')
 		)
-
+		
 		if (userFromDB.accountBlocking && userFromDB.accountBlocking > new Date()) {
 			throw new ForbiddenException(userFromDB.reasonBlocking || 'Your account has been banned.')
 		}

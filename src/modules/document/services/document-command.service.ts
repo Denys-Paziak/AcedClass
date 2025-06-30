@@ -1,22 +1,31 @@
-import { BadRequestException, ForbiddenException, Injectable, NotFoundException } from '@nestjs/common'
-import { days, hours, minutes, seconds } from '@nestjs/throttler'
+import {
+	BadRequestException,
+	ForbiddenException,
+	Injectable,
+	NotFoundException,
+	ServiceUnavailableException
+} from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
+import { addDays, addHours, subHours, subMinutes } from 'date-fns'
 import { EDocumentStatuses } from 'src/interfaces/EDocumentStatuses'
 import { ESystemNotificationTypes } from 'src/interfaces/ESystemNotificationTypes'
+import { DOCUMENT_DELETION_DELAY_AFTER_REJECTION_DAYS, MIN_DOCUMENTS_TO_EARN_POINTS } from 'src/magic/constants'
+import { MailService } from 'src/modules/mail/mail.service'
 import { PointCommandService } from 'src/modules/point/services/point-command.service'
 import { SystemNotificationSystemService } from 'src/modules/system-notification/services/system-notification-system.service'
+import { SystemSettingQueryService } from 'src/modules/system-setting/services/system-setting-query.service'
 import { TaskMetodsService } from 'src/modules/task/task-metods.service'
-import { User } from 'src/modules/user/entities/User.entity'
 import { UserCommandService } from 'src/modules/user/services/user-command.service'
 import { UserSystemService } from 'src/modules/user/services/user-system.service'
 import { DataSource, EntityManager, Repository } from 'typeorm'
 
+import { AccelerationByContributionLevel } from '../../../magic/rules/AccelerationByContributionLevel'
+import { getPointsByApprovalRate } from '../../../magic/rules/ApprovalPoints'
+import { getContributionLevel } from '../../../magic/rules/ContributionLevels'
 import { ChangeInfoDocumentDto } from '../dtos/ChangeInfoDocument.dto'
 import { PostDocumentDto } from '../dtos/PostDocument.dto'
 import { Document } from '../entities/Document.entity'
-import { AccelerationByContributionLevel } from '../rules/AccelerationByContributionLevel'
-import { getPointsByApprovalRate } from '../rules/ApprovalPoints'
-import { getContributionLevel } from '../rules/ContributionLevels'
+import { generateSafeSlug } from 'src/utils/generateSafeSlug.util'
 
 @Injectable()
 export class DocumentCommandService {
@@ -30,30 +39,43 @@ export class DocumentCommandService {
 		private readonly userCommandService: UserCommandService,
 		private readonly userSystemService: UserSystemService,
 		private readonly pointCommandService: PointCommandService,
-		private readonly systemNotificationSystemService: SystemNotificationSystemService
+		private readonly systemNotificationSystemService: SystemNotificationSystemService,
+		private readonly systemSettingQueryService: SystemSettingQueryService,
+		private readonly mailService: MailService
 	) {}
 
-	async postDocument(userId: User['id'], data: PostDocumentDto, file: Express.Multer.File) {
+	async postDocument(userId: number, data: PostDocumentDto, file: Express.Multer.File) {
 		const userFromDB = await this.userSystemService.findOneAndCheck({ where: { id: userId } })
+
+		const settings = await this.systemSettingQueryService.getSettings([
+			'reveal settings',
+			'feature toggles',
+			'moderation',
+			'notification'
+		])
+
+		if (!settings('feature toggles').documentUploading) {
+			throw new ServiceUnavailableException('Document uploading is currently disabled by the system.')
+		}
 
 		if (userFromDB.uploadBlocking && userFromDB.uploadBlocking > new Date()) {
 			throw new ForbiddenException('You are currently blocked from uploading documents.')
 		}
 
 		if (userFromDB.availableUploads !== 0) {
+			const { defaultDelay, university: universityDelay, course: courseDelay } = settings('reveal settings')
+
 			const documentsCount = await this.documentRepository.count({ where: { user: { id: userId } } })
 
-			let delay = hours(24)
-			let points = 4
+			let delay = addHours(new Date(), defaultDelay)
+			let points = getPointsByApprovalRate(userFromDB.approvalLevel)
 
 			// Врахування додаткової інформації
-			if (data.universityId ) delay -= hours(11.5)
-			if (data.courseName) delay -= hours(11.5)
+			if (data.universityId) subHours(delay, (universityDelay.active && universityDelay.delay) || 0)
+			if (data.courseName) subHours(delay, (courseDelay.active && courseDelay.delay) || 0)
 
 			// Врахування рівня вкладу
-			delay -= minutes(AccelerationByContributionLevel[getContributionLevel(documentsCount)] || 0)
-
-			points = getPointsByApprovalRate(userFromDB.approvalLevel)
+			if (data.courseName) subMinutes(delay, AccelerationByContributionLevel[getContributionLevel(documentsCount)] || 0)
 
 			await this.dataSource.transaction(async manager => {
 				// додавання документу в БД
@@ -66,7 +88,22 @@ export class DocumentCommandService {
 					systemName: ''
 				})
 
-				const systemName = documentFromDB.name.replace(/[ _]/g, '-').replace(/[^\p{L}\p{N}\-]/gu, '')
+				// В майбутньому це перенесеться у вебхук де отримується інформація про обробку документа
+				if (!settings('moderation').requaireModeratorApproval) {
+					await this.changeStatusHelper(documentFromDB.id, EDocumentStatuses.APPROVED, manager)
+				}
+
+				const { adminAlertThreshold, adminAlertInterval, adminNotificationRecipients } = settings('notification')
+				const countDocumentPending = await this.documentRepository.count({ where: { status: EDocumentStatuses.PENDING } })
+				const excess = countDocumentPending - adminAlertThreshold
+
+				if (excess >= 0) {
+					if (excess === 0 || excess % adminAlertInterval === 0) {
+						await this.mailService.adminAlert(countDocumentPending, adminNotificationRecipients)
+					}
+				}
+
+				const systemName = generateSafeSlug(documentFromDB.name) 
 
 				if (await manager.getRepository(Document).findOneBy({ systemName })) {
 					await manager.getRepository(Document).update(documentFromDB.id, {
@@ -86,10 +123,10 @@ export class DocumentCommandService {
 
 				// Зменшення лічильника страйку якщо він активний
 				await this.userSystemService.decrementStrikeCounter(userId, manager)
-				
-				if (documentsCount >= 4) {
+
+				if (documentsCount >= MIN_DOCUMENTS_TO_EARN_POINTS) {
 					// Додавання відкладеної задачі для нарахування поінтів
-					this.taskMetodsService.addPoints(userId, points, documentFromDB.id,  delay)
+					this.taskMetodsService.addPoints(userId, points, documentFromDB.id, delay < new Date() ? new Date() : delay)
 				}
 			})
 		} else {
@@ -157,7 +194,10 @@ export class DocumentCommandService {
 				}
 
 				if (status === EDocumentStatuses.REJECTED) {
-					await this.taskMetodsService.deleteDocument(documentFromDB.id, days(180))
+					await this.taskMetodsService.deleteDocument(
+						documentFromDB.id,
+						addDays(new Date(), DOCUMENT_DELETION_DELAY_AFTER_REJECTION_DAYS)
+					)
 				} else {
 					await this.taskMetodsService.deleteJobDeleteDocument(documentFromDB.id)
 				}
@@ -178,5 +218,14 @@ export class DocumentCommandService {
 		} else {
 			throw new NotFoundException('No such document found.')
 		}
+	}
+
+	async incrementNumberViews(documentId: number) {
+		await this.documentRepository
+			.createQueryBuilder()
+			.update(Document)
+			.set({ numberViews: () => `"number_views" + 1` })
+			.where('id = :id', { id: documentId })
+			.execute()
 	}
 }

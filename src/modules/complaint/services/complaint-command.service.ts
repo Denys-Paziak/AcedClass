@@ -1,5 +1,4 @@
-import { ConflictException, Injectable } from '@nestjs/common'
-import { hours } from '@nestjs/throttler'
+import { ConflictException, Injectable, ServiceUnavailableException } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { EDocumentStatuses } from 'src/interfaces/EDocumentStatuses'
 import { ERoleNames } from 'src/interfaces/ERoleNames'
@@ -12,6 +11,9 @@ import { AddAdminCommentDto } from '../dtos/AddAdminComment.dto'
 import { PostComplaintDto } from '../dtos/PostComplaint.dto'
 import { Complaint } from '../entities/Complaint.entity'
 import { EComplaintStatus } from 'src/interfaces/EComplaintStatus'
+import { SystemSettingQueryService } from 'src/modules/system-setting/services/system-setting-query.service'
+import { addHours } from 'date-fns'
+import { AUTO_REJECT_DELAY_HOURS } from 'src/magic/constants'
 
 @Injectable()
 export class ComplaintCommandService {
@@ -22,10 +24,19 @@ export class ComplaintCommandService {
 		private readonly dataSource: DataSource,
 
 		private readonly documentCommandService: DocumentCommandService,
-		private readonly taskMetodsService: TaskMetodsService
+		private readonly taskMetodsService: TaskMetodsService,
+		private readonly systemSettingQueryService: SystemSettingQueryService
 	) {}
 
 	async postComplaint(authorId: User['id'], authorRole: User['role'], data: PostComplaintDto) {
+		const settings = await this.systemSettingQueryService.getSettings(['feature toggles', 'moderation'])
+					
+		const {falaggedThreshold, rejectedThreshold} = settings('moderation')
+
+		if (!settings('feature toggles').contentReporting) {
+			throw new ServiceUnavailableException('Writing complaints is currently disabled by the system.')
+		}
+
 		await this.dataSource.transaction(async manager => {
 			if (data.documentId) {
 				const documentComplaints = await manager.getRepository(Complaint).find({
@@ -37,12 +48,12 @@ export class ComplaintCommandService {
 						await this.taskMetodsService.deleteJobAutoRejected(data.documentId)
 						await this.documentCommandService.changeStatus(data.documentId, EDocumentStatuses.REJECTED, manager)
 					} else {
-						if (documentComplaints.length + 1 === 3) {
+						if (documentComplaints.length + 1 === falaggedThreshold) {
 							await this.documentCommandService.changeStatus(data.documentId, EDocumentStatuses.FLAGGED, manager)
 						}
 
-						if (documentComplaints.length + 1 === 5) {
-							await this.taskMetodsService.autoRejected(data.documentId, hours(24))
+						if (documentComplaints.length + 1 === rejectedThreshold) {
+							await this.taskMetodsService.autoRejected(data.documentId, addHours(new Date(), AUTO_REJECT_DELAY_HOURS))
 						}
 					}
 					await manager.getRepository(Complaint).save({

@@ -2,30 +2,30 @@ import { ApiProperty } from '@nestjs/swagger'
 import { IsOptional, IsPhoneNumber, IsString } from 'class-validator'
 
 export class UpdateUserInfoDto {
-	@IsString({ message: 'The name must be a string.' })
+	@IsString()
 	@IsOptional()
 	@ApiProperty({
-		description: "Ім'я користувача",
+		description: "User's first name",
 		example: 'John',
 		type: String,
 		required: false
 	})
 	firstName?: string
 
-	@IsString({ message: 'The last name must be a string.' })
+	@IsString()
 	@IsOptional()
 	@ApiProperty({
-		description: 'Прізвище користувача',
+		description: "User's last name",
 		example: 'Doe',
 		type: String,
 		required: false
 	})
 	lastName?: string
 
-	@IsPhoneNumber(undefined, { message: 'Incorrect phone format.' })
+	@IsPhoneNumber()
 	@IsOptional()
 	@ApiProperty({
-		description: 'Номер телефону користувача',
+		description: "User's phone number",
 		example: '+380501234567',
 		type: String,
 		required: false

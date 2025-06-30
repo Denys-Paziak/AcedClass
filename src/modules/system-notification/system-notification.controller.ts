@@ -16,8 +16,8 @@ export class SystemNotificationController {
 
 	@Authorization(ERoleNames.USER)
 	@Get('my')
-	@ApiOperation({ summary: 'Отримати мої системні сповіщення' })
-	@ApiResponse({ status: 200, type: [GetMySystemNotificationResponse], description: 'Список моїх системних сповіщень' })
+	@ApiOperation({ summary: 'Get my system notifications' })
+	@ApiResponse({ status: 200, type: [GetMySystemNotificationResponse], description: 'List of my system notifications' })
 	async getMySystemNotification(@Req() request: Request): Promise<GetMySystemNotificationResponse[]> {
 		const userFromToken = request.user as ITokenUser
 

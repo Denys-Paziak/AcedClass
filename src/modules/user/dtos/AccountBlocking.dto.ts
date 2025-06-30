@@ -3,10 +3,10 @@ import { IsInt, IsOptional, IsString, MaxLength, Min, MinLength } from 'class-va
 
 export class AccountBlockingDto {
 	@IsOptional()
-	@IsInt({ message: 'The period of days must be an integer.' })
-	@Min(1, { message: 'The value cannot be less than one.' })
+	@IsInt()
+	@Min(1)
 	@ApiProperty({
-		description: 'Період блокування акаунту в днях',
+		description: 'Account blocking period in days',
 		example: 30,
 		type: Number,
 		required: false
@@ -15,12 +15,11 @@ export class AccountBlockingDto {
 
 	@IsOptional()
 	@IsString()
-	@IsString({ message: 'Reason must be a string.' })
-	@MinLength(20, { message: 'Reason must be at least 20 characters long.' })
-	@MaxLength(1000, { message: 'Reason must not exceed 1000 characters.' })
+	@MinLength(20)
+	@MaxLength(1000)
 	@ApiProperty({
-		description: 'Причина блокування акаунту',
-		example: 'Порушення правил користування сервісом.',
+		description: 'Reason for account blocking',
+		example: 'Violation of service usage rules.',
 		type: String,
 		required: false
 	})

@@ -1,17 +1,24 @@
-import { BadRequestException, Injectable } from '@nestjs/common'
+import { BadRequestException, Injectable, ServiceUnavailableException } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { EDocumentStatuses } from 'src/interfaces/EDocumentStatuses'
 import { EEvaluationDislikeTags, EEvaluationLikeTags } from 'src/interfaces/EEvaluationTags'
 import { EEvaluationTypes } from 'src/interfaces/EEvaluationTypes'
+import {
+	AUTO_REJECT_DISLIKE_THRESHOLD,
+	MAX_UNLOCKS_FOR_DISLIKE_CHECK,
+	MIN_UNLOCKS_FOR_DISLIKE_CHECK,
+	POINT_REWARD_EVALUATION_INTERVAL,
+	POINTS_PER_EVALUATION_REWARD
+} from 'src/magic/constants'
 import { DataSource, Repository } from 'typeorm'
 
 import { DocumentCommandService } from '../document/services/document-command.service'
 import { UnlockedDocumentService } from '../document/services/unlocked-document.service'
-import { User } from '../user/entities/User.entity'
+import { PointCommandService } from '../point/services/point-command.service'
+import { SystemSettingQueryService } from '../system-setting/services/system-setting-query.service'
 
 import { EvaluationDocumentDto } from './dtos/EvaluationDocument.dto'
 import { Evaluation } from './entities/Evaluation.entity'
-import { PointCommandService } from '../point/services/point-command.service'
 
 @Injectable()
 export class EvaluationService {
@@ -22,10 +29,17 @@ export class EvaluationService {
 
 		private readonly unlockedDocumentService: UnlockedDocumentService,
 		private readonly documentCommandService: DocumentCommandService,
-		private readonly pointCommandService: PointCommandService
+		private readonly pointCommandService: PointCommandService,
+		private readonly systemSettingQueryService: SystemSettingQueryService
 	) {}
 
-	async evaluationDocument(userId: User['id'], data: EvaluationDocumentDto) {
+	async evaluationDocument(userId: number, data: EvaluationDocumentDto) {
+		const settings = await this.systemSettingQueryService.getSettings(['feature toggles'])
+
+		if (!settings('feature toggles').votingSystem) {
+			throw new ServiceUnavailableException('Document evaluation is currently disabled by the system.')
+		}
+
 		const [_, unlockedCount] = await this.unlockedDocumentService.findAndCount({
 			where: { document: { id: data.documentId } }
 		})
@@ -83,13 +97,13 @@ export class EvaluationService {
 				user: { id: userId }
 			})
 
-			if ((userEvaluationCount + 1) % 4 === 0) {
-				await this.pointCommandService.addPoints(userId, 4, { type: 'evaluation' }, manager)
+			if ((userEvaluationCount + 1) % POINT_REWARD_EVALUATION_INTERVAL === 0) {
+				await this.pointCommandService.addPoints(userId, POINTS_PER_EVALUATION_REWARD, { type: 'evaluation' }, manager)
 			}
 
 			if (
-				(unlockedCount === 4 || unlockedCount === 5) &&
-				dislikeCount + (data.type === EEvaluationTypes.DISLIEKE ? 1 : 0) === 3
+				(unlockedCount === MIN_UNLOCKS_FOR_DISLIKE_CHECK || unlockedCount === MAX_UNLOCKS_FOR_DISLIKE_CHECK) &&
+				dislikeCount + (data.type === EEvaluationTypes.DISLIEKE ? 1 : 0) === AUTO_REJECT_DISLIKE_THRESHOLD
 			) {
 				await this.documentCommandService.changeStatus(data.documentId, EDocumentStatuses.REJECTED)
 			}

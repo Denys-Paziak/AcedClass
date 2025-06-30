@@ -3,21 +3,21 @@ import { IsEnum, IsInt, IsOptional, IsString, MaxLength, Min, MinLength } from '
 import { EComplaintFlags } from 'src/interfaces/EComplaintFlags'
 
 export class PostComplaintDto {
-	@IsEnum(EComplaintFlags, { message: 'Invalid complaint flag.' })
+	@IsEnum(EComplaintFlags)
 	@ApiProperty({
-		description: 'Прапори скарги',
+		description: 'Complaint flags',
 		example: EComplaintFlags.COPYRIGHT_VIOLATION,
 		enum: EComplaintFlags,
 		required: true
 	})
 	flag: EComplaintFlags
 
-	@IsString({ message: 'Message must be a string.' })
-	@MinLength(50, { message: 'Message must be at least 50 characters long.' })
-	@MaxLength(1000, { message: 'Message must not exceed 1000 characters.' })
+	@IsString()
+	@MinLength(50)
+	@MaxLength(1000)
 	@ApiProperty({
-		description: 'Текст скарги',
-		example: 'Цей документ порушує авторські права.',
+		description: 'Text of the complaint',
+		example: 'This document violates copyright',
 		minLength: 50,
 		maxLength: 1000,
 		type: String,
@@ -26,10 +26,10 @@ export class PostComplaintDto {
 	message: string
 
 	@IsOptional()
-	@IsInt({ message: 'User ID must be an integer.' })
-	@Min(0, { message: 'The value cannot be less than zero.' })
+	@IsInt()
+	@Min(0)
 	@ApiProperty({
-		description: 'ID користувача, який подає скаргу',
+		description: 'ID of the user filing the complaint',
 		example: 123,
 		type: Number,
 		required: false
@@ -37,10 +37,10 @@ export class PostComplaintDto {
 	userId?: number
 
 	@IsOptional()
-	@IsInt({ message: 'Document ID must be an integer.' })
-	@Min(0, { message: 'The value cannot be less than zero.' })
+	@IsInt()
+	@Min(0)
 	@ApiProperty({
-		description: 'ID документа, на який подається скарга',
+		description: 'ID of the document against which the complaint is filed',
 		example: 456,
 		type: Number,
 		required: false

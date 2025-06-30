@@ -6,7 +6,7 @@ import { ERoleNames } from 'src/interfaces/ERoleNames'
 class User {
 	@Expose({ name: 'user_id' })
 	@ApiProperty({
-		description: 'Унікальний ідентифікатор користувача',
+		description: 'Unique user identifier',
 		example: 1,
 		type: Number
 	})
@@ -14,7 +14,7 @@ class User {
 
 	@Expose({ name: 'user_username' })
 	@ApiProperty({
-		description: 'Username користувача',
+		description: "User's username",
 		example: 'john_doe',
 		type: String
 	})
@@ -22,7 +22,7 @@ class User {
 
 	@Expose({ name: 'user_first_name' })
 	@ApiProperty({
-		description: "Ім'я користувача",
+		description: "User's first name",
 		example: 'John',
 		type: String,
 		nullable: true
@@ -31,7 +31,7 @@ class User {
 
 	@Expose({ name: 'user_last_name' })
 	@ApiProperty({
-		description: 'Прізвище користувача',
+		description: "User's last name",
 		example: 'Doe',
 		type: String,
 		nullable: true
@@ -40,7 +40,7 @@ class User {
 
 	@Expose({ name: 'user_email' })
 	@ApiProperty({
-		description: 'Електронна пошта користувача',
+		description: "User's email address",
 		example: 'user@example.com',
 		type: String,
 		format: 'email'
@@ -49,7 +49,7 @@ class User {
 
 	@Expose({ name: 'user_phone' })
 	@ApiProperty({
-		description: 'Номер телефону користувача',
+		description: "User's phone number",
 		example: '+380501234567',
 		type: String,
 		nullable: true
@@ -58,7 +58,7 @@ class User {
 
 	@Expose({ name: 'user_role' })
 	@ApiProperty({
-		description: 'Роль користувача',
+		description: "User's role",
 		example: ERoleNames.USER,
 		enum: ERoleNames,
 		type: String
@@ -67,7 +67,7 @@ class User {
 
 	@Expose({ name: 'user_registration_type' })
 	@ApiProperty({
-		description: 'Тип реєстрації користувача',
+		description: "User's registration type",
 		example: ERegistrationTypes.PASSWORD,
 		enum: ERegistrationTypes,
 		type: String
@@ -76,7 +76,7 @@ class User {
 
 	@Expose({ name: 'user_approval_level' })
 	@ApiProperty({
-		description: 'Рівень схвалення користувача',
+		description: "User's approval level",
 		example: 1,
 		type: Number
 	})
@@ -84,7 +84,7 @@ class User {
 
 	@Expose({ name: 'user_daily_limit_uploads' })
 	@ApiProperty({
-		description: 'Щоденний ліміт завантажень користувача',
+		description: "User's daily upload limit",
 		example: 10,
 		type: Number
 	})
@@ -92,7 +92,7 @@ class User {
 
 	@Expose({ name: 'user_available_uploads' })
 	@ApiProperty({
-		description: 'Доступні завантаження користувача',
+		description: "User's available uploads",
 		example: 5,
 		type: Number
 	})
@@ -100,7 +100,7 @@ class User {
 
 	@Expose({ name: 'user_account_blocking' })
 	@ApiProperty({
-		description: 'Дата до якої акаунт користувача заблоковано',
+		description: "Date until which the user's account is blocked",
 		example: '2023-10-01T12:00:00Z',
 		type: Date,
 		required: false,
@@ -110,8 +110,8 @@ class User {
 
 	@Expose({ name: 'user_reason_blocking' })
 	@ApiProperty({
-		description: 'Причина блокування акаунту користувача',
-		example: 'Порушення правил користування сервісом.',
+		description: "Reason for blocking the user's account",
+		example: 'Violation of service usage rules.',
 		type: String,
 		required: false,
 		nullable: true
@@ -120,16 +120,17 @@ class User {
 
 	@Expose({ name: 'user_upload_blocking' })
 	@ApiProperty({
-		description: 'Дата до якої можливість завантаження документів користувачем заблоковано',
+		description: "Date until which the user's ability to upload documents is blocked",
 		example: '2023-10-01T12:00:00Z',
 		type: Date,
-		required: false
+		required: false,
+		nullable: true
 	})
 	uploadBlocking: Date | null
 
 	@Expose({ name: 'user_strike_counter' })
 	@ApiProperty({
-		description: 'Кількість штрафних балів користувача',
+		description: "User's strike points count",
 		example: 2,
 		type: Number
 	})
@@ -137,7 +138,7 @@ class User {
 
 	@Expose({ name: 'user_email_notifications' })
 	@ApiProperty({
-		description: 'Вказує, чи користувач хоче отримувати email-сповіщення',
+		description: "Indicates whether the user wants to receive email notifications",
 		example: true,
 		type: Boolean
 	})
@@ -145,7 +146,7 @@ class User {
 
 	@Expose({ name: 'user_document_approval_alerts' })
 	@ApiProperty({
-		description: 'Вказує, чи користувач хоче отримувати сповіщення про затвердження документів',
+		description: "Indicates whether the user wants to receive notifications about document approvals",
 		example: true,
 		type: Boolean
 	})
@@ -153,7 +154,7 @@ class User {
 
 	@Expose({ name: 'user_last_activity' })
 	@ApiProperty({
-		description: 'Дата останньої активності користувача',
+		description: "Date of user's last activity",
 		example: '2023-10-01T12:00:00Z',
 		type: Date
 	})
@@ -161,7 +162,7 @@ class User {
 
 	@Expose({ name: 'user_created_at' })
 	@ApiProperty({
-		description: 'Дата створення користувача',
+		description: "User creation date",
 		example: '2023-01-01T12:00:00Z',
 		type: Date
 	})
@@ -169,7 +170,7 @@ class User {
 
 	@Expose({ name: 'user_updated_at' })
 	@ApiProperty({
-		description: 'Дата останнього оновлення користувача',
+		description: "User's last update date",
 		example: '2023-10-01T12:00:00Z',
 		type: Date
 	})
@@ -178,7 +179,7 @@ class User {
 	@Expose({ name: 'user_docCount' })
 	@Transform(({ value }) => Number(value))
 	@ApiProperty({
-		description: 'Кількість документів, завантажених користувачем',
+		description: "Number of documents uploaded by the user",
 		example: 15,
 		type: Number
 	})
@@ -187,7 +188,7 @@ class User {
 	@Expose({ name: 'user_pointsCount' })
 	@Transform(({ value }) => Number(value))
 	@ApiProperty({
-		description: 'Кількість points користувача',
+		description: "User's points count",
 		example: 100,
 		type: Number
 	})
@@ -196,7 +197,7 @@ class User {
 	@Expose({ name: 'user_revealsCount' })
 	@Transform(({ value }) => Number(value))
 	@ApiProperty({
-		description: 'Кількість reveals користувача',
+		description: "User's reveals count",
 		example: 5,
 		type: Number
 	})
@@ -207,13 +208,14 @@ export class AllUsersInfoResponse {
 	@Expose({ name: 'page' })
 	@Type(() => User)
 	@ApiProperty({
-		description: 'Сторінка користувачів',
+		description: 'Page of users',
 		type: [User]
 	})
 	page: User[]
+
 	@Expose({ name: 'total' })
 	@ApiProperty({
-		description: 'Загальна кількість користувачів на сторінці',
+		description: 'Total number of users in the page',
 		example: 100,
 		type: Number
 	})

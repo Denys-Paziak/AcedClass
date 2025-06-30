@@ -14,8 +14,8 @@ export class UniversityAdminController {
 
 	@Authorization(ERoleNames.ADMIN)
 	@Get('top')
-	@ApiOperation({ summary: 'Отримати топ університетів' })
-	@ApiResponse({ status: 200, type: [TopUniversitiesResponse], description: 'Топ університетів' })
+	@ApiOperation({ summary: 'Get top universities' })
+	@ApiResponse({ status: 200, type: [TopUniversitiesResponse], description: 'List of top universities' })
 	async topUniversities(@Query() query: TopUniversitiesQueryDto): Promise<TopUniversitiesResponse[]> {
 		return await this.universityService.topUniversities(query)
 	}

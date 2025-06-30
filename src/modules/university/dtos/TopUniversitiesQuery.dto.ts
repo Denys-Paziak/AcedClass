@@ -3,10 +3,10 @@ import { IsInt, IsOptional, Min } from 'class-validator'
 
 export class TopUniversitiesQueryDto {
 	@IsOptional()
-	@IsInt({ message: 'Limit must be an integer' })
-	@Min(0, { message: 'The value cannot be less than zero.' })
+	@IsInt()
+	@Min(0)
 	@ApiProperty({
-		description: 'Кількість університетів для повернення в результатах',
+		description: 'Number of universities to return in the results',
 		example: 10,
 		type: Number,
 		required: false

@@ -22,7 +22,7 @@ export class UserSystemService {
 		return await this.userRepository.count(options)
 	}
 
-	async find(options: FindOneOptions<User>) {
+	async find(options?: FindManyOptions<User> | undefined) {
 		return await this.userRepository.find(options)
 	}
 
@@ -50,11 +50,11 @@ export class UserSystemService {
 		})
 	}
 
-	async uploadUnlocking(userId: User['id']) {
+	async uploadUnlocking(userId: number) {
 		await this.userRepository.update(userId, { uploadBlocking: null })
 	}
 
-	async decrementStrikeCounter(userId: User['id'], manager: EntityManager) {
+	async decrementStrikeCounter(userId: number, manager: EntityManager) {
 		const repo = manager.getRepository(User)
 
 		await repo
@@ -62,11 +62,12 @@ export class UserSystemService {
 			.update(User)
 			.set({ strikeCounter: () => `"strike_counter" - 1` })
 			.where('id = :id', { id: userId })
+			.andWhere('"available_uploads" > 0')
 			.andWhere('"strike_counter" IS NOT NULL')
 			.execute()
 	}
 
-	async decrementAvailableUploads(userId: User['id'], manager: EntityManager) {
+	async decrementAvailableUploads(userId: number, manager: EntityManager) {
 		const repo = manager.getRepository(User)
 
 		await repo
@@ -77,5 +78,15 @@ export class UserSystemService {
 			.andWhere('"available_uploads" > 0')
 			.andWhere('"available_uploads" IS NOT NULL')
 			.execute()
+	}
+
+	async getSubscriptionStats() {
+		return this.userRepository
+			.createQueryBuilder('user')
+			.select('user.subscription', 'subscription')
+			.addSelect('COUNT(*)', 'count')
+			.where('user.subscription IS NOT NULL')
+			.groupBy('user.subscription')
+			.getRawMany()
 	}
 }

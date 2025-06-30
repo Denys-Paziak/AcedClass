@@ -2,9 +2,12 @@ import { Injectable, NotFoundException } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { plainToInstance } from 'class-transformer'
 import { EEvaluationTypes } from 'src/interfaces/EEvaluationTypes'
-import { Not, Repository } from 'typeorm'
+import { MAX_RECOMMENDATION_ITEMS } from 'src/magic/constants'
+import { Evaluation } from 'src/modules/evaluation/entities/Evaluation.entity'
+import { DataSource, Not, Repository } from 'typeorm'
 
 import { GetAllDocumentsQueryDto } from '../dtos/GetAllDocumentsQuery.dto'
+import { SearchDocumentsDto } from '../dtos/SearchDocuments.dto'
 import { Document } from '../entities/Document.entity'
 import { GetAllDocumentsResponse } from '../responses/GetAllDocuments.response'
 import { GetMyDocumentsResponse } from '../responses/GetMyDocuments.response'
@@ -19,6 +22,7 @@ export class DocumentQueryService {
 	constructor(
 		@InjectRepository(Document)
 		private readonly documentRepository: Repository<Document>,
+		private readonly dataSource: DataSource,
 
 		private readonly unlockedDocumentService: UnlockedDocumentService,
 		private readonly documentSystemService: DocumentSystemService
@@ -98,14 +102,14 @@ export class DocumentQueryService {
 		})
 
 		const revealChain =
-			topUniversityAndCourseName.length <= 6
+			topUniversityAndCourseName.length <= MAX_RECOMMENDATION_ITEMS
 				? topUniversityAndCourseName
-				: [...topUniversityAndCourseName, ...topUniversity].slice(0, 6)
+				: [...topUniversityAndCourseName, ...topUniversity].slice(0, MAX_RECOMMENDATION_ITEMS)
 
 		const recommendations =
-			topUniversityAndCourseName.length <= 6
-				? topUniversityAndCourseName.slice(-6)
-				: [...topUniversity, ...topUniversityAndCourseName].slice(-6)
+			topUniversityAndCourseName.length <= MAX_RECOMMENDATION_ITEMS
+				? topUniversityAndCourseName.slice(-MAX_RECOMMENDATION_ITEMS)
+				: [...topUniversity, ...topUniversityAndCourseName].slice(-MAX_RECOMMENDATION_ITEMS)
 
 		return plainToInstance(
 			GetOneDocumentAndRecomendationResponse,
@@ -209,5 +213,66 @@ export class DocumentQueryService {
 		return plainToInstance(GetOneDocumentReponse, result, {
 			excludeExtraneousValues: true
 		})
+	}
+
+	async searchDocuments(options: SearchDocumentsDto) {
+		const qb = this.dataSource
+			.getRepository(Document)
+			.createQueryBuilder('document')
+			.leftJoinAndSelect('document.university', 'university')
+			.leftJoin(
+				subQb => {
+					return subQb
+						.select('evaluation.document_id', 'documentId')
+						.addSelect('COUNT(*)', 'likesCount')
+						.from(Evaluation, 'evaluation')
+						.where('evaluation.type = :likeType', { likeType: EEvaluationTypes.LIKE })
+						.groupBy('evaluation.document_id')
+				},
+				'likes_count',
+				'likes_count."documentId" = document.id'
+			)
+			.addSelect('COALESCE(likes_count."likesCount", 0)', 'likesCount')
+
+		if (options.ids) {
+			qb.andWhere('document.id IN (:...ids)', { ids: options.ids })
+		}
+
+		if (options.university) {
+			qb.andWhere('university.name ILIKE :universityName', {
+				universityName: `%${options.university}%`
+			})
+		}
+
+		if (options.courseName) {
+			qb.andWhere('document.courseName ILIKE :courseName', {
+				courseName: `%${options.courseName}%`
+			})
+		}
+
+		if (options.sortByLikesCount) {
+			qb.addOrderBy('"likesCount"', options.sortByLikesCount)
+		}
+
+		if (options.sortByCreatedAt) {
+			qb.addOrderBy('document.createdAt', options.sortByCreatedAt)
+		}
+
+		if (!options.sortByLikesCount && !options.sortByCreatedAt && options.ids?.length) {
+			const orderedIds = options.ids.join(', ')
+
+			qb.addSelect(`ARRAY_POSITION(ARRAY[${orderedIds}], document.id)`, 'custom_order')
+
+			qb.orderBy('custom_order', 'ASC')
+		}
+
+		const total = await this.documentRepository.createQueryBuilder('document').getCount()
+
+		const page = options.ids && options.ids.length === 0 ? [] : await qb
+			.take(options.limit || 10)
+			.skip((options.limit || 10) * ((options.page || 1) - 1))
+			.getRawMany()
+
+		return { page, total }
 	}
 }

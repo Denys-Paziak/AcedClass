@@ -5,10 +5,10 @@ import { IsInt, IsOptional, IsString, Min } from 'class-validator'
 export class AllUsersInfoQueryDto {
 	@IsOptional()
 	@Type(() => Number)
-	@IsInt({ message: 'The period of days must be an integer.' })
-	@Min(1, { message: 'The value cannot be less than one.' })
+	@IsInt()
+	@Min(1)
 	@ApiProperty({
-		description: 'Період, за який потрібно отримати інформацію про користувачів (в днях)',
+		description: 'Period to retrieve user info for (in days)',
 		example: 30,
 		type: Number,
 		required: false,
@@ -18,10 +18,10 @@ export class AllUsersInfoQueryDto {
 
 	@IsOptional()
 	@Type(() => Number)
-	@IsInt({ message: 'Upload count must be an integer' })
-	@Min(0, { message: 'The value cannot be less than zero.' })
+	@IsInt()
+	@Min(0)
 	@ApiProperty({
-		description: 'Мінімальна кількість завантажень користувача',
+		description: 'Minimum number of user uploads',
 		example: 5,
 		type: Number,
 		required: false,
@@ -31,10 +31,10 @@ export class AllUsersInfoQueryDto {
 
 	@IsOptional()
 	@Type(() => Number)
-	@IsInt({ message: 'Upload count must be an integer' })
-	@Min(0, { message: 'The value cannot be less than zero.' })
+	@IsInt()
+	@Min(0)
 	@ApiProperty({
-		description: 'Максимальна кількість завантажень користувача',
+		description: 'Maximum number of user uploads',
 		example: 100,
 		type: Number,
 		required: false,
@@ -43,19 +43,19 @@ export class AllUsersInfoQueryDto {
 	uploadCountMax?: number
 
 	@IsOptional()
-	@IsString({ message: 'Search string must be a string' })
+	@IsString()
 	@ApiProperty({
-		description: 'Пошук користувачів за іменем або email',
+		description: 'Search users by name or email',
 		example: 'John Doe'
 	})
 	search?: string
 
 	@IsOptional()
 	@Type(() => Number)
-	@IsInt({ message: 'Limit must be an integer' })
-	@Min(0, { message: 'The value cannot be less than zero.' })
+	@IsInt()
+	@Min(0)
 	@ApiProperty({
-		description: 'Кількість користувачів на сторінці для пагінації',
+		description: 'Number of users per page for pagination',
 		example: 10,
 		type: Number,
 		required: false,
@@ -65,10 +65,10 @@ export class AllUsersInfoQueryDto {
 
 	@IsOptional()
 	@Type(() => Number)
-	@IsInt({ message: 'Page must be an integer' })
-	@Min(0, { message: 'The value cannot be less than zero.' })
+	@IsInt()
+	@Min(0)
 	@ApiProperty({
-		description: 'Номер сторінки для пагінації',
+		description: 'Page number for pagination',
 		example: 1,
 		type: Number,
 		required: false,

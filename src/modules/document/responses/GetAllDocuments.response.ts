@@ -4,7 +4,7 @@ import { DocumentResponse } from 'src/responses/Document.response'
 
 export class GetAllDocumentsResponse {
 	@ApiProperty({
-		description: 'Сторінка з документами',
+		description: 'Page with documents',
 		type: [DocumentResponse]
 	})
 	@Expose({ name: 'page' })
@@ -12,7 +12,7 @@ export class GetAllDocumentsResponse {
 	page: DocumentResponse[]
 
 	@ApiProperty({
-		description: 'Загальна кількість документів',
+		description: 'Total number of documents',
 		example: 42,
 		type: Number
 	})

@@ -1,12 +1,13 @@
 import { ApiProperty } from '@nestjs/swagger'
-import { Expose } from 'class-transformer'
+import { Expose, Type } from 'class-transformer'
 import { ERegistrationTypes } from 'src/interfaces/ERegistrationTypes'
 import { ERoleNames } from 'src/interfaces/ERoleNames'
+import { GetActiveTariffsResponse } from 'src/modules/stripe/responses/GetActiveTariffsResponse.response'
 
 export class GetSelfResponse {
 	@Expose({ name: 'id' })
 	@ApiProperty({
-		description: 'Унікальний ідентифікатор користувача',
+		description: 'Unique user identifier',
 		example: 1,
 		type: Number
 	})
@@ -14,7 +15,7 @@ export class GetSelfResponse {
 
 	@Expose({ name: 'username' })
 	@ApiProperty({
-		description: 'Username користувача',
+		description: "User's username",
 		example: 'john_doe',
 		type: String
 	})
@@ -22,7 +23,7 @@ export class GetSelfResponse {
 
 	@Expose({ name: 'firstName' })
 	@ApiProperty({
-		description: "Ім'я користувача",
+		description: "User's first name",
 		example: 'John',
 		type: String,
 		nullable: true
@@ -31,7 +32,7 @@ export class GetSelfResponse {
 
 	@Expose({ name: 'lastName' })
 	@ApiProperty({
-		description: 'Прізвище користувача',
+		description: "User's last name",
 		example: 'Doe',
 		type: String,
 		nullable: true
@@ -40,7 +41,7 @@ export class GetSelfResponse {
 
 	@Expose({ name: 'email' })
 	@ApiProperty({
-		description: 'Електронна пошта користувача',
+		description: "User's email address",
 		example: 'user@example.com',
 		type: String,
 		format: 'email'
@@ -49,7 +50,7 @@ export class GetSelfResponse {
 
 	@Expose({ name: 'phone' })
 	@ApiProperty({
-		description: 'Номер телефону користувача',
+		description: "User's phone number",
 		example: '+380501234567',
 		type: String,
 		nullable: true
@@ -58,7 +59,7 @@ export class GetSelfResponse {
 
 	@Expose({ name: 'role' })
 	@ApiProperty({
-		description: 'Роль користувача',
+		description: "User's role",
 		example: ERoleNames.USER,
 		enum: ERoleNames,
 		type: String
@@ -67,7 +68,7 @@ export class GetSelfResponse {
 
 	@Expose({ name: 'registrationType' })
 	@ApiProperty({
-		description: 'Тип реєстрації користувача',
+		description: "User's registration type",
 		example: ERegistrationTypes.PASSWORD,
 		enum: ERegistrationTypes,
 		type: String
@@ -76,7 +77,7 @@ export class GetSelfResponse {
 
 	@Expose({ name: 'approvalLevel' })
 	@ApiProperty({
-		description: 'Рівень схвалення користувача',
+		description: "User's approval level",
 		example: 1,
 		type: Number
 	})
@@ -84,7 +85,7 @@ export class GetSelfResponse {
 
 	@Expose({ name: 'dailyLimitUploads' })
 	@ApiProperty({
-		description: 'Щоденний ліміт завантажень користувача',
+		description: "User's daily upload limit",
 		example: 10,
 		type: Number
 	})
@@ -92,7 +93,7 @@ export class GetSelfResponse {
 
 	@Expose({ name: 'availableUploads' })
 	@ApiProperty({
-		description: 'Доступні завантаження користувача',
+		description: "User's available uploads",
 		example: 5,
 		type: Number
 	})
@@ -100,7 +101,7 @@ export class GetSelfResponse {
 
 	@Expose({ name: 'accountBlocking' })
 	@ApiProperty({
-		description: 'Дата до якої акаунт користувача заблоковано',
+		description: "Date until which the user's account is blocked",
 		example: '2023-10-01T12:00:00Z',
 		type: Date,
 		required: false,
@@ -110,8 +111,8 @@ export class GetSelfResponse {
 
 	@Expose({ name: 'reasonBlocking' })
 	@ApiProperty({
-		description: 'Причина блокування акаунту користувача',
-		example: 'Порушення правил користування сервісом.',
+		description: "Reason for blocking the user's account",
+		example: 'Violation of service usage rules.',
 		type: String,
 		required: false,
 		nullable: true
@@ -120,7 +121,7 @@ export class GetSelfResponse {
 
 	@Expose({ name: 'uploadBlocking' })
 	@ApiProperty({
-		description: 'Дата до якої можливість завантаження документів користувачем заблоковано',
+		description: "Date until which the user's ability to upload documents is blocked",
 		example: '2023-10-01T12:00:00Z',
 		type: Date,
 		required: false,
@@ -130,7 +131,7 @@ export class GetSelfResponse {
 
 	@Expose({ name: 'strikeCounter' })
 	@ApiProperty({
-		description: 'Кількість штрафних балів користувача',
+		description: "User's strike points count",
 		example: 2,
 		type: Number
 	})
@@ -138,7 +139,7 @@ export class GetSelfResponse {
 
 	@Expose({ name: 'emailNotifications' })
 	@ApiProperty({
-		description: 'Вказує, чи користувач хоче отримувати email-сповіщення',
+		description: 'Indicates whether the user wants to receive email notifications',
 		example: true,
 		type: Boolean
 	})
@@ -146,7 +147,7 @@ export class GetSelfResponse {
 
 	@Expose({ name: 'documentApprovalAlerts' })
 	@ApiProperty({
-		description: 'Вказує, чи користувач хоче отримувати сповіщення про затвердження документів',
+		description: 'Indicates whether the user wants to receive notifications about document approvals',
 		example: true,
 		type: Boolean
 	})
@@ -154,15 +155,24 @@ export class GetSelfResponse {
 
 	@Expose({ name: 'lastActivity' })
 	@ApiProperty({
-		description: 'Дата останньої активності користувача',
+		description: "Date of user's last activity",
 		example: '2023-10-01T12:00:00Z',
 		type: Date
 	})
 	lastActivity: Date
 
+	@Expose({ name: 'subscription' })
+	@Type(() => GetActiveTariffsResponse)
+	@ApiProperty({
+		description: 'User subscription',
+		type: GetActiveTariffsResponse,
+		nullable: true
+	})
+	subscription: GetActiveTariffsResponse | null
+
 	@Expose({ name: 'createdAt' })
 	@ApiProperty({
-		description: 'Дата створення користувача',
+		description: 'User creation date',
 		example: '2023-01-01T12:00:00Z',
 		type: Date
 	})
@@ -170,7 +180,7 @@ export class GetSelfResponse {
 
 	@Expose({ name: 'updatedAt' })
 	@ApiProperty({
-		description: 'Дата останнього оновлення користувача',
+		description: "User's last update date",
 		example: '2023-10-01T12:00:00Z',
 		type: Date
 	})

@@ -1,4 +1,4 @@
-import { BadRequestException, HttpException, Injectable, NotFoundException } from '@nestjs/common'
+import { BadRequestException, HttpException, Injectable, NotFoundException, ServiceUnavailableException } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { plainToInstance } from 'class-transformer'
 import { EPointTypes } from 'src/interfaces/EPointTypes'
@@ -11,6 +11,7 @@ import { Document } from '../entities/Document.entity'
 import { UnlockedDocument } from '../entities/Unlocked-document.entity'
 import { GetAllUnlocksResponse } from '../responses/GetAllUnlocks.response'
 import { GetMyUnlockedDocumentsResponse } from '../responses/GetMyUnlockedDocuments.response'
+import { SystemSettingQueryService } from 'src/modules/system-setting/services/system-setting-query.service'
 
 @Injectable()
 export class UnlockedDocumentService {
@@ -21,7 +22,8 @@ export class UnlockedDocumentService {
 		private readonly documentRepository: Repository<Document>,
 		private readonly dataSource: DataSource,
 
-		private readonly pointCommandService: PointCommandService
+		private readonly pointCommandService: PointCommandService,
+		private readonly systemSettingQueryService: SystemSettingQueryService
 	) {}
 
 	async count(options?: FindManyOptions<UnlockedDocument> | undefined) {
@@ -31,10 +33,16 @@ export class UnlockedDocumentService {
 	async unlockDocument(data: {
 		pointType: EPointTypes
 		quantityPoint: number
-		userId: User['id']
+		userId: number
 		documentId: Document['id']
 	}) {
 		const { documentId, userId, pointType, quantityPoint } = data
+
+		const settings = await this.systemSettingQueryService.getSettings(['feature toggles'])
+		
+		if (!settings('feature toggles').documentRevealing) {
+			throw new ServiceUnavailableException('Document revealing is currently disabled by the system.')
+		}
 
 		if (
 			!await this.documentRepository.findOne({ where: { id: documentId, user: { id: userId } }, relations: { user: true } })

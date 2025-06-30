@@ -1,24 +1,28 @@
 import { BadRequestException, Injectable } from '@nestjs/common'
-import { days } from '@nestjs/throttler'
 import { InjectRepository } from '@nestjs/typeorm'
+import { addDays, addMonths } from 'date-fns'
 import { EDocumentStatuses } from 'src/interfaces/EDocumentStatuses'
 import { EPointTypes } from 'src/interfaces/EPointTypes'
+import { ESubscriptionStatuses } from 'src/interfaces/ESubscriptionStatuses'
 import { ESystemNotificationTypes } from 'src/interfaces/ESystemNotificationTypes'
 import { TPointSource } from 'src/interfaces/TPointSource'
+import { TRevealSource } from 'src/interfaces/TRevealSource'
 import { DocumentSystemService } from 'src/modules/document/services/document-system.service'
 import { SystemNotificationSystemService } from 'src/modules/system-notification/services/system-notification-system.service'
 import { TaskMetodsService } from 'src/modules/task/task-metods.service'
 import { User } from 'src/modules/user/entities/User.entity'
 import { UserSystemService } from 'src/modules/user/services/user-system.service'
-import { EntityManager, FindOptionsWhere, Repository } from 'typeorm'
+import { DataSource, EntityManager, FindOptionsWhere, Repository } from 'typeorm'
 
 import { Point } from '../entities/Point.entity'
+import { POINT_EXPIRATION_DAYS, REVEALS_EXPIRATION_MONTHS, SUBSCRIPTION_REVEALS_AMOUNT } from 'src/magic/constants'
 
 @Injectable()
 export class PointCommandService {
 	constructor(
 		@InjectRepository(Point)
 		private readonly pointRepository: Repository<Point>,
+		private readonly dataSource: DataSource,
 
 		private readonly taskMetodsService: TaskMetodsService,
 		private readonly documentSystemService: DocumentSystemService,
@@ -26,7 +30,7 @@ export class PointCommandService {
 		private readonly userSystemService: UserSystemService
 	) {}
 
-	async writeOffPoints(data: { pointType: EPointTypes; quantityPoint: number; userId: User['id'] }, manager?: EntityManager) {
+	async writeOffPoints(data: { pointType: EPointTypes; quantityPoint: number; userId: number }, manager?: EntityManager) {
 		let { pointType, quantityPoint, userId } = data
 
 		const repo = manager?.getRepository(Point) || this.pointRepository
@@ -80,7 +84,7 @@ export class PointCommandService {
 			.execute()
 	}
 
-	async addPoints(userId: User['id'], points: number, source: TPointSource, manager?: EntityManager) {
+	async addPoints(userId: number, points: number, source: TPointSource, manager?: EntityManager) {
 		const repo = manager?.getRepository(Point) || this.pointRepository
 
 		const userFromDB = await this.userSystemService.findOne({ where: { id: userId } })
@@ -107,6 +111,8 @@ export class PointCommandService {
 				frozen
 			})
 
+			const burningDate = addDays(new Date(), POINT_EXPIRATION_DAYS)
+
 			await this.systemNotificationSystemService.createSystemNotification(
 				userId,
 				{
@@ -114,20 +120,76 @@ export class PointCommandService {
 					source,
 					pointsId: id,
 					totalEarned: points,
-					burningDate: new Date(Date.now() + days(30))
+					burningDate: burningDate
 				},
 				manager
 			)
 
-			// створення відкладеної задачі для згорання поінтів через 30 днів
-			await this.taskMetodsService.burningPoints(id, days(30))
+			await this.taskMetodsService.burningPoints(id, burningDate)
 		}
 	}
 
-	async burningPoints(pointsId: number, manager?: EntityManager) {
+	async addReveals(options: FindOptionsWhere<User>, reveals: number, source: TRevealSource, manager?: EntityManager) {
 		const repo = manager?.getRepository(Point) || this.pointRepository
 
-		await repo.update(pointsId, { available: 0 })
+		const userFromDB = await this.userSystemService.findOne({ where: options })
+
+		if (userFromDB) {
+			const { id } = await repo.save({
+				type: EPointTypes.REVEAL,
+				user: { id: userFromDB.id },
+				totalEarned: reveals,
+				available: reveals,
+				source
+			})
+
+			const burningDate = addMonths(new Date(), REVEALS_EXPIRATION_MONTHS)
+
+			await this.systemNotificationSystemService.createSystemNotification(
+				userFromDB.id,
+				{
+					type: ESystemNotificationTypes.ADD_REVEALS,
+					source,
+					pointsId: id,
+					totalEarned: reveals,
+					burningDate: burningDate
+				},
+				manager
+			)
+
+			await this.taskMetodsService.burningReveals(id, burningDate)
+		}
+	}
+
+	async burningPoints(pointsId: number) {
+		await this.pointRepository.update(pointsId, { available: 0 })
+	}
+
+	async burningReveals(revealsId: number) {
+		await this.dataSource.transaction(async manager => {
+			await manager.getRepository(Point).update(revealsId, { available: 0 })
+
+			const userFromDB = (await this.pointRepository.findOne({ where: { id: revealsId }, relations: { user: true } }))?.user
+
+			if (
+				userFromDB &&
+				(userFromDB.subscribedStatus === ESubscriptionStatuses.ACTIVE ||
+					userFromDB.subscribedStatus === ESubscriptionStatuses.PAST_DUE)
+			) {
+				await this.addReveals({ id: userFromDB.id }, SUBSCRIPTION_REVEALS_AMOUNT, { type: 'subscription' }, manager)
+			}
+		})
+	}
+
+	async burningAllUserReveals(where: FindOptionsWhere<User>, manager?: EntityManager) {
+		const repo = manager?.getRepository(Point) || this.pointRepository
+
+		const record = await repo.findOne({ where: { type: EPointTypes.REVEAL, user: where } })
+
+		if (record) {
+			repo.update({ id: record.id }, { available: 0 })
+			await this.taskMetodsService.deleteJobBurningReveals(record.id)
+		}
 	}
 
 	async deletePointsBySource(source: { type: 'document'; id: number } | { type: 'evaluation' }, manager?: EntityManager) {

@@ -6,7 +6,7 @@ import { TSystemNotificationData } from 'src/interfaces/TSystemNotificationData'
 export class GetMySystemNotificationResponse {
 	@Expose({ name: 'id' })
 	@ApiProperty({
-		description: 'Унікальний ідентифікатор системного сповіщення',
+		description: 'Unique system notification identifier',
 		example: 1,
 		type: Number
 	})
@@ -14,7 +14,7 @@ export class GetMySystemNotificationResponse {
 
 	@Expose({ name: 'type' })
 	@ApiProperty({
-		description: 'Тип системного сповіщення',
+		description: 'Type of system notification',
 		example: ESystemNotificationTypes.ADD_POINTS,
 		enum: ESystemNotificationTypes,
 		type: String
@@ -23,14 +23,14 @@ export class GetMySystemNotificationResponse {
 
 	@Expose({ name: 'data' })
 	@ApiProperty({
-		description: 'Дані системного сповіщення',
+		description: 'System notification data',
 		type: Object
 	})
 	data: TSystemNotificationData
 
 	@Expose({ name: 'createdAt' })
 	@ApiProperty({
-		description: 'Дата створення системного сповіщення',
+		description: 'Date of creation of the system notification',
 		example: '2023-10-01T12:00:00Z',
 		type: Date
 	})

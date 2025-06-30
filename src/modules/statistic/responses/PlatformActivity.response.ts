@@ -4,21 +4,21 @@ import { Expose, Type } from 'class-transformer'
 class Values {
 	@Expose({ name: 'total' })
 	@ApiProperty({
-		description: 'Загальна кількість за вказаний період',
+		description: 'Total count for the specified period',
 		type: Number
 	})
 	total: number
 
 	@Expose({ name: 'growth' })
 	@ApiProperty({
-		description: 'Зростання в порівнянні з попереднім періодом',
+		description: 'Growth compared to the previous period',
 		type: Number
 	})
 	growth: number
 
 	@Expose({ name: 'growthPercent' })
 	@ApiProperty({
-		description: 'Відсоток зростання в порівнянні з попереднім періодом',
+		description: 'Percentage growth compared to the previous period',
 		type: Number
 	})
 	growthPercent: number
@@ -28,7 +28,7 @@ export class PlatformActivityResponse {
 	@Expose({ name: 'users' })
 	@Type(() => Values)
 	@ApiProperty({
-		description: 'Кількість нових користувачів',
+		description: 'Number of new users',
 		type: Values
 	})
 	users: Values
@@ -36,7 +36,7 @@ export class PlatformActivityResponse {
 	@Expose({ name: 'uploaded' })
 	@Type(() => Values)
 	@ApiProperty({
-		description: 'Кількість завантажених документів',
+		description: 'Number of uploaded documents',
 		type: Values
 	})
 	uploaded: Values
@@ -44,7 +44,7 @@ export class PlatformActivityResponse {
 	@Expose({ name: 'revealed' })
 	@Type(() => Values)
 	@ApiProperty({
-		description: 'Кількість розблокованих документів',
+		description: 'Number of unlocked documents',
 		type: Values
 	})
 	revealed: Values
@@ -52,7 +52,7 @@ export class PlatformActivityResponse {
 	@Expose({ name: 'pointsUsed' })
 	@Type(() => Values)
 	@ApiProperty({
-		description: 'Кількість використаних Point',
+		description: 'Number of points used',
 		type: Values
 	})
 	pointsUsed: Values
@@ -60,7 +60,7 @@ export class PlatformActivityResponse {
 	@Expose({ name: 'revealsUsed' })
 	@Type(() => Values)
 	@ApiProperty({
-		description: 'Кількість використаних Reveal',
+		description: 'Number of reveals used',
 		type: Values
 	})
 	revealsUsed: Values

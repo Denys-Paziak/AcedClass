@@ -1,14 +1,13 @@
 import { ApiProperty } from '@nestjs/swagger'
 import { Type } from 'class-transformer'
-import { IsBoolean, IsNumber, IsOptional, IsPositive, Min, ValidateNested } from 'class-validator'
+import { IsBoolean, IsInt, IsOptional, Min, ValidateNested } from 'class-validator'
 
 class FileExtensionSettings {
-	@IsNumber()
-	@IsPositive()
+	@IsInt()
 	@Min(1)
 	@IsOptional()
     @ApiProperty({
-        description: 'Максимальний розмір файлу в мегабайтах',
+        description: 'Maximum file size in megabytes',
         example: 40,
         type: Number,
         minimum: 1,
@@ -19,7 +18,7 @@ class FileExtensionSettings {
 	@IsBoolean()
 	@IsOptional()
     @ApiProperty({
-        description: 'Чи дозволено використовувати цей тип файлу',
+        description: 'Is this file type allowed to be used',
         example: true,
         type: Boolean,
 		required: false
@@ -30,29 +29,36 @@ class FileExtensionSettings {
 export class AllowedFileExtensionsDto {
 	@ValidateNested()
 	@Type(() => FileExtensionSettings)
-	pdf: FileExtensionSettings
+	@IsOptional()
+	pdf?: FileExtensionSettings
 
 	@ValidateNested()
 	@Type(() => FileExtensionSettings)
-	doc: FileExtensionSettings
+	@IsOptional()
+	doc?: FileExtensionSettings
 
 	@ValidateNested()
 	@Type(() => FileExtensionSettings)
-	docx: FileExtensionSettings
+	@IsOptional()
+	docx?: FileExtensionSettings
 
 	@ValidateNested()
 	@Type(() => FileExtensionSettings)
-	xls: FileExtensionSettings
+	@IsOptional()
+	xls?: FileExtensionSettings
 
 	@ValidateNested()
 	@Type(() => FileExtensionSettings)
-	xlsx: FileExtensionSettings
+	@IsOptional()
+	xlsx?: FileExtensionSettings
 
 	@ValidateNested()
 	@Type(() => FileExtensionSettings)
-	ppt: FileExtensionSettings
+	@IsOptional()
+	ppt?: FileExtensionSettings
 
 	@ValidateNested()
 	@Type(() => FileExtensionSettings)
-	pptx: FileExtensionSettings
+	@IsOptional()
+	pptx?: FileExtensionSettings
 }

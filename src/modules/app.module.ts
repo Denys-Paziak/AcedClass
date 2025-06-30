@@ -1,4 +1,4 @@
-import { MiddlewareConsumer, Module } from '@nestjs/common'
+import { Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
 import { APP_GUARD } from '@nestjs/core'
 import { ScheduleModule } from '@nestjs/schedule'
@@ -10,7 +10,10 @@ import { getThrottlerConfig } from 'src/configs/throttler.config'
 import { AuthModule } from './auth/auth.module'
 import { ComplaintModule } from './complaint/complaint.module'
 import { DocumentModule } from './document/document.module'
+import { ElasticSearchModule } from './elastic-search/elastic-search.module'
 import { EvaluationModule } from './evaluation/evaluation.module'
+import { LoggerModule } from './logger/logger.module'
+import { WinstonLogger } from './logger/winston.logger'
 import { MailModule } from './mail/mail.module'
 import { MessageModule } from './message/message.module'
 import { PointModule } from './point/point.module'
@@ -48,13 +51,16 @@ import { UserModule } from './user/user.module'
 		SystemSettingModule,
 		StatisticModule,
 		UniversityModule,
-		StripeModule
+		StripeModule,
+		LoggerModule,
+		ElasticSearchModule
 	],
 	providers: [
 		{
 			provide: APP_GUARD,
 			useClass: ThrottlerGuard
-		}
+		},
+		WinstonLogger
 	]
 })
 export class AppModule {}

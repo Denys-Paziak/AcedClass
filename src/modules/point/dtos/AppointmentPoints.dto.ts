@@ -2,18 +2,18 @@ import { ApiProperty } from '@nestjs/swagger'
 import { IsInt, Min } from 'class-validator'
 
 export class AppointmentPointsDto {
-	@IsInt({ message: 'User ID must be an integer.' })
-	@Min(0, { message: 'The value cannot be less than zero.' })
+	@IsInt()
+	@Min(0)
 	@ApiProperty({
-		description: 'ID користувача, якому нараховуються бали',
+		description: 'ID of the user to whom points are awarded',
 		example: 123,
 		type: Number
 	})
 	userId: number
 
-	@IsInt({ message: 'Ammount must be an integer.' })
+	@IsInt()
 	@ApiProperty({
-		description: 'Кількість балів, які нарахуються або спишуться з балансу користувача',
+		description: "The number of points that will be credited or deducted from the user's balance",
 		example: 50,
 		type: Number
 	})

@@ -3,9 +3,9 @@ import { IsEnum } from "class-validator";
 import { EComplaintStatus } from "src/interfaces/EComplaintStatus";
 
 export class ChangeStatusComplaintDto {
-    @IsEnum(EComplaintStatus, { message: 'Invalid complaint status.' })
+    @IsEnum(EComplaintStatus)
     @ApiProperty({
-        description: 'Новий статус скарги',
+        description: 'New status of the complaint',
         example: EComplaintStatus.RESOLVED,
         enum: EComplaintStatus
     })

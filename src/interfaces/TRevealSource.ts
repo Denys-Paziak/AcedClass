@@ -1,0 +1,1 @@
+export type TRevealSource = { type: 'subscription' } | { type: 'admin' }

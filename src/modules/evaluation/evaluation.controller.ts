@@ -16,9 +16,9 @@ export class EvaluationController {
 
 	@Authorization(ERoleNames.USER)
 	@Post('/')
-	@ApiOperation({ summary: 'Оцінка документа' })
-	@ApiResponse({ status: 201, description: 'Документ успішно оцінено' })
-	@ApiResponse({ status: 400, description: 'Некоректні дані для оцінки документа' })
+	@ApiOperation({ summary: 'Evaluation of the document' })
+	@ApiResponse({ status: 201, description: 'The document has been successfully evaluated' })
+	@ApiResponse({ status: 400, description: 'Incorrect data for document evaluation' })
 	async evaluationDocument(@Req() request: Request, @Body() dto: EvaluationDocumentDto) {
 		const userFromToken = request.user as ITokenUser
 

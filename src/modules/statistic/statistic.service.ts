@@ -5,6 +5,7 @@ import { EDocumentStatuses } from 'src/interfaces/EDocumentStatuses'
 import { EPointTypes } from 'src/interfaces/EPointTypes'
 import { ERoleNames } from 'src/interfaces/ERoleNames'
 import { ITopUser } from 'src/interfaces/ITopUser'
+import { POINTS_TO_UNLOCK_DOCUMENT, REVEALS_TO_UNLOCK_DOCUMENT } from 'src/magic/constants'
 import { Document } from 'src/modules/document/entities/Document.entity'
 import { UnlockedDocument } from 'src/modules/document/entities/Unlocked-document.entity'
 import { DocumentSystemService } from 'src/modules/document/services/document-system.service'
@@ -100,14 +101,17 @@ export class StatisticService {
 					growthPercent: calculateGrowth(currentRevealed, currentRevealed - growthRevealed)
 				},
 				pointsUsed: {
-					total: currentPointsUsedCount * 4,
-					growth: growthPointsUsedCount * 4,
-					growthPercent: calculateGrowth(currentPointsUsedCount, currentPointsUsedCount - growthPointsUsedCount) * 4
+					total: currentPointsUsedCount * POINTS_TO_UNLOCK_DOCUMENT,
+					growth: growthPointsUsedCount * POINTS_TO_UNLOCK_DOCUMENT,
+					growthPercent:
+						calculateGrowth(currentPointsUsedCount, currentPointsUsedCount - growthPointsUsedCount) *
+						POINTS_TO_UNLOCK_DOCUMENT
 				},
 				revealsUsed: {
-					total: currentRevealsUsed,
-					growth: growthRevealsUsed,
-					growthPercent: calculateGrowth(currentRevealsUsed, currentRevealsUsed - growthRevealsUsed)
+					total: currentRevealsUsed * REVEALS_TO_UNLOCK_DOCUMENT,
+					growth: growthRevealsUsed * REVEALS_TO_UNLOCK_DOCUMENT,
+					growthPercent:
+						calculateGrowth(currentRevealsUsed, currentRevealsUsed - growthRevealsUsed) * REVEALS_TO_UNLOCK_DOCUMENT
 				}
 			},
 			{
@@ -180,7 +184,7 @@ export class StatisticService {
 			username: item.user_username,
 			docCount: Number(item.docCount),
 			totalEarnedSum: Number(item.totalEarnedSum),
-			usedSum: Number(item.unlockedDocCount) * 4,
+			usedSum: Number(item.unlockedDocCount) * POINTS_TO_UNLOCK_DOCUMENT,
 			lastActivity: item.last_activity
 		})) as ITopUser[]
 

@@ -4,25 +4,25 @@ import { IsInt, IsOptional, IsString, MaxLength, Min } from 'class-validator'
 
 export class PostDocumentDto {
 	@ApiPropertyOptional({
-		description: 'ID університету, до якого належить документ',
+		description: 'ID of the university to which the document belongs',
 		type: Number,
 		minimum: 0,
 		example: 5
 	})
 	@IsOptional()
-	@IsInt({ message: 'University ID must be an integer.' })
-	@Min(0, { message: 'The value cannot be less than zero.' })
+	@IsInt()
+	@Min(0)
 	@Type(() => Number)
 	universityId?: number
 
 	@ApiPropertyOptional({
-		description: 'Назва курсу',
+		description: 'Course title',
 		type: String,
 		example: 'Art History',
 		maxLength: 100
 	})
 	@IsOptional()
-	@IsString({ message: 'Class name must be a string.' })
-	@MaxLength(100, { message: 'Class name must be at most 100 characters long.' })
+	@IsString()
+	@MaxLength(100)
 	courseName?: string
 }

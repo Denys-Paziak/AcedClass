@@ -1,31 +1,65 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common'
+import { ConfigService } from '@nestjs/config'
 import { days, hours } from '@nestjs/throttler'
 import { InjectRepository } from '@nestjs/typeorm'
 import * as bcrypt from 'bcrypt'
 import { EDocumentStatuses } from 'src/interfaces/EDocumentStatuses'
+import { ESubscriptionStatuses } from 'src/interfaces/ESubscriptionStatuses'
+import {
+	BLOCKING_DURATION_FOREVER,
+	BLOCKING_DURATION_HOURS_LEVEL_1,
+	BLOCKING_DURATION_HOURS_LEVEL_2,
+	INITIAL_STRIKE_COUNTER,
+	MIN_APPROVAL_LEVEL_FOR_STRIKE_CHECK,
+	MIN_DOCUMENTS_FOR_STRIKE_CHECK,
+	STRIKE_LEVEL_1,
+	STRIKE_LEVEL_2,
+	STRIKE_LEVEL_MAX
+} from 'src/magic/constants'
+import Stripe from 'stripe'
 import { EntityManager, FindOptionsWhere, Repository } from 'typeorm'
 
+import { getPlusDailyUploadLimit } from '../../../magic/rules/PlusDailyLimitUpload'
 import { AccountBlockingDto } from '../dtos/AccountBlocking.dto'
 import { UpdateNotificationPreferencesDto } from '../dtos/UpdateNotificationPreferences.dto'
 import { UpdateUserInfoDto } from '../dtos/UpdateUserInfo.dto'
 import { UpdateUserInfoAndEmailDto } from '../dtos/UpdateUserInfoAndEmail.dto'
 import { User } from '../entities/User.entity'
-import { getPlusDailyUploadLimit } from '../rules/PlusDailyLimitUpload'
-import { ESubscriptionTariffs } from 'src/interfaces/ESubscriptionTariffs'
-import { ESubscriptionStatuses } from 'src/interfaces/ESubscriptionStatuses'
 
 @Injectable()
 export class UserCommandService {
+	private stripe: Stripe
+
 	constructor(
 		@InjectRepository(User)
-		private readonly userRepository: Repository<User>
-	) {}
+		private readonly userRepository: Repository<User>,
 
-	async delete(userId: User['id']) {
+		private readonly configService: ConfigService
+	) {
+		this.stripe = new Stripe(this.configService.getOrThrow<string>('STRIPE_SECRET_KEY'))
+	}
+
+	async delete(userId: number) {
+		const userFromDB = await this.userRepository.findOne({
+			where: { id: userId },
+			select: ['id', 'stripeCustomerId']
+		})
+
+		if (!userFromDB) {
+			throw new NotFoundException('No such user found')
+		}
+
+		try {
+			if (!userFromDB.stripeCustomerId) {
+				throw new BadRequestException('User does not have a Stripe Customer ID')
+			}
+
+			await this.stripe.customers.del(userFromDB.stripeCustomerId)
+		} catch {}
 		await this.userRepository.delete({ id: userId })
 	}
 
-	async updateInfoAndCheck(userId: User['id'], data: UpdateUserInfoDto) {
+	async updateInfoAndCheck(userId: number, data: UpdateUserInfoDto) {
 		const result = await this.userRepository.update(userId, {
 			firstName: data.firstName,
 			lastName: data.lastName,
@@ -37,7 +71,7 @@ export class UserCommandService {
 		}
 	}
 
-	async updateNotificationPreferences(userId: User['id'], data: UpdateNotificationPreferencesDto) {
+	async updateNotificationPreferences(userId: number, data: UpdateNotificationPreferencesDto) {
 		const result = await this.userRepository.update(userId, {
 			emailNotifications: data.emailNotifications,
 			documentApprovalAlerts: data.documentApprovalAlerts
@@ -48,7 +82,7 @@ export class UserCommandService {
 		}
 	}
 
-	async updateInfoAndEmailAndCheck(userId: User['id'], data: UpdateUserInfoAndEmailDto) {
+	async updateInfoAndEmailAndCheck(userId: number, data: UpdateUserInfoAndEmailDto) {
 		const userFromDB = await this.userRepository.findOne({
 			where: { id: userId },
 			select: {
@@ -72,7 +106,7 @@ export class UserCommandService {
 		})
 	}
 
-	async updatePasswordAndCheck(userId: User['id'], password: User['password']) {
+	async updatePasswordAndCheck(userId: number, password: User['password']) {
 		const result = await this.userRepository.update(userId, { password })
 
 		if (result.affected === 0) {
@@ -80,7 +114,7 @@ export class UserCommandService {
 		}
 	}
 
-	async recalculationApprovalLevel(userId: User['id'], manager: EntityManager) {
+	async recalculationApprovalLevel(userId: number, manager: EntityManager) {
 		const repo = manager.getRepository(User)
 
 		const userFromDB = await repo.findOne({ where: { id: userId }, relations: { documents: true } })
@@ -99,7 +133,7 @@ export class UserCommandService {
 		}
 	}
 
-	async recalculationDailyLimitUploads(userId: User['id'], manager: EntityManager) {
+	async recalculationDailyLimitUploads(userId: number, manager: EntityManager) {
 		const repo = manager.getRepository(User)
 
 		const userFromDB = await repo.findOne({ where: { id: userId }, relations: { documents: true } })
@@ -124,20 +158,20 @@ export class UserCommandService {
 				userFromDB.availableUploads = newAvailableUploads
 			}
 
-			if (documentCount >= 25 && approvalLevel < 25) {
+			if (documentCount >= MIN_DOCUMENTS_FOR_STRIKE_CHECK && approvalLevel < MIN_APPROVAL_LEVEL_FOR_STRIKE_CHECK) {
 				if (userFromDB.strikeCounter === null) {
-					userFromDB.strikeCounter = 13
+					userFromDB.strikeCounter = INITIAL_STRIKE_COUNTER
 				}
 
 				switch (userFromDB.strikeCounter) {
-					case 8:
-						userFromDB.uploadBlocking = new Date(Date.now() + hours(48))
+					case STRIKE_LEVEL_1:
+						userFromDB.uploadBlocking = new Date(Date.now() + hours(BLOCKING_DURATION_HOURS_LEVEL_1))
 						break
-					case 4:
-						userFromDB.uploadBlocking = new Date(Date.now() + hours(72))
+					case STRIKE_LEVEL_2:
+						userFromDB.uploadBlocking = new Date(Date.now() + hours(BLOCKING_DURATION_HOURS_LEVEL_2))
 						break
-					case 0:
-						userFromDB.uploadBlocking = new Date('9999-12-31T23:59:59.999Z')
+					case STRIKE_LEVEL_MAX:
+						userFromDB.uploadBlocking = BLOCKING_DURATION_FOREVER
 						break
 					default:
 						break
@@ -200,14 +234,17 @@ export class UserCommandService {
 		data: {
 			customerId?: string | null
 			subscriptionId?: string | null
-			subscribed?: ESubscriptionTariffs | null
+			subscribed?: string | null
 			subscribedStatus?: ESubscriptionStatuses | null
-		}
+		},
+		manager?: EntityManager
 	) {
-		const result = await this.userRepository.update(where, {
+		const repo = manager?.getRepository(User) || this.userRepository
+
+		const result = await repo.update(where, {
 			stripeCustomerId: data.customerId,
 			stripeSubscriptionId: data.subscriptionId,
-			subscribed: data.subscribed,
+			subscription: data.subscribed,
 			subscribedStatus: data.subscribedStatus
 		})
 
@@ -217,16 +254,29 @@ export class UserCommandService {
 	}
 
 	async accountBlocking(userId: number, data: AccountBlockingDto) {
-		const result = await this.userRepository.update(userId, {
-			accountBlocking: data.daysPeriod
-				? new Date(Date.now() + days(data.daysPeriod))
-				: new Date('9999-12-31T23:59:59.999Z'),
-			reasonBlocking: data.reason
+		const userFromDB = await this.userRepository.findOne({
+			where: { id: userId },
+			select: ['id', 'stripeCustomerId']
 		})
 
-		if (result.affected === 0) {
+		if (!userFromDB) {
 			throw new NotFoundException('No such user found')
 		}
+
+		try {
+			if (!userFromDB.stripeCustomerId) {
+				throw new BadRequestException('User does not have a Stripe Customer ID')
+			}
+
+			await this.stripe.customers.del(userFromDB.stripeCustomerId)
+		} catch {}
+
+		await this.userRepository.update(userId, {
+			accountBlocking: data.daysPeriod
+				? new Date(Date.now() + days(data.daysPeriod))
+				: BLOCKING_DURATION_FOREVER,
+			reasonBlocking: data.reason
+		})
 	}
 
 	async accountUnblocking(userId: number) {

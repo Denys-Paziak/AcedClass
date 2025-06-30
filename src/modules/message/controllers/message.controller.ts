@@ -22,8 +22,8 @@ export class MessageController {
 
 	@Authorization(ERoleNames.USER)
 	@Get('my')
-	@ApiOperation({ summary: 'Отримати мої повідомлення' })
-	@ApiResponse({ status: 200, type: [GetMyMessagesResponse], description: 'Список моїх повідомлень' })
+	@ApiOperation({ summary: 'Receive my messages' })
+	@ApiResponse({ status: 200, type: [GetMyMessagesResponse], description: 'List of my messages' })
 	async getMyMessages(@Req() request: Request): Promise<GetMyMessagesResponse[]> {
 		const userFromToken = request.user as ITokenUser
 
@@ -32,8 +32,8 @@ export class MessageController {
 
 	@Authorization(ERoleNames.USER)
 	@Post('contact-support')
-	@ApiOperation({ summary: 'Надіслати повідомлення до служби підтримки' })
-	@ApiResponse({ status: 201, description: 'Повідомлення успішно надіслано' })
+	@ApiOperation({ summary: 'Send a message to the support team' })
+	@ApiResponse({ status: 201, description: 'Message sent successfully' })
 	async postMessageContactSupport(@Req() request: Request, @Body() dto: PostMessageContactSupportDto) {
 		const userFromToken = request.user as ITokenUser
 
@@ -42,8 +42,8 @@ export class MessageController {
 
 	@Authorization(ERoleNames.USER)
 	@Delete(':id')
-	@ApiOperation({ summary: 'Видалити повідомлення' })
-	@ApiResponse({ status: 204, description: 'Повідомлення успішно видалено' })
+	@ApiOperation({ summary: 'Delete a message' })
+	@ApiResponse({ status: 204, description: 'Message successfully deleted' })
 	async deleteMessage(@Param() param: IdParamDto) {
 		await this.messageCommandService.deleteMessage(param.id)
 	}

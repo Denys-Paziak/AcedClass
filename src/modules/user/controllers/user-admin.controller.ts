@@ -1,7 +1,6 @@
 import { Body, Controller, Get, Param, Patch, Query, Req, Res } from '@nestjs/common'
 import { ApiCookieAuth, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
-import { Request } from 'express'
-import { Response } from 'express'
+import { Request, Response } from 'express'
 import { Parser } from 'json2csv'
 import { Authorization } from 'src/decorators/auth.decorator'
 import { IdParamDto } from 'src/dtos/IdParam.dto'
@@ -27,36 +26,36 @@ export class UserAdminController {
 
 	@Authorization(ERoleNames.ADMIN)
 	@Get('self')
-	@ApiOperation({ summary: 'Отримати інформацію про себе (адміністратор)' })
+	@ApiOperation({ summary: 'Get information about self (admin)' })
 	@ApiResponse({
 		status: 200,
 		type: GetSelfResponse,
-		description: 'Отримати інформацію про себе (адміністратор)'
+		description: 'Get information about self (admin)'
 	})
 	async getSelf(@Req() request: Request): Promise<GetSelfResponse> {
 		const userFromToken = request.user as ITokenUser
 
 		return await this.userQueryService.getSelf(userFromToken.id, userFromToken.role)
 	}
-	
+
 	@Authorization(ERoleNames.ADMIN)
 	@Get('/')
-	@ApiOperation({ summary: 'Отримати інформацію про всіх користувачів' })
+	@ApiOperation({ summary: 'Get information about all users' })
 	@ApiResponse({
 		status: 200,
 		type: AllUsersInfoResponse,
-		description: 'Отримати інформацію про всіх користувачів'
+		description: 'Get information about all users'
 	})
 	async allUsersInfo(@Query() query: AllUsersInfoQueryDto): Promise<AllUsersInfoResponse> {
 		return await this.userQueryService.getAllUsers(query)
 	}
-	
+
 	@Authorization(ERoleNames.ADMIN)
 	@Get('export-csv')
-	@ApiOperation({ summary: 'Експортувати інформацію про всіх користувачів у CSV' })
+	@ApiOperation({ summary: 'Export information about all users as CSV' })
 	@ApiResponse({
 		status: 200,
-		description: 'Експорт інформації про всіх користувачів у CSV',
+		description: 'Export information about all users as CSV',
 		content: {
 			'text/csv': {}
 		}
@@ -75,22 +74,21 @@ export class UserAdminController {
 
 	@Authorization(ERoleNames.ADMIN)
 	@Get(':id')
-	@ApiOperation({ summary: 'Отримати інформацію про користувача за ID' })
+	@ApiOperation({ summary: 'Get user information by ID' })
 	@ApiResponse({
 		status: 200,
 		type: GetUserInfoResponse,
-		description: 'Отримати інформацію про користувача за ID'
+		description: 'Get user information by ID'
 	})
 	async getUserInfo(@Param() params: IdParamDto): Promise<GetUserInfoResponse> {
 		return await this.userQueryService.getUserInfo(params.id)
 	}
 
-	@Authorization(ERoleNames.ADMIN)
 	@Patch(':id/account-blocking')
-	@ApiOperation({ summary: 'Заблокувати акаунт користувача' })
+	@ApiOperation({ summary: 'Block a user account' })
 	@ApiResponse({
 		status: 200,
-		description: 'Акаунт користувача успішно заблоковано',
+		description: 'User account successfully blocked'
 	})
 	async accountBlocking(@Param() params: IdParamDto, @Body() dto: AccountBlockingDto) {
 		return await this.userCommandService.accountBlocking(params.id, dto)
@@ -98,10 +96,10 @@ export class UserAdminController {
 
 	@Authorization(ERoleNames.ADMIN)
 	@Patch(':id/account-unblocking')
-	@ApiOperation({ summary: 'Розблокувати акаунт користувача' })
+	@ApiOperation({ summary: 'Unblock a user account' })
 	@ApiResponse({
 		status: 200,
-		description: 'Акаунт користувача успішно розблоковано',
+		description: 'User account successfully unblocked'
 	})
 	async accountUnblocking(@Param() params: IdParamDto) {
 		return await this.userCommandService.accountUnblocking(params.id)

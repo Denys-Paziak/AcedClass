@@ -4,46 +4,46 @@ import { IsDate, IsInt, IsOptional, IsString, Min } from 'class-validator'
 
 export class GetAllUnlocksQueryDto {
 	@ApiPropertyOptional({
-		description: 'Дата створення розблокування для фільтрації',
+		description: 'Date of creation of the unlock for filtering',
 		type: String,
 		format: 'date-time',
 		example: '2024-06-14T12:00:00.000Z'
 	})
 	@IsOptional()
 	@Type(() => Date)
-	@IsDate({ message: 'CreatedAt must be a valid date' })
+	@IsDate()
 	createdAt?: Date
 
 	@ApiPropertyOptional({
-		description: 'Пошук по назві документа або користувачу (username або email)',
+		description: 'Search by document name or user (username or email)',
 		type: String,
 		example: 'chemistry'
 	})
 	@IsOptional()
-	@IsString({ message: 'Search string must be a string' })
+	@IsString()
 	search?: string
 
 	@ApiPropertyOptional({
-		description: 'Кількість результатів на сторінку',
+		description: 'Number of results per page',
 		type: Number,
 		minimum: 0,
 		example: 20
 	})
 	@IsOptional()
 	@Type(() => Number)
-	@IsInt({ message: 'Limit must be an integer' })
-	@Min(0, { message: 'The value cannot be less than zero.' })
+	@IsInt()
+	@Min(0)
 	limit?: number
 
 	@ApiPropertyOptional({
-		description: 'Номер сторінки',
+		description: 'Page number',
 		type: Number,
 		minimum: 0,
 		example: 0
 	})
 	@IsOptional()
 	@Type(() => Number)
-	@IsInt({ message: 'Page must be an integer' })
-	@Min(0, { message: 'The value cannot be less than zero.' })
+	@IsInt()
+	@Min(0)
 	page?: number
 }

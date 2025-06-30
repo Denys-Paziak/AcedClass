@@ -1,4 +1,5 @@
 import { Injectable, NotFoundException } from '@nestjs/common'
+import { ConfigService } from '@nestjs/config'
 import { days } from '@nestjs/throttler'
 import { InjectRepository } from '@nestjs/typeorm'
 import { plainToInstance } from 'class-transformer'
@@ -7,6 +8,7 @@ import { EPointTypes } from 'src/interfaces/EPointTypes'
 import { ERoleNames } from 'src/interfaces/ERoleNames'
 import { Document } from 'src/modules/document/entities/Document.entity'
 import { Point } from 'src/modules/point/entities/Point.entity'
+import Stripe from 'stripe'
 import { Brackets, Repository } from 'typeorm'
 
 import { AllUsersInfoQueryDto } from '../dtos/AllUsersInfoQuery.dto'
@@ -14,16 +16,19 @@ import { User } from '../entities/User.entity'
 import { AllUsersInfoResponse } from '../responses/AllUsersInfo.response'
 import { GetSelfResponse } from '../responses/GetSelf.response'
 import { GetUserInfoResponse } from '../responses/GetUserInfo.response'
-import { StripeService } from 'src/modules/stripe/stripe.service'
 
 @Injectable()
 export class UserQueryService {
+	private stripe: Stripe
+
 	constructor(
 		@InjectRepository(User)
 		private readonly userRepository: Repository<User>,
 
-		private readonly stripeService: StripeService
-	) {}
+		private readonly configService: ConfigService
+	) {
+		this.stripe = new Stripe(this.configService.getOrThrow<string>('STRIPE_SECRET_KEY'))
+	}
 
 	async getSelf(userId: number, userRole: ERoleNames) {
 		const userFromDB = await this.userRepository.findOne({ where: { id: userId, role: userRole } })
@@ -31,13 +36,33 @@ export class UserQueryService {
 
 		await this.userRepository.update(userId, { lastActivity: new Date() })
 
-		if (userFromDB.stripeCustomerId && !userFromDB.stripeSubscriptionId) {
-			
-		}
+		const price = userFromDB.subscription
+			? await this.stripe.prices.retrieve(userFromDB.subscription, {
+					expand: ['product']
+				})
+			: null
 
-		return plainToInstance(GetSelfResponse, userFromDB, {
-			excludeExtraneousValues: true
-		})
+		return plainToInstance(
+			GetSelfResponse,
+			{
+				...userFromDB,
+				subscription: price
+					? {
+							id: price.id,
+							price: price.unit_amount ? price.unit_amount / 100 : 0,
+							currency: price.currency,
+							period: {
+								interval: price.recurring?.interval,
+								count: price.recurring?.interval_count
+							},
+							name: (price.product as Stripe.Product).name
+						}
+					: null
+			},
+			{
+				excludeExtraneousValues: true
+			}
+		)
 	}
 
 	async getAllUsers(query: AllUsersInfoQueryDto) {
@@ -93,7 +118,10 @@ export class UserQueryService {
 			)
 		}
 
-		const total = await this.userRepository.createQueryBuilder('user').where('user.role = :role', { role: ERoleNames.USER }).getCount()
+		const total = await this.userRepository
+			.createQueryBuilder('user')
+			.where('user.role = :role', { role: ERoleNames.USER })
+			.getCount()
 
 		const page = await qb
 			.limit(query.limit || 10)

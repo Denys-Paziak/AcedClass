@@ -7,12 +7,12 @@ import { UserResponse } from 'src/responses/User.response'
 
 class Complaint {
 	@Expose({ name: 'id' })
-	@ApiProperty({ description: 'Унікальний ідентифікатор скарги', example: 1, type: Number })
+	@ApiProperty({ description: 'Unique complaint identifier', example: 1, type: Number })
 	id: number
 
 	@Expose({ name: 'flag' })
 	@ApiProperty({
-		description: 'Прапор скарги',
+		description: 'Complaint flag',
 		example: EComplaintFlags.COPYRIGHT_VIOLATION,
 		enum: EComplaintFlags,
 		type: String
@@ -21,7 +21,7 @@ class Complaint {
 
 	@Expose({ name: 'message' })
 	@ApiProperty({
-		description: 'Текст скарги',
+		description: 'Text of the complaint',
 		example: 'Цей документ порушує авторські права.',
 		type: String
 	})
@@ -29,15 +29,15 @@ class Complaint {
 
 	@Expose({ name: 'adminComment' })
 	@ApiProperty({
-		description: 'Коментар адміністратора',
-		example: 'Цей документ потребує додаткової перевірки.',
+		description: 'Administrator comment',
+		example: 'This document requires additional verification.',
 		type: String
 	})
 	adminComment: string
 
 	@Expose({ name: 'status' })
 	@ApiProperty({
-		description: 'Статус скарги',
+		description: 'Status of the complaint',
 		example: EComplaintStatus.PENDING,
 		enum: EComplaintStatus,
 		type: String
@@ -47,7 +47,7 @@ class Complaint {
 	@Expose({ name: 'author' })
 	@Type(() => UserResponse)
 	@ApiProperty({
-		description: 'Автор скарги',
+		description: 'Author of the complaint',
 		type: UserResponse,
 		nullable: true
 	})
@@ -56,7 +56,7 @@ class Complaint {
 	@Expose({ name: 'user' })
 	@Type(() => UserResponse)
 	@ApiProperty({
-		description: 'Користувач, на якого подана скарга',
+		description: 'The user against whom the complaint was filed',
 		type: UserResponse,
 		nullable: true
 	})
@@ -65,7 +65,7 @@ class Complaint {
 	@Expose({ name: 'document' })
 	@Type(() => DocumentResponse)
 	@ApiProperty({
-		description: 'Документ, на який подана скарга',
+		description: 'The document against which the complaint is filed',
 		type: DocumentResponse,
 		nullable: true
 	})
@@ -73,7 +73,7 @@ class Complaint {
 
 	@Expose({ name: 'createdAt' })
 	@ApiProperty({
-		description: 'Дата створення скарги',
+		description: 'Date of creation of the complaint',
 		example: '2023-01-01T00:00:00Z',
 		type: Date
 	})
@@ -81,7 +81,7 @@ class Complaint {
 
 	@Expose({ name: 'updatedAt' })
 	@ApiProperty({
-		description: 'Дата останнього оновлення скарги',
+		description: 'Date the complaint was last updated',
 		example: '2023-01-02T00:00:00Z',
 		type: Date
 	})
@@ -91,10 +91,10 @@ class Complaint {
 export class GetAllComplaintsResponse {
 	@Expose({ name: 'page' })
 	@Type(() => Complaint)
-	@ApiProperty({ description: 'Сторінка зі скаргами', type: [Complaint] })
+	@ApiProperty({ description: 'Complaints page', type: [Complaint] })
 	page: Complaint[]
 
 	@Expose({ name: 'total' })
-	@ApiProperty({ description: 'Загальна кількість скарг', example: 42, type: Number })
+	@ApiProperty({ description: 'Total number of complaints', example: 42, type: Number })
 	total: number
 }

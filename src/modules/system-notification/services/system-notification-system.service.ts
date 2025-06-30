@@ -9,11 +9,11 @@ import { SystemNotification } from '../entities/System-notification.entity'
 export class SystemNotificationSystemService {
 	constructor(
 		@InjectRepository(SystemNotification)
-		private readonly complaintRepository: Repository<SystemNotification>
+		private readonly systemNotification: Repository<SystemNotification>
 	) {}
 
 	async createSystemNotification(userId: number, data: TSystemNotificationData, manager?: EntityManager) {
-		const repo = manager?.getRepository(SystemNotification) || this.complaintRepository
+		const repo =  manager?.getRepository(SystemNotification) || this.systemNotification
 
 		await repo.save({
 			type: data.type,

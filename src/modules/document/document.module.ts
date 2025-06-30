@@ -18,6 +18,7 @@ import { DocumentQueryService } from './services/document-query.service'
 import { DocumentSystemService } from './services/document-system.service'
 import { UnlockedDocumentService } from './services/unlocked-document.service'
 import { SystemSettingModule } from '../system-setting/system-setting.module'
+import { MailModule } from '../mail/mail.module'
 
 @Module({
 	imports: [
@@ -26,7 +27,8 @@ import { SystemSettingModule } from '../system-setting/system-setting.module'
 		UserModule,
 		forwardRef(() => PointModule),
 		SystemNotificationModule,
-		SystemSettingModule
+		SystemSettingModule,
+		MailModule
 	],
 	controllers: [DocumentController, UnlockedDocumentController, DocumentAdminController, UnlockedDocumentAdminController],
 	providers: [DocumentCommandService, DocumentQueryService, DocumentSystemService, UnlockedDocumentService, FileValidationPipe],

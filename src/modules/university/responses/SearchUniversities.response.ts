@@ -4,7 +4,7 @@ import { Expose } from 'class-transformer'
 export class SearchUniversitiesResponse {
 	@Expose({ name: 'id' })
 	@ApiProperty({
-		description: 'Унікальний ідентифікатор університету',
+		description: 'Unique university identifier',
 		example: 1,
 		type: Number
 	})
@@ -12,7 +12,7 @@ export class SearchUniversitiesResponse {
 
 	@Expose({ name: 'name' })
 	@ApiProperty({
-		description: 'Назва університету',
+		description: 'University name',
 		example: 'National University',
 		type: String
 	})

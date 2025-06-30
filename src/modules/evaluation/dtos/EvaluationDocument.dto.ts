@@ -5,9 +5,9 @@ import { EEvaluationTypes } from 'src/interfaces/EEvaluationTypes'
 import { Document } from 'src/modules/document/entities/Document.entity'
 
 export class EvaluationDocumentDto {
-	@IsEnum(EEvaluationTypes, { message: 'Invalid evaluation type.' })
+	@IsEnum(EEvaluationTypes)
 	@ApiProperty({
-		description: 'Тип оцінки документа',
+		description: 'Type of document evaluation',
 		example: EEvaluationTypes.LIKE,
 		enum: EEvaluationTypes,
 		type: String
@@ -15,14 +15,13 @@ export class EvaluationDocumentDto {
 	type: EEvaluationTypes
 
 	@IsOptional()
-	@IsArray({ message: 'Tags must be an array.' })
-	@ArrayUnique({ message: 'Tags must be unique.' })
+	@IsArray()
+	@ArrayUnique()
 	@IsEnum(EEvaluationTags, {
-		each: true,
-		message: 'Each tag must be a valid evaluation tag.'
+		each: true
 	})
 	@ApiProperty({
-		description: 'Мітки оцінки документа',
+		description: 'Document evaluation marks',
 		example: [EEvaluationTags.COMPLETE_DOCUMENT, EEvaluationTags.INACCURATE_INFO],
 		enum: EEvaluationTags,
 		type: [String],
@@ -30,10 +29,10 @@ export class EvaluationDocumentDto {
 	})
 	tags?: EEvaluationTags[]
 
-	@IsInt({ message: 'Document ID must be an integer.' })
-	@Min(0, { message: 'The value cannot be less than zero.' })
+	@IsInt()
+	@Min(0)
 	@ApiProperty({
-		description: 'ID документа, який оцінюється',
+		description: 'ID of the document being evaluated',
 		example: 123,
 		type: Number,
 		required: true

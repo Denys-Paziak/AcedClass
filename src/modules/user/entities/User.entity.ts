@@ -1,7 +1,6 @@
 import { ERegistrationTypes } from 'src/interfaces/ERegistrationTypes'
 import { ERoleNames } from 'src/interfaces/ERoleNames'
 import { ESubscriptionStatuses } from 'src/interfaces/ESubscriptionStatuses'
-import { ESubscriptionTariffs } from 'src/interfaces/ESubscriptionTariffs'
 import { Complaint } from 'src/modules/complaint/entities/Complaint.entity'
 import { Document } from 'src/modules/document/entities/Document.entity'
 import { UnlockedDocument } from 'src/modules/document/entities/Unlocked-document.entity'
@@ -111,8 +110,8 @@ export class User {
 	@Column({ nullable: true, name: 'stripe_subscription_id', type: 'varchar', length: 255 })
 	stripeSubscriptionId: string | null
 
-	@Column({ type: 'enum', enum: ESubscriptionTariffs, nullable: true, name: 'subscribed' })
-	subscribed: ESubscriptionTariffs | null
+	@Column({ type: 'varchar', length: 255, nullable: true })
+	subscription: string | null
 
 	@Column({
 		type: 'enum',

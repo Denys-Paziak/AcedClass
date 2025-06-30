@@ -1,5 +1,5 @@
 import { Controller, Get, Query, Res } from '@nestjs/common'
-import { ApiCookieAuth, ApiOperation,  ApiResponse, ApiTags } from '@nestjs/swagger'
+import { ApiCookieAuth, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
 import { Response } from 'express'
 import { Parser } from 'json2csv'
 import { Authorization } from 'src/decorators/auth.decorator'
@@ -17,18 +17,18 @@ export class UnlockedDocumentAdminController {
 
 	@Authorization(ERoleNames.ADMIN)
 	@Get('/')
-	@ApiOperation({ summary: 'Отримати всі розблокування документів з фільтрацією' })
-	@ApiResponse({ status: 200, type: GetAllUnlocksResponse, description: 'Список розблокувань документів' })
+	@ApiOperation({ summary: 'Get all document unlocks with filtering' })
+	@ApiResponse({ status: 200, type: GetAllUnlocksResponse, description: 'List of document unlocks' })
 	async getAllUnlocks(@Query() query: GetAllUnlocksQueryDto): Promise<GetAllUnlocksResponse> {
 		return await this.unlockedDocumentService.getAllUnlocks(query)
 	}
 
 	@Authorization(ERoleNames.ADMIN)
 	@Get('export-csv')
-	@ApiOperation({ summary: 'Експортувати всі розблокування документів в CSV' })
+	@ApiOperation({ summary: 'Export all document unlocks to CSV' })
 	@ApiResponse({
 		status: 200,
-		description: 'CSV файл з усіма розблокуваннями документів',
+		description: 'CSV file with all document unlocks',
 		content: {
 			'text/csv': {}
 		}

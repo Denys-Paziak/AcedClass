@@ -15,8 +15,8 @@ export class FileValidationPipe implements PipeTransform {
 
 		const ext = value.originalname.split('.').pop()?.toLowerCase()
 
-		const allowedTypes = await this.systemSettingQueryService.allowedFileExtensions()
-		const fileType = allowedTypes?.data.name === "allowed file extensions" && ext ? allowedTypes.data.data[ext] : null
+		const allowedTypes = (await this.systemSettingQueryService.getSettings(['allowed file extensions']))('allowed file extensions')
+		const fileType = ext ? allowedTypes[ext] : null
 
 		if (!fileType || !fileType.allowed) {
 			throw new UnprocessableEntityException(`Unsupported file extension: .${ext}`)
