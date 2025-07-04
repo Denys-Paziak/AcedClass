@@ -15,8 +15,8 @@ import { ComplaintCommandService } from '../services/complaint-command.service'
 export class ComplaintController {
 	constructor(private readonly complaintCommandService: ComplaintCommandService) {}
 
+	//@Recaptcha()
 	@Authorization(ERoleNames.USER)
-	@Recaptcha()
 	@Post('/')
 	@ApiOperation({ summary: 'File a complaint' })
 	@ApiResponse({

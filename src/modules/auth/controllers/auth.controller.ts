@@ -19,7 +19,7 @@ export class AuthController {
 		private readonly configService: ConfigService
 	) {}
 
-	@Recaptcha()
+	//@Recaptcha()
 	@Post('signup')
 	@ApiOperation({ summary: 'User registration' })
 	@ApiResponse({ status: 201, description: 'User successfully registered' })

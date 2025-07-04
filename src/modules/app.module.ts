@@ -27,6 +27,8 @@ import { TaskModule } from './task/task.module'
 import { TokenModule } from './token/token.module'
 import { UniversityModule } from './university/university.module'
 import { UserModule } from './user/user.module'
+import { GoogleRecaptchaModule } from '@nestlab/google-recaptcha'
+import { getGoogleRecaptchaConfig } from '../configs/recaptcha.config'
 
 @Module({
 	imports: [
@@ -37,6 +39,7 @@ import { UserModule } from './user/user.module'
 		}),
 		TypeOrmModule.forRootAsync(getPostgresConfig()),
 		ThrottlerModule.forRootAsync(getThrottlerConfig()),
+		GoogleRecaptchaModule.forRootAsync(getGoogleRecaptchaConfig()),
 		UserModule,
 		AuthModule,
 		TokenModule,
