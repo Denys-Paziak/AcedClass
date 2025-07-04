@@ -84,6 +84,7 @@ export class UserAdminController {
 		return await this.userQueryService.getUserInfo(params.id)
 	}
 
+	@Authorization(ERoleNames.ADMIN)
 	@Patch(':id/account-blocking')
 	@ApiOperation({ summary: 'Block a user account' })
 	@ApiResponse({

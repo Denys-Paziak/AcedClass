@@ -242,8 +242,8 @@ export class UserCommandService {
 
 	async accountUnblocking(userId: number) {
 		const result = await this.userRepository.update(userId, {
-			accountBlocking: undefined,
-			reasonBlocking: undefined
+			accountBlocking: null,
+			reasonBlocking: null
 		})
 
 		if (result.affected === 0) {
