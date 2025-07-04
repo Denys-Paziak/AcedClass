@@ -1,3 +1,3 @@
-import { Document } from 'src/modules/document/entities/Document.entity'
+import { Document } from '../modules/document/entities/Document.entity'
 
-export type TPointSource = { type: 'document'; id: Document['id'] } | { type: 'evaluation' } | { type: 'admin' }
+export type TPointSource = { type: 'document'; id: number } | { type: 'evaluation' } | { type: 'admin' }

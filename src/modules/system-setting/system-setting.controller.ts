@@ -1,7 +1,7 @@
 import { Body, Controller, Get, Patch } from '@nestjs/common'
 import { ApiCookieAuth, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
-import { Authorization } from 'src/decorators/auth.decorator'
-import { ERoleNames } from 'src/interfaces/ERoleNames'
+import { Authorization } from '../../decorators/auth.decorator'
+import { ERoleNames } from '../../interfaces/ERoleNames'
 
 import { AllowedFileExtensionsDto } from './dtos/AllowedFileExtensions.dto'
 import { UpdateDailyLimitUploadsDto } from './dtos/UpdateDailyLimitUploads.dto'
@@ -44,7 +44,6 @@ export class SystemSettingController {
 	}
 
 	@Patch('daily-limit-uploads')
-	@Authorization(ERoleNames.ADMIN)
 	@ApiOperation({ summary: 'Update daily upload limit for users' })
 	@ApiResponse({ status: 200, description: 'Limit updated successfully' })
 	async updateDailyLimitUploads(@Body() dto: UpdateDailyLimitUploadsDto) {

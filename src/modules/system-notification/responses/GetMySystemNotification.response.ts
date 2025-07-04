@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger'
 import { Expose } from 'class-transformer'
-import { ESystemNotificationTypes } from 'src/interfaces/ESystemNotificationTypes'
-import { TSystemNotificationData } from 'src/interfaces/TSystemNotificationData'
+import { ESystemNotificationTypes } from '../../../interfaces/ESystemNotificationTypes'
+import { TSystemNotificationData } from '../../../interfaces/TSystemNotificationData'
 
 export class GetMySystemNotificationResponse {
 	@Expose({ name: 'id' })

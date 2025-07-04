@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger'
 import { Expose, Transform, Type } from 'class-transformer'
-import { UniversityResponse } from 'src/responses/University.response'
+import { UniversityResponse } from '../../../responses/University.response'
 
 class Document {
 	@ApiProperty({ description: 'Document ID', example: 9, type: Number })

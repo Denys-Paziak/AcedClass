@@ -1,17 +1,17 @@
 import { BadRequestException, Injectable, ServiceUnavailableException } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
-import { EDocumentStatuses } from 'src/interfaces/EDocumentStatuses'
-import { EEvaluationDislikeTags, EEvaluationLikeTags } from 'src/interfaces/EEvaluationTags'
-import { EEvaluationTypes } from 'src/interfaces/EEvaluationTypes'
+import { DataSource, Repository } from 'typeorm'
+
+import { EDocumentStatuses } from '../../interfaces/EDocumentStatuses'
+import { EEvaluationDislikeTags, EEvaluationLikeTags } from '../../interfaces/EEvaluationTags'
+import { EEvaluationTypes } from '../../interfaces/EEvaluationTypes'
 import {
 	AUTO_REJECT_DISLIKE_THRESHOLD,
 	MAX_UNLOCKS_FOR_DISLIKE_CHECK,
 	MIN_UNLOCKS_FOR_DISLIKE_CHECK,
 	POINT_REWARD_EVALUATION_INTERVAL,
 	POINTS_PER_EVALUATION_REWARD
-} from 'src/magic/constants'
-import { DataSource, Repository } from 'typeorm'
-
+} from '../../magic/constants'
 import { DocumentCommandService } from '../document/services/document-command.service'
 import { UnlockedDocumentService } from '../document/services/unlocked-document.service'
 import { PointCommandService } from '../point/services/point-command.service'
@@ -52,7 +52,7 @@ export class EvaluationService {
 			where: { user: { id: userId } }
 		})
 
-		const document = await this.unlockedDocumentService.findOneAndCheck(
+		const documentFromDB = await this.unlockedDocumentService.findOneAndCheck(
 			{
 				where: { user: { id: userId }, document: { id: data.documentId } },
 				relations: {
@@ -64,8 +64,12 @@ export class EvaluationService {
 			new BadRequestException('You cannot rate a blocked document')
 		)
 
-		if (document?.user && document.user.id === userId) {
+		if (documentFromDB?.user && documentFromDB.user.id === userId) {
 			throw new BadRequestException('You cannot rate your document')
+		}
+
+		if (documentFromDB?.status === EDocumentStatuses.REJECTED || documentFromDB?.status === EDocumentStatuses.PROCESSING) {
+			throw new BadRequestException('You cannot rate a hidden document.')
 		}
 
 		if (
@@ -105,7 +109,7 @@ export class EvaluationService {
 				(unlockedCount === MIN_UNLOCKS_FOR_DISLIKE_CHECK || unlockedCount === MAX_UNLOCKS_FOR_DISLIKE_CHECK) &&
 				dislikeCount + (data.type === EEvaluationTypes.DISLIEKE ? 1 : 0) === AUTO_REJECT_DISLIKE_THRESHOLD
 			) {
-				await this.documentCommandService.changeStatus(data.documentId, EDocumentStatuses.REJECTED)
+				await this.documentCommandService.changeStatus(data.documentId, EDocumentStatuses.REJECTED, manager)
 			}
 		})
 	}

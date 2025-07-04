@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
-import { MailService } from 'src/modules/mail/mail.service'
-import { UserSystemService } from 'src/modules/user/services/user-system.service'
+import { MailService } from '../../../modules/mail/mail.service'
+import { UserSystemService } from '../../../modules/user/services/user-system.service'
 import { Repository } from 'typeorm'
 
 import { AdminSendEmailToUsersDto } from '../dtos/AdminSendEmailToUsers.dto'

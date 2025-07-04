@@ -1,15 +1,19 @@
 import { Injectable, OnModuleDestroy, OnModuleInit } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import * as PgBoss from 'pg-boss'
+import { DataSource } from 'typeorm'
 
 import { WinstonLogger } from '../logger/winston.logger'
 
 @Injectable()
 export class TaskMetodsService implements OnModuleInit, OnModuleDestroy {
 	private boss: PgBoss
-	private readonly logger = new WinstonLogger()
 
-	constructor(private readonly configService: ConfigService) {}
+	constructor(
+		private readonly configService: ConfigService,
+		private readonly logger: WinstonLogger,
+		private readonly dataSource: DataSource
+	) {}
 
 	async onModuleInit() {
 		this.boss = new PgBoss({
@@ -79,9 +83,18 @@ export class TaskMetodsService implements OnModuleInit, OnModuleDestroy {
 
 	async deleteJobBurningReveals(dbRecordId: number) {
 		try {
-			const jobs = await this.boss.fetch<{ dbRecordId: number }>('burning-reveals')
-			const job = jobs.find(item => item.data.dbRecordId === dbRecordId)
+			const jobs = await this.dataSource.query(
+				`
+	SELECT id, name, data
+	FROM pgboss.job
+	WHERE name = $1
+	AND state != 'cancelled'
+`,
+				['burning-reveals']
+			)
 
+			const job = jobs.find(job => job.data?.dbRecordId === dbRecordId)
+			
 			if (job) {
 				await this.boss.deleteJob('burning-reveals', job.id)
 				this.logger.log(`🧾 Deleted job: burning-reveals`, `jobId=${job.id}, dbRecordId=${dbRecordId}`)
@@ -114,8 +127,17 @@ export class TaskMetodsService implements OnModuleInit, OnModuleDestroy {
 
 	async deleteJobDeleteDocument(documentId: number) {
 		try {
-			const jobs = await this.boss.fetch<{ documentId: number }>('delete-documents')
-			const job = jobs.find(item => item.data.documentId === documentId)
+			const jobs = await this.dataSource.query(
+				`
+	SELECT id, name, data
+	FROM pgboss.job
+	WHERE name = $1
+	AND state != 'cancelled'
+`,
+				['delete-documents']
+			)
+
+			const job = jobs.find(job => job.data?.documentId === documentId)
 
 			if (job) {
 				await this.boss.deleteJob('delete-documents', job.id)
@@ -135,8 +157,17 @@ export class TaskMetodsService implements OnModuleInit, OnModuleDestroy {
 
 	async autoRejected(documentId: number, startAfter: Date) {
 		try {
-			const jobs = await this.boss.fetch<{ documentId: number }>('auto-rejected')
-			const job = jobs.find(item => item.data.documentId === documentId)
+			const jobs = await this.dataSource.query(
+				`
+	SELECT id, name, data
+	FROM pgboss.job
+	WHERE name = $1
+	AND state != 'cancelled'
+`,
+				['auto-rejected']
+			)
+
+			const job = jobs.find(job => job.data?.documentId === documentId)
 
 			if (!job) {
 				await this.boss.send('auto-rejected', { documentId }, { startAfter })
@@ -156,8 +187,17 @@ export class TaskMetodsService implements OnModuleInit, OnModuleDestroy {
 
 	async deleteJobAutoRejected(documentId: number) {
 		try {
-			const jobs = await this.boss.fetch<{ documentId: number }>('auto-rejected')
-			const job = jobs.find(item => item.data.documentId === documentId)
+			const jobs = await this.dataSource.query(
+				`
+	SELECT id, name, data
+	FROM pgboss.job
+	WHERE name = $1
+	AND state != 'cancelled'
+`,
+				['auto-rejected']
+			)
+
+			const job = jobs.find(job => job.data?.documentId === documentId)
 
 			if (job) {
 				await this.boss.deleteJob('auto-rejected', job.id)

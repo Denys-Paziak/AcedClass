@@ -1,13 +1,13 @@
 import { BadRequestException, Injectable, UnauthorizedException } from '@nestjs/common'
 import * as bcrypt from 'bcrypt'
-import { ERoleNames } from 'src/interfaces/ERoleNames'
-import { ETokenTypes } from 'src/interfaces/ETokenTypes'
 
+import { ERoleNames } from '../../../interfaces/ERoleNames'
+import { ETokenTypes } from '../../../interfaces/ETokenTypes'
+import { UserSystemService } from '../../../modules/user/services/user-system.service'
 import { MailService } from '../../mail/mail.service'
 import { TokenService } from '../../token/token.service'
 import { LoginDto } from '../dtos/Login.dto'
 import { SendCodeDto } from '../dtos/SendCode.dto'
-import { UserSystemService } from 'src/modules/user/services/user-system.service'
 
 @Injectable()
 export class AuthAdminService {
@@ -45,7 +45,7 @@ export class AuthAdminService {
 			expiresIn,
 			user: userFromDB
 		})
-		
+
 		await this.mailService.sendAdminVerificationCode(dto.email, code)
 	}
 

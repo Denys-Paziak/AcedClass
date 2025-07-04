@@ -1,9 +1,8 @@
 import { Injectable, OnModuleDestroy, OnModuleInit } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import * as PgBoss from 'pg-boss'
-import { EDocumentStatuses } from 'src/interfaces/EDocumentStatuses'
 
-import { Document } from '../document/entities/Document.entity'
+import { EDocumentStatuses } from '../../interfaces/EDocumentStatuses'
 import { DocumentCommandService } from '../document/services/document-command.service'
 import { WinstonLogger } from '../logger/winston.logger'
 import { PointCommandService } from '../point/services/point-command.service'
@@ -11,12 +10,12 @@ import { PointCommandService } from '../point/services/point-command.service'
 @Injectable()
 export class TaskService implements OnModuleInit, OnModuleDestroy {
 	private boss: PgBoss
-	private readonly logger = new WinstonLogger()
 
 	constructor(
 		private readonly configService: ConfigService,
 		private readonly pointCommandService: PointCommandService,
-		private readonly documentCommandService: DocumentCommandService
+		private readonly documentCommandService: DocumentCommandService,
+		private readonly logger: WinstonLogger
 	) {}
 
 	async onModuleInit() {
@@ -47,7 +46,7 @@ export class TaskService implements OnModuleInit, OnModuleDestroy {
 		await this.boss.createQueue('auto-rejected')
 
 		this.wrapWorker('add-points', async job => {
-			const { userId, points, documentId } = job.data as { userId: number; points: number; documentId: Document['id'] }
+			const { userId, points, documentId } = job.data as { userId: number; points: number; documentId: number }
 
 			await this.pointCommandService.addPoints(userId, points, { type: 'document', id: documentId })
 		})
@@ -102,11 +101,14 @@ export class TaskService implements OnModuleInit, OnModuleDestroy {
 
 			try {
 				await handler(job)
-				this.logger.log(`🧾 Success job: ${queueName}`, JSON.stringify({
-					jobId: job.id,
-					durationMs: Date.now() - start,
-					label: `queue:${queueName}:success`
-				}))
+				this.logger.log(
+					`🧾 Success job: ${queueName}`,
+					JSON.stringify({
+						jobId: job.id,
+						durationMs: Date.now() - start,
+						label: `queue:${queueName}:success`
+					})
+				)
 			} catch (error) {
 				this.logger.error(
 					`🧾 Failed job: ${queueName}`,

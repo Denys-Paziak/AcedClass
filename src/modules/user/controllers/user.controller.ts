@@ -1,10 +1,10 @@
 import { Body, Controller, Delete, Get, InternalServerErrorException, Patch, Req, Res } from '@nestjs/common'
 import { ApiCookieAuth, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
 import { Request, Response } from 'express'
-import { Authorization } from 'src/decorators/auth.decorator'
-import { ERoleNames } from 'src/interfaces/ERoleNames'
-import { ITokenUser } from 'src/interfaces/ITokenUser'
 
+import { Authorization } from '../../../decorators/auth.decorator'
+import { ERoleNames } from '../../../interfaces/ERoleNames'
+import { ITokenUser } from '../../../interfaces/ITokenUser'
 import { UpdateNotificationPreferencesDto } from '../dtos/UpdateNotificationPreferences.dto'
 import { UpdateUserInfoDto } from '../dtos/UpdateUserInfo.dto'
 import { UpdateUserInfoAndEmailDto } from '../dtos/UpdateUserInfoAndEmail.dto'

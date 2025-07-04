@@ -1,9 +1,9 @@
 import { Controller, Get, Req } from '@nestjs/common'
 import { ApiCookieAuth, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
 import { Request } from 'express'
-import { Authorization } from 'src/decorators/auth.decorator'
-import { ERoleNames } from 'src/interfaces/ERoleNames'
-import { ITokenUser } from 'src/interfaces/ITokenUser'
+import { Authorization } from '../../../decorators/auth.decorator'
+import { ERoleNames } from '../../../interfaces/ERoleNames'
+import { ITokenUser } from '../../../interfaces/ITokenUser'
 
 import { GetMyPointsResponse } from '../responses/GetMyPoints.response'
 import { PointQueryService } from '../services/point-query.service'

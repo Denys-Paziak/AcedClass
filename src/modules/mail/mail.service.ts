@@ -3,15 +3,13 @@ import { Injectable, InternalServerErrorException } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import { render } from '@react-email/components'
 
-import { SystemSettingQueryService } from '../system-setting/services/system-setting-query.service'
 import { Token } from '../token/entities/Token.entity'
-import { User } from '../user/entities/User.entity'
 
 import { AdminAlertTemplate } from './templates/AdminAlert.template'
+import { AdminSendEmailToUsersTemplate } from './templates/AdminSendEmailToUsers.template'
 import { AdminVerificationCodeTemplate } from './templates/AdminVerificationCode.template'
 import { ForgotPasswordTemplate } from './templates/ForgotPassword.template'
 import { MessageContactSupportTemplate } from './templates/MessageContactSupport.template'
-import { AdminSendEmailToUsersTemplate } from './templates/AdminSendEmailToUsers.template'
 
 @Injectable()
 export class MailService {
@@ -56,7 +54,6 @@ export class MailService {
 		try {
 			await this.mailerService.sendMail({
 				to: this.configService.getOrThrow<string>('MAIL_SUPPORT'),
-				from: this.configService.getOrThrow<string>('MAIL_NO-REPLY'),
 				html: await render(
 					MessageContactSupportTemplate({
 						subject,
@@ -81,7 +78,7 @@ export class MailService {
 				)
 			})
 		} catch {
-			throw new InternalServerErrorException('For some reason, we were unable to send an email to the support team.')
+			throw new InternalServerErrorException('For some reason, we were unable to send an email to the admins.')
 		}
 	}
 
@@ -97,7 +94,7 @@ export class MailService {
 				)
 			})
 		} catch {
-			throw new InternalServerErrorException('For some reason, we were unable to send an email to the support team.')
+			throw new InternalServerErrorException('For some reason, we were unable to send an email to the specified emails.')
 		}
 	}
 }

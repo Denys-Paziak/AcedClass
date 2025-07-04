@@ -1,9 +1,9 @@
 import { ApiProperty } from '@nestjs/swagger'
 import { Expose, Type } from 'class-transformer'
-import { EComplaintFlags } from 'src/interfaces/EComplaintFlags'
-import { EComplaintStatus } from 'src/interfaces/EComplaintStatus'
-import { DocumentResponse } from 'src/responses/Document.response'
-import { UserResponse } from 'src/responses/User.response'
+import { EComplaintFlags } from '../../../interfaces/EComplaintFlags'
+import { EComplaintStatus } from '../../../interfaces/EComplaintStatus'
+import { DocumentResponse } from '../../../responses/Document.response'
+import { UserResponse } from '../../../responses/User.response'
 
 class Complaint {
 	@Expose({ name: 'id' })

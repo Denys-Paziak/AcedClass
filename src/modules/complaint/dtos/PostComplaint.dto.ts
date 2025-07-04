@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger'
 import { IsEnum, IsInt, IsOptional, IsString, MaxLength, Min, MinLength } from 'class-validator'
-import { EComplaintFlags } from 'src/interfaces/EComplaintFlags'
+import { EComplaintFlags } from '../../../interfaces/EComplaintFlags'
 
 export class PostComplaintDto {
 	@IsEnum(EComplaintFlags)

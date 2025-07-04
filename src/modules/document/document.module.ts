@@ -1,9 +1,11 @@
 import { forwardRef, Module } from '@nestjs/common'
 import { TypeOrmModule } from '@nestjs/typeorm'
-import { FileValidationPipe } from 'src/pipes/FileValidation.pipe'
 
+import { FileValidationPipe } from '../../pipes/FileValidation.pipe'
+import { MailModule } from '../mail/mail.module'
 import { PointModule } from '../point/point.module'
 import { SystemNotificationModule } from '../system-notification/system-notification.module'
+import { SystemSettingModule } from '../system-setting/system-setting.module'
 import { TaskMetodsModule } from '../task/task-metods.module'
 import { UserModule } from '../user/user.module'
 
@@ -17,8 +19,6 @@ import { DocumentCommandService } from './services/document-command.service'
 import { DocumentQueryService } from './services/document-query.service'
 import { DocumentSystemService } from './services/document-system.service'
 import { UnlockedDocumentService } from './services/unlocked-document.service'
-import { SystemSettingModule } from '../system-setting/system-setting.module'
-import { MailModule } from '../mail/mail.module'
 
 @Module({
 	imports: [

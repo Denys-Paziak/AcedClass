@@ -1,6 +1,6 @@
 import { ArgumentMetadata, Injectable, PipeTransform, UnprocessableEntityException } from '@nestjs/common'
 import { fileTypeFromBuffer } from 'file-type'
-import { SystemSettingQueryService } from 'src/modules/system-setting/services/system-setting-query.service'
+import { SystemSettingQueryService } from '../modules/system-setting/services/system-setting-query.service'
 
 @Injectable()
 export class FileValidationPipe implements PipeTransform {

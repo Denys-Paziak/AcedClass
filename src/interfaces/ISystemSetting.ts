@@ -22,7 +22,7 @@ export type ISystemSetting =
 			name: 'moderation'
 			data: {
 				requaireModeratorApproval: boolean
-				falaggedThreshold: number
+				flaggedThreshold: number
 				rejectedThreshold: number
 			}
 	  }

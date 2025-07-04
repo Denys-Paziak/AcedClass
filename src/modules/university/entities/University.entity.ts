@@ -1,4 +1,4 @@
-import { Document } from 'src/modules/document/entities/Document.entity'
+import { Document } from '../../../modules/document/entities/Document.entity'
 import { Column, CreateDateColumn, Entity, Index, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm'
 
 @Entity({ name: 'university' })

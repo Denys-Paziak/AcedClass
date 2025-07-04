@@ -1,7 +1,7 @@
 import { applyDecorators, UseGuards } from '@nestjs/common'
-import { JwtAuthGuard } from 'src/guards/jwt-auth.guard'
-import { RolesGuard } from 'src/guards/roles.guard'
-import { ERoleNames } from 'src/interfaces/ERoleNames'
+import { JwtAuthGuard } from '../guards/jwt-auth.guard'
+import { RolesGuard } from '../guards/roles.guard'
+import { ERoleNames } from '../interfaces/ERoleNames'
 
 import { Roles } from './roles.decorator'
 

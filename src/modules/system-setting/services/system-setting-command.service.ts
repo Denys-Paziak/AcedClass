@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
-import { ISystemSetting } from 'src/interfaces/ISystemSetting'
-import { UserCommandService } from 'src/modules/user/services/user-command.service'
 import { Repository } from 'typeorm'
 
+import { ISystemSetting } from '../../../interfaces/ISystemSetting'
+import { UserCommandService } from '../../../modules/user/services/user-command.service'
 import { AllowedFileExtensionsDto } from '../dtos/AllowedFileExtensions.dto'
 import { UpdateDailyLimitUploadsDto } from '../dtos/UpdateDailyLimitUploads.dto'
 import { UpdateFeatureTogglesDto } from '../dtos/UpdateFeatureToggles.dto'
@@ -89,8 +89,8 @@ export class SystemSettingCommandService {
 					data: {
 						name: 'daily limit uploads',
 						data: {
-							limit: data.limit ? data.limit : existingSetting.data.data.limit,
-							active: !!data.limit
+							limit: data.limit,
+							active: data.active
 						}
 					} as ISystemSetting
 				}
@@ -163,7 +163,7 @@ export class SystemSettingCommandService {
 						data: {
 							requaireModeratorApproval:
 								data.requireModeratorApproval ?? existingSetting.data.data.requaireModeratorApproval,
-							falaggedThreshold: data.flaggedThreshold ?? existingSetting.data.data.falaggedThreshold,
+							flaggedThreshold: data.flaggedThreshold ?? existingSetting.data.data.flaggedThreshold,
 							rejectedThreshold: data.rejectedThreshold ?? existingSetting.data.data.rejectedThreshold
 						}
 					} as ISystemSetting

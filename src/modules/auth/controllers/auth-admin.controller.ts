@@ -2,7 +2,7 @@ import { Body, Controller, Get, HttpCode, Post, Req, Res } from '@nestjs/common'
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
 import { minutes, Throttle } from '@nestjs/throttler'
 import { Request, Response } from 'express'
-import { ThrottleMessage } from 'src/decorators/throttle-message.decorator'
+import { ThrottleMessage } from '../../../decorators/throttle-message.decorator'
 
 import { LoginDto } from '../dtos/Login.dto'
 import { SendCodeDto } from '../dtos/SendCode.dto'

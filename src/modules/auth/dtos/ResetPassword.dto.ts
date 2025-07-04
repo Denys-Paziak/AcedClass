@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger'
 import { IsString, IsUUID, MaxLength, MinLength, Validate } from 'class-validator'
-import { IsPasswordsEqual } from 'src/decorators/is-passwords-equal.decorator'
+import { IsPasswordsEqual } from '../../../decorators/is-passwords-equal.decorator'
 
 export class ResetPasswordDto {
 	@ApiProperty({

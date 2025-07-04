@@ -1,5 +1,5 @@
-import { ETokenTypes } from 'src/interfaces/ETokenTypes'
-import { User } from 'src/modules/user/entities/User.entity'
+import { ETokenTypes } from '../../../interfaces/ETokenTypes'
+import { User } from '../../../modules/user/entities/User.entity'
 import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm'
 
 @Entity({ name: 'token' })

@@ -1,7 +1,8 @@
 import { CallHandler, ExecutionContext, Injectable, NestInterceptor } from '@nestjs/common'
 import { Request, Response } from 'express'
 import { catchError, Observable, tap } from 'rxjs'
-import { ITokenUser } from 'src/interfaces/ITokenUser'
+
+import { ITokenUser } from '../../interfaces/ITokenUser'
 
 import { WinstonLogger } from './winston.logger'
 

@@ -1,13 +1,15 @@
-import { BadRequestException, Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common'
+import { BadRequestException, Injectable, UnauthorizedException } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import { JwtService } from '@nestjs/jwt'
+import { minutes } from '@nestjs/throttler'
 import { InjectRepository } from '@nestjs/typeorm'
-import { ITokenUser } from 'src/interfaces/ITokenUser'
+import { randomInt } from 'crypto'
 import { FindOneOptions, Repository } from 'typeorm'
 import { v4 as uuid } from 'uuid'
-import { randomInt } from 'crypto';
+
+import { ITokenUser } from '../../interfaces/ITokenUser'
+
 import { Token } from './entities/Token.entity'
-import { minutes } from '@nestjs/throttler'
 
 @Injectable()
 export class TokenService {

@@ -62,21 +62,44 @@ export class UserSystemService {
 			.update(User)
 			.set({ strikeCounter: () => `"strike_counter" - 1` })
 			.where('id = :id', { id: userId })
-			.andWhere('"available_uploads" > 0')
+			.andWhere('"strike_counter" > 0')
 			.andWhere('"strike_counter" IS NOT NULL')
 			.execute()
 	}
 
-	async decrementAvailableUploads(userId: number, manager: EntityManager) {
+	async incrementStrikeCounter(userId: number, manager: EntityManager) {
 		const repo = manager.getRepository(User)
 
 		await repo
 			.createQueryBuilder()
 			.update(User)
-			.set({ availableUploads: () => `"available_uploads" - 1` })
+			.set({ strikeCounter: () => `"strike_counter" + 1` })
 			.where('id = :id', { id: userId })
-			.andWhere('"available_uploads" > 0')
-			.andWhere('"available_uploads" IS NOT NULL')
+			.execute()
+	}
+
+	async decrementDailyCountUploads(userId: number, manager: EntityManager) {
+		const repo = manager.getRepository(User)
+
+		await repo
+			.createQueryBuilder()
+			.update(User)
+			.set({ dailyCountUploads: () => `"daily_count_uploads" - 1` })
+			.where('id = :id', { id: userId })
+			.andWhere('"daily_count_uploads" > 0')
+			.andWhere('"daily_count_uploads" IS NOT NULL')
+			.execute()
+	}
+
+	async incrementDailyCountUploads(userId: number, manager: EntityManager) {
+		const repo = manager.getRepository(User)
+
+		await repo
+			.createQueryBuilder()
+			.update(User)
+			.set({ dailyCountUploads: () => `"daily_count_uploads" + 1` })
+			.where('id = :id', { id: userId })
+			.andWhere('"daily_count_uploads" < "daily_limit_uploads"')
 			.execute()
 	}
 

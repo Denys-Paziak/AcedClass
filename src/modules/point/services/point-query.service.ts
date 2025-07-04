@@ -25,9 +25,12 @@ export class PointQueryService {
 
 		return plainToInstance(
 			GetMyPointsResponse,
-			result.reduce<Record<string, number>>((acc, value) => {
-				return { ...acc, [value.type]: Number(value.totalavailable) }
-			}, {}),
+			result.reduce<Record<string, number>>(
+				(acc, value) => {
+					return { ...acc, [value.type]: Number(value.totalavailable) }
+				},
+				{ reveals: 0, points: 0 }
+			),
 			{
 				excludeExtraneousValues: true
 			}

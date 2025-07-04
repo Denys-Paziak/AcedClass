@@ -1,7 +1,8 @@
 import { Client } from '@elastic/elasticsearch'
 import { Injectable, OnModuleInit } from '@nestjs/common'
 import { plainToInstance } from 'class-transformer'
-import { AUTOCOMPLETE_HINT_LIMIT, AUTOCOMPLETE_LIST_HINTS_LIMIT } from 'src/magic/constants'
+import { EDocumentStatuses } from '../../interfaces/EDocumentStatuses'
+import { AUTOCOMPLETE_HINT_LIMIT, AUTOCOMPLETE_LIST_HINTS_LIMIT } from '../../magic/constants'
 
 import { DocumentQueryService } from '../document/services/document-query.service'
 
@@ -12,10 +13,7 @@ import { SearchResponse } from './responses/Search.response'
 @Injectable()
 export class ElasticSearchService implements OnModuleInit {
 	private readonly client = new Client({
-		node: process.env.ELASTICSEARCH_API_NODE || '',
-		auth: {
-			apiKey: process.env.ELASTICSEARCH_API_KEY || ''
-		}
+		node: process.env.ELASTICSEARCH_API_NODE
 	})
 	private readonly INDEX = 'documents'
 
@@ -97,6 +95,9 @@ export class ElasticSearchService implements OnModuleInit {
 							text: {
 								type: 'text',
 								analyzer: 'english'
+							},
+							status: {
+								type: 'keyword'
 							}
 						}
 					}
@@ -147,6 +148,13 @@ export class ElasticSearchService implements OnModuleInit {
 								fields: ['title', 'course_name', 'university'],
 								fuzziness: 'AUTO',
 								boost: 1
+							}
+						}
+					],
+					filter: [
+						{
+							terms: {
+								status: [EDocumentStatuses.APPROVED, EDocumentStatuses.PENDING, EDocumentStatuses.FLAGGED, '']
 							}
 						}
 					]
@@ -260,7 +268,14 @@ export class ElasticSearchService implements OnModuleInit {
 								}
 							}
 						],
-						minimum_should_match: 1
+						minimum_should_match: 1,
+						filter: [
+							{
+								terms: {
+									status: [EDocumentStatuses.APPROVED, EDocumentStatuses.PENDING, EDocumentStatuses.FLAGGED]
+								}
+							}
+						]
 					}
 				}
 			})

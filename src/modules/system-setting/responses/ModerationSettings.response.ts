@@ -13,7 +13,7 @@ export class ModerationSettingsResponse {
     description: 'Number of reports after which the document is flagged as suspicious',
     example: 5,
   })
-  falaggedThreshold: number
+  flaggedThreshold: number
 
   @ApiProperty({
     type: Number,

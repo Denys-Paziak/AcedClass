@@ -1,12 +1,13 @@
 import { Body, Controller, Post, Req } from '@nestjs/common'
+import { ApiCookieAuth, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
 import { Request } from 'express'
-import { Authorization } from 'src/decorators/auth.decorator'
-import { ERoleNames } from 'src/interfaces/ERoleNames'
-import { ITokenUser } from 'src/interfaces/ITokenUser'
+
+import { Authorization } from '../../decorators/auth.decorator'
+import { ERoleNames } from '../../interfaces/ERoleNames'
+import { ITokenUser } from '../../interfaces/ITokenUser'
 
 import { EvaluationDocumentDto } from './dtos/EvaluationDocument.dto'
 import { EvaluationService } from './evaluation.service'
-import {  ApiCookieAuth, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
 
 @ApiCookieAuth()
 @ApiTags('Evaluations')

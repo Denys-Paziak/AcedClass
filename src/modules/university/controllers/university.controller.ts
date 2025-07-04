@@ -1,11 +1,11 @@
 import { Controller, Get, Query } from '@nestjs/common'
+import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
 
-import { UniversityService } from '../university.service'
 import { SearchUniversitiesQueryDto } from '../dtos/SearchUniversitiesQuery.dto'
 import { TopUniversitiesQueryDto } from '../dtos/TopUniversitiesQuery.dto'
 import { SearchUniversitiesResponse } from '../responses/SearchUniversities.response'
 import { TopUniversitiesResponse } from '../responses/TopUniversities.response'
-import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
+import { UniversityService } from '../university.service'
 
 @ApiTags('Universities')
 @Controller('university')

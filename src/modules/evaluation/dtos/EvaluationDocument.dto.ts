@@ -1,8 +1,8 @@
 import { ApiProperty } from '@nestjs/swagger'
 import { ArrayUnique, IsArray, IsEnum, IsInt, IsOptional, Min } from 'class-validator'
-import { EEvaluationTags } from 'src/interfaces/EEvaluationTags'
-import { EEvaluationTypes } from 'src/interfaces/EEvaluationTypes'
-import { Document } from 'src/modules/document/entities/Document.entity'
+import { EEvaluationTags } from '../../../interfaces/EEvaluationTags'
+import { EEvaluationTypes } from '../../../interfaces/EEvaluationTypes'
+import { Document } from '../../../modules/document/entities/Document.entity'
 
 export class EvaluationDocumentDto {
 	@IsEnum(EEvaluationTypes)
@@ -37,5 +37,5 @@ export class EvaluationDocumentDto {
 		type: Number,
 		required: true
 	})
-	documentId: Document['id']
+	documentId: number
 }

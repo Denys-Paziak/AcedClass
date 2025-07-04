@@ -1,11 +1,11 @@
 import { Body, Controller, Delete, Get, Param, Patch, Query, Res } from '@nestjs/common'
-import { ApiCookieAuth, ApiOperation,   ApiResponse, ApiTags } from '@nestjs/swagger'
+import { ApiCookieAuth, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
 import { Response } from 'express'
 import { Parser } from 'json2csv'
-import { Authorization } from 'src/decorators/auth.decorator'
-import { IdParamDto } from 'src/dtos/IdParam.dto'
-import { ERoleNames } from 'src/interfaces/ERoleNames'
 
+import { Authorization } from '../../../decorators/auth.decorator'
+import { IdParamDto } from '../../../dtos/IdParam.dto'
+import { ERoleNames } from '../../../interfaces/ERoleNames'
 import { ChangeInfoDocumentDto } from '../dtos/ChangeInfoDocument.dto'
 import { ChangeStatusDocumentDto } from '../dtos/ChangeStatusDocument.dto'
 import { GetAllDocumentsQueryDto } from '../dtos/GetAllDocumentsQuery.dto'
@@ -93,4 +93,3 @@ export class DocumentAdminController {
 		this.documentCommandService.deleteDocument(param.id)
 	}
 }
-

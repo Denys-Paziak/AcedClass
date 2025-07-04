@@ -1,4 +1,4 @@
-import { ISystemSetting } from 'src/interfaces/ISystemSetting'
+import { ISystemSetting } from '../../../interfaces/ISystemSetting'
 import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm'
 
 @Entity({ name: 'system-setting' })

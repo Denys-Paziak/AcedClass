@@ -1,15 +1,16 @@
-import { ERegistrationTypes } from 'src/interfaces/ERegistrationTypes'
-import { ERoleNames } from 'src/interfaces/ERoleNames'
-import { ESubscriptionStatuses } from 'src/interfaces/ESubscriptionStatuses'
-import { Complaint } from 'src/modules/complaint/entities/Complaint.entity'
-import { Document } from 'src/modules/document/entities/Document.entity'
-import { UnlockedDocument } from 'src/modules/document/entities/Unlocked-document.entity'
-import { Evaluation } from 'src/modules/evaluation/entities/Evaluation.entity'
-import { Message } from 'src/modules/message/entities/Message.entity'
-import { Point } from 'src/modules/point/entities/Point.entity'
-import { SystemNotification } from 'src/modules/system-notification/entities/System-notification.entity'
-import { Token } from 'src/modules/token/entities/Token.entity'
 import { Column, CreateDateColumn, Entity, Index, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm'
+
+import { ERegistrationTypes } from '../../../interfaces/ERegistrationTypes'
+import { ERoleNames } from '../../../interfaces/ERoleNames'
+import { ESubscriptionStatuses } from '../../../interfaces/ESubscriptionStatuses'
+import { Complaint } from '../../../modules/complaint/entities/Complaint.entity'
+import { Document } from '../../../modules/document/entities/Document.entity'
+import { UnlockedDocument } from '../../../modules/document/entities/Unlocked-document.entity'
+import { Evaluation } from '../../../modules/evaluation/entities/Evaluation.entity'
+import { Message } from '../../../modules/message/entities/Message.entity'
+import { Point } from '../../../modules/point/entities/Point.entity'
+import { SystemNotification } from '../../../modules/system-notification/entities/System-notification.entity'
+import { Token } from '../../../modules/token/entities/Token.entity'
 
 @Entity({ name: 'user' })
 export class User {
@@ -77,11 +78,14 @@ export class User {
 	})
 	approvalLevel: number
 
-	@Column({ name: 'daily_limit_uploads', type: 'int', default: 8, nullable: true })
-	dailyLimitUploads: number | null
+	@Column({ name: 'daily_limit_uploads', type: 'int' })
+	dailyLimitUploads: number
 
-	@Column({ name: 'available_uploads', type: 'int', default: 8, nullable: true })
-	availableUploads: number | null
+	@Column({ name: 'bonus_daily_limit_uploads', type: 'int', default: 0 })
+	bonusDailyLimitUploads: number
+
+	@Column({ name: 'daily_count_uploads', type: 'int', default: 0 })
+	dailyCountUploads: number
 
 	@Column({ type: 'timestamptz', name: 'account_blocking', nullable: true })
 	accountBlocking: Date | null

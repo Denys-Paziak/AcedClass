@@ -1,15 +1,15 @@
 import { Body, Controller, Delete, Get, Param, Post, Req } from '@nestjs/common'
+import { ApiCookieAuth, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
 import { Request } from 'express'
-import { Authorization } from 'src/decorators/auth.decorator'
-import { IdParamDto } from 'src/dtos/IdParam.dto'
-import { ERoleNames } from 'src/interfaces/ERoleNames'
-import { ITokenUser } from 'src/interfaces/ITokenUser'
 
+import { Authorization } from '../../../decorators/auth.decorator'
+import { IdParamDto } from '../../../dtos/IdParam.dto'
+import { ERoleNames } from '../../../interfaces/ERoleNames'
+import { ITokenUser } from '../../../interfaces/ITokenUser'
 import { PostMessageContactSupportDto } from '../dtos/PostMessageContactSupport.dto'
+import { GetMyMessagesResponse } from '../responses/GetMyMessages.response'
 import { MessageCommandService } from '../services/message-command.service'
 import { MessageQueryService } from '../services/message-query.service'
-import { GetMyMessagesResponse } from '../responses/GetMyMessages.response'
-import {  ApiCookieAuth, ApiOperation,  ApiResponse, ApiTags } from '@nestjs/swagger'
 
 @ApiCookieAuth()
 @ApiTags('Messages')

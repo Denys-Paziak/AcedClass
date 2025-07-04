@@ -1,10 +1,14 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
-import { days, hours } from '@nestjs/throttler'
+import { days } from '@nestjs/throttler'
 import { InjectRepository } from '@nestjs/typeorm'
 import * as bcrypt from 'bcrypt'
-import { EDocumentStatuses } from 'src/interfaces/EDocumentStatuses'
-import { ESubscriptionStatuses } from 'src/interfaces/ESubscriptionStatuses'
+import { addHours } from 'date-fns'
+import Stripe from 'stripe'
+import { EntityManager, FindOptionsWhere, Repository } from 'typeorm'
+
+import { EDocumentStatuses } from '../../../interfaces/EDocumentStatuses'
+import { ESubscriptionStatuses } from '../../../interfaces/ESubscriptionStatuses'
 import {
 	BLOCKING_DURATION_FOREVER,
 	BLOCKING_DURATION_HOURS_LEVEL_1,
@@ -15,10 +19,7 @@ import {
 	STRIKE_LEVEL_1,
 	STRIKE_LEVEL_2,
 	STRIKE_LEVEL_MAX
-} from 'src/magic/constants'
-import Stripe from 'stripe'
-import { EntityManager, FindOptionsWhere, Repository } from 'typeorm'
-
+} from '../../../magic/constants'
 import { getPlusDailyUploadLimit } from '../../../magic/rules/PlusDailyLimitUpload'
 import { AccountBlockingDto } from '../dtos/AccountBlocking.dto'
 import { UpdateNotificationPreferencesDto } from '../dtos/UpdateNotificationPreferences.dto'
@@ -120,7 +121,9 @@ export class UserCommandService {
 		const userFromDB = await repo.findOne({ where: { id: userId }, relations: { documents: true } })
 
 		if (userFromDB) {
-			const evaluatedDocuments = userFromDB.documents.filter(item => item.status !== EDocumentStatuses.PENDING)
+			const evaluatedDocuments = userFromDB.documents.filter(
+				item => item.status !== EDocumentStatuses.PENDING && item.status !== EDocumentStatuses.PROCESSING
+			)
 			const approvedDocuments = evaluatedDocuments.filter(item => item.status === EDocumentStatuses.APPROVED)
 
 			const approvalLevel = evaluatedDocuments.length
@@ -142,21 +145,7 @@ export class UserCommandService {
 			const documentCount = userFromDB.documents.length
 			const approvalLevel = userFromDB.approvalLevel
 
-			if (userFromDB.dailyLimitUploads !== null && userFromDB.availableUploads !== null) {
-				const plusDailyLimitUploads = getPlusDailyUploadLimit(documentCount, approvalLevel)
-				const newDailyLimitUploads = userFromDB.dailyLimitUploads + plusDailyLimitUploads
-
-				let newAvailableUploads = userFromDB.availableUploads
-
-				if (userFromDB.dailyLimitUploads < newDailyLimitUploads) {
-					newAvailableUploads += plusDailyLimitUploads
-				} else if (userFromDB.availableUploads >= newDailyLimitUploads) {
-					newAvailableUploads = newDailyLimitUploads
-				}
-
-				userFromDB.dailyLimitUploads = newDailyLimitUploads
-				userFromDB.availableUploads = newAvailableUploads
-			}
+			userFromDB.bonusDailyLimitUploads = getPlusDailyUploadLimit(documentCount, approvalLevel)
 
 			if (documentCount >= MIN_DOCUMENTS_FOR_STRIKE_CHECK && approvalLevel < MIN_APPROVAL_LEVEL_FOR_STRIKE_CHECK) {
 				if (userFromDB.strikeCounter === null) {
@@ -165,10 +154,10 @@ export class UserCommandService {
 
 				switch (userFromDB.strikeCounter) {
 					case STRIKE_LEVEL_1:
-						userFromDB.uploadBlocking = new Date(Date.now() + hours(BLOCKING_DURATION_HOURS_LEVEL_1))
+						userFromDB.uploadBlocking = addHours(new Date(), BLOCKING_DURATION_HOURS_LEVEL_1)
 						break
 					case STRIKE_LEVEL_2:
-						userFromDB.uploadBlocking = new Date(Date.now() + hours(BLOCKING_DURATION_HOURS_LEVEL_2))
+						userFromDB.uploadBlocking = addHours(new Date(), BLOCKING_DURATION_HOURS_LEVEL_2)
 						break
 					case STRIKE_LEVEL_MAX:
 						userFromDB.uploadBlocking = BLOCKING_DURATION_FOREVER
@@ -186,33 +175,10 @@ export class UserCommandService {
 		}
 	}
 
-	async updateDailyLimitUploadsAllUsers(newLimit?: number) {
-		const users = await this.userRepository.find({ relations: { documents: true } })
+	async updateDailyLimitUploadsAllUsers(newLimit: number) {
+		const users = await this.userRepository.find()
 
-		const updateValues = users.map(user => {
-			if (newLimit) {
-				const documentCount = user.documents.length
-				const approvalLevel = user.approvalLevel
-
-				const userBonusDailyLimitUploads = getPlusDailyUploadLimit(documentCount, approvalLevel)
-
-				const newDailyLimitUploads = newLimit + userBonusDailyLimitUploads
-
-				let newAvailableUploads =
-					user.dailyLimitUploads !== null && user.availableUploads !== null
-						? newDailyLimitUploads - (user.dailyLimitUploads - user.availableUploads)
-						: newDailyLimitUploads
-
-				return {
-					dailyLimitUploads: `WHEN id = ${user.id} THEN ${newDailyLimitUploads}`,
-					availableUploads: `WHEN id = ${user.id} THEN ${newAvailableUploads > 0 ? newAvailableUploads : 0}`
-				}
-			}
-			return {
-				dailyLimitUploads: `WHEN id = ${user.id} THEN NULL::integer`,
-				availableUploads: `WHEN id = ${user.id} THEN NULL::integer`
-			}
-		})
+		const updateValues = users.map(user => `WHEN id = ${user.id} THEN ${newLimit}`)
 
 		const usersIds = users.map(item => item.id)
 
@@ -220,17 +186,14 @@ export class UserCommandService {
 			.createQueryBuilder()
 			.update(User)
 			.set({
-				dailyLimitUploads: () =>
-					`CASE ${updateValues.reduce((acc, item) => acc + ' ' + item.dailyLimitUploads, '')} ELSE NULL::integer END`,
-				availableUploads: () =>
-					`CASE ${updateValues.reduce((acc, item) => acc + ' ' + item.availableUploads, '')} ELSE NULL::integer END`
+				dailyLimitUploads: () => `CASE ${updateValues} ELSE NULL::integer END`
 			})
 			.where('id IN (:...usersIds)', { usersIds })
 			.execute()
 	}
 
 	async updateSubscription(
-		where: User['id'] | FindOptionsWhere<User>,
+		where: number | FindOptionsWhere<User>,
 		data: {
 			customerId?: string | null
 			subscriptionId?: string | null
@@ -272,9 +235,7 @@ export class UserCommandService {
 		} catch {}
 
 		await this.userRepository.update(userId, {
-			accountBlocking: data.daysPeriod
-				? new Date(Date.now() + days(data.daysPeriod))
-				: BLOCKING_DURATION_FOREVER,
+			accountBlocking: data.daysPeriod ? new Date(Date.now() + days(data.daysPeriod)) : BLOCKING_DURATION_FOREVER,
 			reasonBlocking: data.reason
 		})
 	}

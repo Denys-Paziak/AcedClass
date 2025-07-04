@@ -1,7 +1,7 @@
 import { ApiProperty } from "@nestjs/swagger"
 import { Type } from "class-transformer"
 import { IsOptional, IsDate, IsString, IsInt, Min, IsEnum } from "class-validator"
-import { EComplaintStatus } from "src/interfaces/EComplaintStatus"
+import { EComplaintStatus } from "../../../interfaces/EComplaintStatus"
 
 export class GetAllComplaintsQueryDto {
 	@IsOptional()

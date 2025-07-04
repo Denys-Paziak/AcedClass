@@ -1,6 +1,6 @@
-import { EPointTypes } from 'src/interfaces/EPointTypes'
-import { Document } from 'src/modules/document/entities/Document.entity'
-import { User } from 'src/modules/user/entities/User.entity'
+import { EPointTypes } from '../../../interfaces/EPointTypes'
+import { Document } from '../../../modules/document/entities/Document.entity'
+import { User } from '../../../modules/user/entities/User.entity'
 import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm'
 
 @Entity({ name: 'unlocked-document' })

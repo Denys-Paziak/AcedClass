@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger'
 import { Expose, Type } from 'class-transformer'
-import { DocumentResponse } from 'src/responses/Document.response'
+import { DocumentResponse } from '../../../responses/Document.response'
 
 export class GetAllDocumentsResponse {
 	@ApiProperty({

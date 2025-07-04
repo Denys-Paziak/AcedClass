@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger'
 import { Expose, Type } from 'class-transformer'
-import { EPointTypes } from 'src/interfaces/EPointTypes'
-import { DocumentResponse } from 'src/responses/Document.response'
+import { EPointTypes } from '../../../interfaces/EPointTypes'
+import { DocumentResponse } from '../../../responses/Document.response'
 
 export class GetMyUnlockedDocumentsResponse {
 	@ApiProperty({

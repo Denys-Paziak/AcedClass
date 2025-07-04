@@ -1,7 +1,7 @@
 import { Controller, Get, Query } from '@nestjs/common'
 import { ApiCookieAuth, ApiOperation,  ApiResponse, ApiTags } from '@nestjs/swagger'
-import { Authorization } from 'src/decorators/auth.decorator'
-import { ERoleNames } from 'src/interfaces/ERoleNames'
+import { Authorization } from '../../decorators/auth.decorator'
+import { ERoleNames } from '../../interfaces/ERoleNames'
 
 import { PlatformActivityQueryDto } from './dtos/PlatformActivityQuery.dto'
 import { TopUsersQueryDto } from './dtos/TopUsersQuery.dto'

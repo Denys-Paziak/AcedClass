@@ -1,15 +1,15 @@
-import { Body, Controller, Get, HttpCode, InternalServerErrorException, Patch, Post, Req, Res, UseGuards } from '@nestjs/common'
+import { Body, Controller, Get, HttpCode, Patch, Post, Req, Res, UseGuards } from '@nestjs/common'
+import { ConfigService } from '@nestjs/config'
 import { ApiOAuth2, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
 import { Recaptcha } from '@nestlab/google-recaptcha'
 import { Request, Response } from 'express'
-import { GoogleAuthGuard } from 'src/guards/google-auth.guard'
 
+import { GoogleAuthGuard } from '../../../guards/google-auth.guard'
 import { ForgotPasswordDto } from '../dtos/ForgotPassword.dto'
 import { LoginDto } from '../dtos/Login.dto'
 import { RegistrationDto } from '../dtos/Registration.dto'
 import { ResetPasswordDto } from '../dtos/ResetPassword.dto'
 import { AuthService } from '../services/auth.service'
-import { ConfigService } from '@nestjs/config'
 
 @ApiTags('Authentication')
 @Controller('auth')
@@ -111,7 +111,7 @@ export class AuthController {
 
 	@HttpCode(200)
 	@Post('login')
-	@ApiOperation({ summary: 'Normal user login' })
+	@ApiOperation({ summary: 'User login' })
 	@ApiResponse({ status: 200, description: 'Successful login' })
 	@ApiResponse({ status: 401, description: 'Invalid password or login' })
 	@ApiResponse({ status: 403, description: 'User is blocked' })

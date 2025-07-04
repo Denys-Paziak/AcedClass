@@ -1,11 +1,11 @@
 import { Controller, Get, Query } from '@nestjs/common'
-import { Authorization } from 'src/decorators/auth.decorator'
-import { ERoleNames } from 'src/interfaces/ERoleNames'
+import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
 
+import { Authorization } from '../../../decorators/auth.decorator'
+import { ERoleNames } from '../../../interfaces/ERoleNames'
 import { TopUniversitiesQueryDto } from '../dtos/TopUniversitiesQuery.dto'
 import { TopUniversitiesResponse } from '../responses/TopUniversities.response'
 import { UniversityService } from '../university.service'
-import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
 
 @ApiTags('Universities Admin')
 @Controller('admin/university')

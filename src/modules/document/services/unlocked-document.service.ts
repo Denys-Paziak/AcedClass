@@ -1,17 +1,17 @@
 import { BadRequestException, HttpException, Injectable, NotFoundException, ServiceUnavailableException } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { plainToInstance } from 'class-transformer'
-import { EPointTypes } from 'src/interfaces/EPointTypes'
-import { PointCommandService } from 'src/modules/point/services/point-command.service'
-import { Brackets, DataSource, FindManyOptions, FindOneOptions, Repository } from 'typeorm'
+import { Brackets, DataSource, FindManyOptions, FindOneOptions, In, Repository } from 'typeorm'
 
-import { User } from '../../user/entities/User.entity'
+import { EDocumentStatuses } from '../../../interfaces/EDocumentStatuses'
+import { EPointTypes } from '../../../interfaces/EPointTypes'
+import { PointCommandService } from '../../../modules/point/services/point-command.service'
+import { SystemSettingQueryService } from '../../../modules/system-setting/services/system-setting-query.service'
 import { GetAllUnlocksQueryDto } from '../dtos/GetAllUnlocksQuery.dto'
 import { Document } from '../entities/Document.entity'
 import { UnlockedDocument } from '../entities/Unlocked-document.entity'
 import { GetAllUnlocksResponse } from '../responses/GetAllUnlocks.response'
 import { GetMyUnlockedDocumentsResponse } from '../responses/GetMyUnlockedDocuments.response'
-import { SystemSettingQueryService } from 'src/modules/system-setting/services/system-setting-query.service'
 
 @Injectable()
 export class UnlockedDocumentService {
@@ -30,35 +30,39 @@ export class UnlockedDocumentService {
 		return await this.unlockedDocumentRepository.count(options)
 	}
 
-	async unlockDocument(data: {
-		pointType: EPointTypes
-		quantityPoint: number
-		userId: number
-		documentId: Document['id']
-	}) {
+	async unlockDocument(data: { pointType: EPointTypes; quantityPoint: number; userId: number; documentId: number }) {
 		const { documentId, userId, pointType, quantityPoint } = data
 
 		const settings = await this.systemSettingQueryService.getSettings(['feature toggles'])
-		
+
 		if (!settings('feature toggles').documentRevealing) {
 			throw new ServiceUnavailableException('Document revealing is currently disabled by the system.')
 		}
 
-		if (
-			!await this.documentRepository.findOne({ where: { id: documentId, user: { id: userId } }, relations: { user: true } })
-		) {
-			await this.dataSource.transaction(async manager => {
-				await this.pointCommandService.writeOffPoints({ userId, pointType, quantityPoint }, manager)
-	
-				await manager?.getRepository(UnlockedDocument).save({
-					pointType: pointType,
-					document: { id: documentId },
-					user: { id: userId }
-				})
-			})
-		} else {
+		const documentFromDB = await this.documentRepository.findOne({
+			where: { id: documentId },
+			relations: { user: true }
+		})
+
+		if (!documentFromDB) throw new NotFoundException('No such document found.')
+
+		if (documentFromDB.user?.id === userId) {
 			throw new BadRequestException('You cannot unlock your own document.')
 		}
+
+		if (documentFromDB.status === EDocumentStatuses.REJECTED || documentFromDB.status === EDocumentStatuses.PROCESSING) {
+			throw new BadRequestException("You can't unlock a hidden document.")
+		}
+
+		await this.dataSource.transaction(async manager => {
+			await this.pointCommandService.writeOffPoints({ userId, pointType, quantityPoint }, manager)
+
+			await manager?.getRepository(UnlockedDocument).save({
+				pointType: pointType,
+				document: { id: documentId },
+				user: { id: userId }
+			})
+		})
 	}
 
 	async findOneAndCheck(options: FindOneOptions<UnlockedDocument>, error?: HttpException) {
@@ -67,6 +71,7 @@ export class UnlockedDocumentService {
 			relations: { document: true, ...options.relations }
 		})
 		if (!record) throw error || new NotFoundException('Unlocked document not found')
+		if (!record.document) throw new NotFoundException('No such document found')
 
 		return record.document
 	}
@@ -85,7 +90,12 @@ export class UnlockedDocumentService {
 
 	async getMyUnlockedDocuments(userId: number) {
 		const result = await this.unlockedDocumentRepository.find({
-			where: { user: { id: userId } },
+			where: {
+				user: { id: userId },
+				document: {
+					status: In([EDocumentStatuses.APPROVED, EDocumentStatuses.FLAGGED, EDocumentStatuses.PENDING])
+				}
+			},
 			relations: { document: { university: true } }
 		})
 

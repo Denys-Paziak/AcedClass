@@ -1,8 +1,8 @@
 import { Injectable, InternalServerErrorException } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
-import { ISystemSetting } from 'src/interfaces/ISystemSetting'
 import { Repository } from 'typeorm'
 
+import { ISystemSetting } from '../../../interfaces/ISystemSetting'
 import { SystemSetting } from '../entities/System-setting.entity'
 
 @Injectable()

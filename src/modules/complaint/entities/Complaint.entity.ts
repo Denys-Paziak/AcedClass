@@ -1,22 +1,23 @@
-import { EComplaintFlags } from 'src/interfaces/EComplaintFlags'
-import { EComplaintStatus } from 'src/interfaces/EComplaintStatus'
-import { Document } from 'src/modules/document/entities/Document.entity'
-import { User } from 'src/modules/user/entities/User.entity'
 import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm'
+
+import { EComplaintFlags } from '../../../interfaces/EComplaintFlags'
+import { EComplaintStatus } from '../../../interfaces/EComplaintStatus'
+import { Document } from '../../../modules/document/entities/Document.entity'
+import { User } from '../../../modules/user/entities/User.entity'
 
 @Entity({ name: 'complaint' })
 export class Complaint {
 	@PrimaryGeneratedColumn()
 	id: number
 
-    @Column({ type: 'enum', enum: EComplaintFlags })
-    flag: EComplaintFlags
+	@Column({ type: 'enum', enum: EComplaintFlags })
+	flag: EComplaintFlags
 
 	@Column({ type: 'text' })
 	message: string
 
-	@Column({ type: 'text' })
-	adminComment: string
+	@Column({ type: 'text', nullable: true })
+	adminComment: string | null
 
 	@Column({ type: 'enum', enum: EComplaintStatus, default: EComplaintStatus.PENDING })
 	status: EComplaintStatus

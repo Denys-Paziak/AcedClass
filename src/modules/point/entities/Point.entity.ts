@@ -1,7 +1,7 @@
-import { EPointTypes } from 'src/interfaces/EPointTypes'
-import { TPointSource } from 'src/interfaces/TPointSource'
-import { TRevealSource } from 'src/interfaces/TRevealSource'
-import { User } from 'src/modules/user/entities/User.entity'
+import { EPointTypes } from '../../../interfaces/EPointTypes'
+import { TPointSource } from '../../../interfaces/TPointSource'
+import { TRevealSource } from '../../../interfaces/TRevealSource'
+import { User } from '../../../modules/user/entities/User.entity'
 import { Column, CreateDateColumn, Entity, Index, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm'
 
 @Entity({ name: 'point' })

@@ -20,6 +20,7 @@ export class ComplaintQueryService {
 			.leftJoin('complaint.author', 'author')
 			.leftJoin('complaint.user', 'user')
 			.leftJoin('complaint.document', 'document')
+			.addSelect(['author', 'user', 'document'])
 
 		if (query.type === 'user') {
 			qb.andWhere('complaint.user IS NOT NULL')

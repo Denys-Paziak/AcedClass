@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger'
 import { Expose, Type } from 'class-transformer'
-import { UniversityResponse } from 'src/responses/University.response'
+import { UniversityResponse } from '../../../responses/University.response'
 
 class Recommendation {
 	@ApiProperty({ description: 'ID of the recommended document', example: 22, type: Number })

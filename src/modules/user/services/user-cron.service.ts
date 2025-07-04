@@ -1,18 +1,18 @@
-import { Injectable, InternalServerErrorException } from '@nestjs/common'
+import { Injectable } from '@nestjs/common'
 import { Cron, CronExpression } from '@nestjs/schedule'
 import { InjectRepository } from '@nestjs/typeorm'
-import { WinstonLogger } from 'src/modules/logger/winston.logger'
 import { Repository } from 'typeorm'
 
+import { WinstonLogger } from '../../../modules/logger/winston.logger'
 import { User } from '../entities/User.entity'
 
 @Injectable()
 export class UserCronService {
-	private readonly logger = new WinstonLogger()
-
 	constructor(
 		@InjectRepository(User)
-		private readonly userRepository: Repository<User>
+		private readonly userRepository: Repository<User>,
+
+		private readonly logger: WinstonLogger
 	) {}
 
 	@Cron(CronExpression.EVERY_DAY_AT_11PM)
@@ -23,7 +23,7 @@ export class UserCronService {
 			const { affected } = await this.userRepository
 				.createQueryBuilder()
 				.update(User)
-				.set({ availableUploads: () => '"daily_limit_uploads"' })
+				.set({ dailyCountUploads: 0 })
 				.execute()
 
 			this.logger.log(`🕜 Cron job completed: resetLimitUpload`, `${affected} users updated`)

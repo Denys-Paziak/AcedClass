@@ -1,18 +1,22 @@
-import { BadRequestException, ConflictException, Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common'
+import {
+	BadRequestException,
+	ConflictException,
+	Injectable,
+	InternalServerErrorException,
+	NotFoundException
+} from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import { plainToInstance } from 'class-transformer'
 import { Request } from 'express'
-import { ESubscriptionStatuses } from 'src/interfaces/ESubscriptionStatuses'
-import { SUBSCRIPTION_REVEALS_AMOUNT } from 'src/magic/constants'
 import Stripe from 'stripe'
 import { DataSource } from 'typeorm'
 
+import { ESubscriptionStatuses } from '../../../interfaces/ESubscriptionStatuses'
+import { SUBSCRIPTION_REVEALS_AMOUNT } from '../../../magic/constants'
 import { WinstonLogger } from '../../logger/winston.logger'
 import { PointCommandService } from '../../point/services/point-command.service'
 import { UserCommandService } from '../../user/services/user-command.service'
 import { UserSystemService } from '../../user/services/user-system.service'
-import { ChangeActiveTariffDto } from '../dtos/ChangeActiveTariff.dto'
-import { PlanIdParamDto } from '../dtos/PlanIdParam.dto'
 import { CreateSubscriptionResponse } from '../responses/CreateSubscription.response'
 
 @Injectable()
@@ -21,15 +25,14 @@ export class StripeCommandService {
 	private readonly CANCEL_STATUSES = [ESubscriptionStatuses.CANCELED, ESubscriptionStatuses.UNPAID]
 	private readonly ACTIVE_STATUSES = [ESubscriptionStatuses.ACTIVE, ESubscriptionStatuses.PAST_DUE]
 
-	private readonly logger = new WinstonLogger()
-
 	constructor(
 		private readonly dataSource: DataSource,
 
 		private readonly configService: ConfigService,
 		private readonly userCommandService: UserCommandService,
 		private readonly userSystemService: UserSystemService,
-		private readonly pointCommandService: PointCommandService
+		private readonly pointCommandService: PointCommandService,
+		private readonly logger: WinstonLogger
 	) {
 		this.stripe = new Stripe(this.configService.getOrThrow<string>('STRIPE_SECRET_KEY'))
 	}
@@ -67,8 +70,8 @@ export class StripeCommandService {
 					quantity: 1
 				}
 			],
-			success_url: `https://your-site.com/success`,
-			cancel_url: 'https://your-site.com/canceled',
+			success_url: this.configService.getOrThrow<string>('STRIPE_SUCCESS_URL'),
+			cancel_url: this.configService.getOrThrow<string>('STRIPE_CANCEL_URL'),
 			customer: customer.id,
 			metadata: {
 				userId: userFromDB.id.toString()
@@ -110,7 +113,6 @@ export class StripeCommandService {
 				newItem
 			],
 			proration_behavior: 'always_invoice',
-			billing_cycle_anchor: 'now',
 			metadata: {
 				userId: userFromDB.id.toString()
 			}

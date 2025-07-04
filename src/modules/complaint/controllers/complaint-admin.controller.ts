@@ -3,11 +3,11 @@ import { ApiCookieAuth, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagg
 import { Request } from 'express'
 import { Response } from 'express'
 import { Parser } from 'json2csv'
-import { Authorization } from 'src/decorators/auth.decorator'
-import { IdParamDto } from 'src/dtos/IdParam.dto'
-import { ERoleNames } from 'src/interfaces/ERoleNames'
-import { ITokenUser } from 'src/interfaces/ITokenUser'
 
+import { Authorization } from '../../../decorators/auth.decorator'
+import { IdParamDto } from '../../../dtos/IdParam.dto'
+import { ERoleNames } from '../../../interfaces/ERoleNames'
+import { ITokenUser } from '../../../interfaces/ITokenUser'
 import { AddAdminCommentDto } from '../dtos/AddAdminComment.dto'
 import { ChangeStatusComplaintDto } from '../dtos/ChangeStatusComplaint.dto'
 import { GetAllComplaintsQueryDto } from '../dtos/GetAllComplaintsQuery.dto'
@@ -81,7 +81,7 @@ export class ComplaintAdminController {
 
 	@Authorization(ERoleNames.ADMIN)
 	@Patch(':id')
-	@ApiOperation({ summary: 'Змінити статус скарги' })
+	@ApiOperation({ summary: 'Change the status of a complaint' })
 	@ApiResponse({
 		status: 200,
 		description: 'Complaint status successfully changed'

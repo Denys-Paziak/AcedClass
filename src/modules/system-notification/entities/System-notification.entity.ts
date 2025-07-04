@@ -1,6 +1,6 @@
-import { ESystemNotificationTypes } from 'src/interfaces/ESystemNotificationTypes'
-import { TSystemNotificationData } from 'src/interfaces/TSystemNotificationData'
-import { User } from 'src/modules/user/entities/User.entity'
+import { ESystemNotificationTypes } from '../../../interfaces/ESystemNotificationTypes'
+import { TSystemNotificationData } from '../../../interfaces/TSystemNotificationData'
+import { User } from '../../../modules/user/entities/User.entity'
 import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm'
 
 @Entity({ name: 'system-notification' })

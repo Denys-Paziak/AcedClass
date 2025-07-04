@@ -1,35 +1,35 @@
 import { Body, Controller, Get, Param, Patch, Post, Req, UploadedFile, UseInterceptors } from '@nestjs/common'
 import { FileInterceptor } from '@nestjs/platform-express'
 import { ApiConsumes, ApiCookieAuth, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
+import axios from 'axios'
 import { Request } from 'express'
 import { memoryStorage } from 'multer'
-import { Authorization } from 'src/decorators/auth.decorator'
-import { OptionalAuth } from 'src/decorators/optional-auth.decorator'
-import { StringParamDto } from 'src/dtos/StringParam.dto'
-import { ERoleNames } from 'src/interfaces/ERoleNames'
-import { ITokenUser } from 'src/interfaces/ITokenUser'
-import { FileValidationPipe } from 'src/pipes/FileValidation.pipe'
 
+import { Authorization } from '../../../decorators/auth.decorator'
+import { OptionalAuth } from '../../../decorators/optional-auth.decorator'
+import { IdParamDto } from '../../../dtos/IdParam.dto'
+import { StringParamDto } from '../../../dtos/StringParam.dto'
+import { ERoleNames } from '../../../interfaces/ERoleNames'
+import { ITokenUser } from '../../../interfaces/ITokenUser'
+import { WinstonLogger } from '../../../modules/logger/winston.logger'
+import { FileValidationPipe } from '../../../pipes/FileValidation.pipe'
 import { PostDocumentDto } from '../dtos/PostDocument.dto'
 import { GetMyDocumentsResponse } from '../responses/GetMyDocuments.response'
 import { GetOneDocumentAndRecomendationResponse } from '../responses/GetOneDocumentAndRecomendation.response'
 import { DocumentCommandService } from '../services/document-command.service'
 import { DocumentQueryService } from '../services/document-query.service'
-import { WinstonLogger } from 'src/modules/logger/winston.logger'
-import { IdParamDto } from 'src/dtos/IdParam.dto'
 
 @ApiTags('Documents')
 @Controller('documents')
 export class DocumentController {
-	private readonly logger = new WinstonLogger()
-	
 	constructor(
 		private readonly documentQueryService: DocumentQueryService,
-		private readonly documentCommandService: DocumentCommandService
+		private readonly documentCommandService: DocumentCommandService,
+		private readonly logger: WinstonLogger
 	) {}
 
 	@OptionalAuth()
-	@Get('search/:strParam')
+	@Get(':strParam')
 	@ApiOperation({ summary: 'Get document by link and recommendations' })
 	@ApiResponse({ status: 200, type: GetOneDocumentAndRecomendationResponse })
 	async getOneDocumentAndRecomendation(
@@ -89,5 +89,47 @@ export class DocumentController {
 	async addView(@Param() params: IdParamDto) {
 		await this.documentCommandService.incrementNumberViews(params.id)
 	}
-}
 
+	@UseInterceptors(
+		FileInterceptor('content_file_url', {
+			storage: memoryStorage()
+		})
+	)
+	@Post('webhook')
+	@ApiResponse({ status: 201, description: 'Document successfully uploaded' })
+	@ApiResponse({ status: 422, description: 'Invalid file format' })
+	@ApiOperation({ summary: 'Upload a new document' })
+	@ApiConsumes('multipart/form-data')
+	async webhook(@UploadedFile() file: Express.Multer.File, @Body() dto: any) {
+		await this.documentCommandService.webhook({ ...dto, txt_file: file })
+	}
+
+	@UseInterceptors(
+		FileInterceptor('file', {
+			storage: memoryStorage()
+		})
+	)
+	@Post('test')
+	async test(@UploadedFile() file: Express.Multer.File, @Body() dto: any) {
+		const form = new FormData()
+
+		form.append(
+			'content_file_url',
+			new Blob(['Standard concern adult social. Pull cultural surface behind. Local country specific quite.'])
+		)
+		form.append('status', 'success')
+		form.append('reason', 'ok')
+		form.append('file_url', 'uploads/53435431231234/giohuer780gh34ipu/5a4a4e39-92ef-45b8-94ca-a59e61066965.pdf')
+		form.append('short_file_url', 'uploads/53435431231234/giohuer780gh34ipu/95311729-4d5d-4af5-8657-b9be7d1bac98.pdf')
+		form.append('preview_file_url', 'url to png')
+		form.append('blured_pages_urls', 'uploads/53435431231234/giohuer780gh34ipu/blurred/blur_3.webp')
+		form.append('blured_pages_urls', 'uploads/53435431231234/giohuer780gh34ipu/blurred/blur_3.webp')
+		form.append('blured_pages_urls', 'uploads/53435431231234/giohuer780gh34ipu/blurred/blur_3.webp')
+		form.append('document_id', dto.document_id)
+
+		await axios.post('http://localhost:3001/documents/webhook', form, {
+			maxBodyLength: Infinity,
+			maxContentLength: Infinity
+		})
+	}
+}

@@ -1,32 +1,32 @@
 import { BadRequestException, Body, Controller, Delete, Get, Header, Param, Post, Put, Req, Res } from '@nestjs/common'
+import { ConfigService } from '@nestjs/config'
 import { ApiCookieAuth, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
 import { Request, Response } from 'express'
-import { Authorization } from 'src/decorators/auth.decorator'
-import { ERoleNames } from 'src/interfaces/ERoleNames'
-import { ITokenUser } from 'src/interfaces/ITokenUser'
+import Stripe from 'stripe'
 
+import { Authorization } from '../../../decorators/auth.decorator'
+import { ERoleNames } from '../../../interfaces/ERoleNames'
+import { ITokenUser } from '../../../interfaces/ITokenUser'
+import { StripeQueryService } from '../services/stripe-query.service'
+import { WinstonLogger } from '../../logger/winston.logger'
 import { PlanIdParamDto } from '../dtos/PlanIdParam.dto'
 import { SubscriptionDto } from '../dtos/Subscription.dto'
+import { UpdatePaymentMethodDto } from '../dtos/UpdatePaymentMethod.dto'
 import { CreateSubscriptionResponse } from '../responses/CreateSubscription.response'
 import { GetActiveTariffsResponse } from '../responses/GetActiveTariffsResponse.response'
 import { PreviewUpgradePriceResponse } from '../responses/PreviewUpgradePrice.response'
 import { StripeCommandService } from '../services/stripe-command.service'
-import { UpdatePaymentMethodDto } from '../dtos/UpdatePaymentMethod.dto'
-import { WinstonLogger } from '../../logger/winston.logger'
-import { ConfigService } from '@nestjs/config'
-import Stripe from 'stripe'
-import { StripeQueryService } from '../services/stripe-query.service'
 
 @ApiTags('Stripe Subscription')
 @Controller('stripe')
 export class StripeController {
 	private stripe: Stripe
-	private readonly logger = new WinstonLogger()
-	
+
 	constructor(
 		private readonly stripeCommandService: StripeCommandService,
 		private readonly stripeQueryService: StripeQueryService,
 		private readonly configService: ConfigService,
+		private readonly logger: WinstonLogger
 	) {
 		this.stripe = new Stripe(this.configService.getOrThrow<string>('STRIPE_SECRET_KEY'))
 	}
@@ -132,8 +132,8 @@ export class StripeController {
 			throw new BadRequestException(`Webhook Error: ${err.message}`)
 		}
 
-		this.stripeCommandService.webhook(event)
-		
+		await this.stripeCommandService.webhook(event)
+
 		res.status(200).send('OK')
 	}
 }

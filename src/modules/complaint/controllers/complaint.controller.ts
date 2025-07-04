@@ -1,13 +1,11 @@
 import { Body, Controller, Post, Req } from '@nestjs/common'
 import { ApiCookieAuth, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
-import { hours, Throttle } from '@nestjs/throttler'
 import { Recaptcha } from '@nestlab/google-recaptcha'
 import { Request } from 'express'
-import { Authorization } from 'src/decorators/auth.decorator'
-import { ThrottleMessage } from 'src/decorators/throttle-message.decorator'
-import { ERoleNames } from 'src/interfaces/ERoleNames'
-import { ITokenUser } from 'src/interfaces/ITokenUser'
 
+import { Authorization } from '../../../decorators/auth.decorator'
+import { ERoleNames } from '../../../interfaces/ERoleNames'
+import { ITokenUser } from '../../../interfaces/ITokenUser'
 import { PostComplaintDto } from '../dtos/PostComplaint.dto'
 import { ComplaintCommandService } from '../services/complaint-command.service'
 
@@ -17,8 +15,6 @@ import { ComplaintCommandService } from '../services/complaint-command.service'
 export class ComplaintController {
 	constructor(private readonly complaintCommandService: ComplaintCommandService) {}
 
-	@Throttle({ default: { limit: 5, ttl: hours(24) } })
-	@ThrottleMessage('You have reached your complaint limit for today.')
 	@Authorization(ERoleNames.USER)
 	@Recaptcha()
 	@Post('/')

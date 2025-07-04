@@ -1,15 +1,15 @@
 import { Body, Controller, Get, Post, Req } from '@nestjs/common'
 import { ApiCookieAuth, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
 import { Request } from 'express'
-import { Authorization } from 'src/decorators/auth.decorator'
-import { EPointTypes } from 'src/interfaces/EPointTypes'
-import { ERoleNames } from 'src/interfaces/ERoleNames'
-import { ITokenUser } from 'src/interfaces/ITokenUser'
 
+import { Authorization } from '../../../decorators/auth.decorator'
+import { EPointTypes } from '../../../interfaces/EPointTypes'
+import { ERoleNames } from '../../../interfaces/ERoleNames'
+import { ITokenUser } from '../../../interfaces/ITokenUser'
+import { POINTS_TO_UNLOCK_DOCUMENT, REVEALS_TO_UNLOCK_DOCUMENT } from '../../../magic/constants'
 import { UnlockDocumentDto } from '../dtos/UnlockDocument.dto'
 import { GetMyUnlockedDocumentsResponse } from '../responses/GetMyUnlockedDocuments.response'
 import { UnlockedDocumentService } from '../services/unlocked-document.service'
-import { POINTS_TO_UNLOCK_DOCUMENT, REVEALS_TO_UNLOCK_DOCUMENT } from 'src/magic/constants'
 
 @ApiCookieAuth()
 @ApiTags('Unlocked Documents')

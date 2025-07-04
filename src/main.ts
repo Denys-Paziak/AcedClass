@@ -18,9 +18,12 @@ async function bootstrap() {
 	const config = app.get(ConfigService)
 
 	const winstonLogger = app.get(WinstonLogger)
-	//app.useLogger(winstonLogger);
+	if (config.getOrThrow('NODE_ENV') !== 'development') {
+		app.useLogger(winstonLogger);
+	}
 	app.useGlobalInterceptors(new LoggerInterceptor(winstonLogger))
-
+console.log('NODE_ENV from config:', config.get('NODE_ENV'))
+console.log('NODE_ENV from process.env:', process.env.NODE_ENV)
 	app.useGlobalPipes(new ValidationPipe({ transform: true }))
 	app.enableCors({
 		credentials: true,

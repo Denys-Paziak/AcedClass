@@ -1,6 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { IsEnum } from "class-validator";
-import { EComplaintStatus } from "src/interfaces/EComplaintStatus";
+import { EComplaintStatus } from "../../../interfaces/EComplaintStatus";
 
 export class ChangeStatusComplaintDto {
     @IsEnum(EComplaintStatus)

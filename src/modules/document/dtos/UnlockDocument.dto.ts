@@ -1,8 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger'
 import { IsEnum, IsInt, Min } from 'class-validator'
-import { EPointTypes } from 'src/interfaces/EPointTypes'
-
-import { Document } from '../../document/entities/Document.entity'
+import { EPointTypes } from '../../../interfaces/EPointTypes'
 
 export class UnlockDocumentDto {
 	@ApiProperty({
@@ -21,5 +19,5 @@ export class UnlockDocumentDto {
 	})
 	@IsInt()
 	@Min(0)
-	documentId: Document['id']
+	documentId: number
 }

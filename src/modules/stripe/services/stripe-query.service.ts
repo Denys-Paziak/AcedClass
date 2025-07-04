@@ -1,9 +1,9 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import { plainToInstance } from 'class-transformer'
-import { UserSystemService } from 'src/modules/user/services/user-system.service'
 import Stripe from 'stripe'
 
+import { UserSystemService } from '../../../modules/user/services/user-system.service'
 import { GetActiveTariffsResponse } from '../responses/GetActiveTariffsResponse.response'
 import { GetAllTariffsResponse } from '../responses/GetAllTariffs.response'
 import { PreviewUpgradePriceResponse } from '../responses/PreviewUpgradePrice.response'
@@ -53,9 +53,9 @@ export class StripeQueryService {
 	}
 
 	async getAllTariffs() {
-        const subscriptionStats = await this.userSystemService.getSubscriptionStats()
+		const subscriptionStats = await this.userSystemService.getSubscriptionStats()
 
-        const prices = (
+		const prices = (
 			await this.stripe.prices.list({
 				limit: 100,
 				expand: ['data.product']
@@ -74,7 +74,7 @@ export class StripeQueryService {
 							count: item.recurring?.interval_count
 						},
 						name: name,
-                        numberUsers: Number(subscriptionStats.find(stat => stat.subscription === item.id)?.count || "0"),
+						numberUsers: Number(subscriptionStats.find(stat => stat.subscription === item.id)?.count || '0'),
 						active: item.active
 					} as GetAllTariffsResponse
 				} else {

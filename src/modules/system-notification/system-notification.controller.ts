@@ -1,8 +1,8 @@
 import { Controller, Get, Req } from '@nestjs/common'
 import { Request } from 'express'
-import { Authorization } from 'src/decorators/auth.decorator'
-import { ERoleNames } from 'src/interfaces/ERoleNames'
-import { ITokenUser } from 'src/interfaces/ITokenUser'
+import { Authorization } from '../../decorators/auth.decorator'
+import { ERoleNames } from '../../interfaces/ERoleNames'
+import { ITokenUser } from '../../interfaces/ITokenUser'
 
 import { SystemNotificationQueryService } from './services/system-notification-query.service'
 import { GetMySystemNotificationResponse } from './responses/GetMySystemNotification.response'

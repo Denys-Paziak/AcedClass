@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger'
 import { IsEnum } from 'class-validator'
-import { EDocumentStatuses } from 'src/interfaces/EDocumentStatuses'
+import { EDocumentStatuses } from '../../../interfaces/EDocumentStatuses'
 
 export class ChangeStatusDocumentDto {
 	@ApiProperty({

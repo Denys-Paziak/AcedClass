@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger'
 import { Expose, Type } from 'class-transformer'
-import { EPointTypes } from 'src/interfaces/EPointTypes'
+import { EPointTypes } from '../../../interfaces/EPointTypes'
 
 class User {
 	@ApiProperty({ description: 'User ID', example: 12, type: Number })

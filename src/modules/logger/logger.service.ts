@@ -4,10 +4,7 @@ import { Injectable, OnModuleInit } from '@nestjs/common'
 @Injectable()
 export class ElasticLogsInitializerService implements OnModuleInit {
 	private readonly client = new Client({
-		node: process.env.ELASTICSEARCH_API_NODE || '',
-		auth: {
-			apiKey: process.env.ELASTICSEARCH_API_KEY || ''
-		}
+		node: process.env.ELASTICSEARCH_API_NODE
 	})
 
 	private readonly POLICY_NAME = 'acedclass-logs-policy'

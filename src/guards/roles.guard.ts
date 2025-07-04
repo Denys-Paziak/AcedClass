@@ -1,6 +1,6 @@
 import { CanActivate, ExecutionContext, ForbiddenException, Injectable, UnauthorizedException } from '@nestjs/common'
 import { Reflector } from '@nestjs/core'
-import { ERoleNames } from 'src/interfaces/ERoleNames'
+import { ERoleNames } from '../interfaces/ERoleNames'
 
 import { ROLES_KEY } from '../decorators/roles.decorator'
 

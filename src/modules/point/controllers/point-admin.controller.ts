@@ -1,9 +1,9 @@
 import { Body, Controller, Patch } from '@nestjs/common'
 import { ApiCookieAuth, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
-import { Authorization } from 'src/decorators/auth.decorator'
-import { EPointTypes } from 'src/interfaces/EPointTypes'
-import { ERoleNames } from 'src/interfaces/ERoleNames'
 
+import { Authorization } from '../../../decorators/auth.decorator'
+import { EPointTypes } from '../../../interfaces/EPointTypes'
+import { ERoleNames } from '../../../interfaces/ERoleNames'
 import { AppointmentPointsDto } from '../dtos/AppointmentPoints.dto'
 import { PointCommandService } from '../services/point-command.service'
 
@@ -24,7 +24,7 @@ export class PointAdminController {
 		} else if (dto.ammount < 0) {
 			await this.pointCommandService.writeOffPoints({
 				userId: dto.userId,
-				quantityPoint: dto.ammount,
+				quantityPoint: Math.abs(dto.ammount),
 				pointType: EPointTypes.POINT
 			})
 		}
@@ -41,7 +41,7 @@ export class PointAdminController {
 		} else if (dto.ammount < 0) {
 			await this.pointCommandService.writeOffPoints({
 				userId: dto.userId,
-				quantityPoint: dto.ammount,
+				quantityPoint: Math.abs(dto.ammount),
 				pointType: EPointTypes.REVEAL
 			})
 		}

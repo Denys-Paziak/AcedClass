@@ -1,10 +1,11 @@
 import { Module } from '@nestjs/common'
 import { PassportModule } from '@nestjs/passport'
 import { GoogleRecaptchaModule } from '@nestlab/google-recaptcha'
-import { getGoogleRecaptchaConfig } from 'src/configs/recaptcha.config'
-import { GoogleStrategy } from 'src/strategy/google.strategy'
 
+import { getGoogleRecaptchaConfig } from '../../configs/recaptcha.config'
+import { GoogleStrategy } from '../../strategy/google.strategy'
 import { JwtStrategy } from '../../strategy/jwt.strategy'
+import { SystemSettingModule } from '../system-setting/system-setting.module'
 import { TokenModule } from '../token/token.module'
 import { UserModule } from '../user/user.module'
 
@@ -14,7 +15,13 @@ import { AuthAdminService } from './services/auth-admin.service'
 import { AuthService } from './services/auth.service'
 
 @Module({
-	imports: [UserModule, TokenModule, PassportModule, GoogleRecaptchaModule.forRootAsync(getGoogleRecaptchaConfig())],
+	imports: [
+		UserModule,
+		TokenModule,
+		PassportModule,
+		SystemSettingModule,
+		GoogleRecaptchaModule.forRootAsync(getGoogleRecaptchaConfig())
+	],
 	controllers: [AuthController, AuthAdminController],
 	providers: [AuthService, AuthAdminService, JwtStrategy, GoogleStrategy]
 })

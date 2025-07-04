@@ -1,6 +1,6 @@
 import type { MailerAsyncOptions } from '@nestjs-modules/mailer/dist/interfaces/mailer-async-options.interface'
 import { ConfigModule, ConfigService } from '@nestjs/config'
-import { parseBoolean } from 'src/utils/parse-boolean.util'
+import { parseBoolean } from '../utils/parse-boolean.util'
 
 export function getMailerConfig(): MailerAsyncOptions {
 	return {
@@ -19,7 +19,7 @@ export function getMailerConfig(): MailerAsyncOptions {
 				}
 			},
 			defaults: {
-				from: `"Команда [name]" ${configService.getOrThrow<string>('MAIL_USER')}`
+				from: `"Команда AcedClass" ${configService.getOrThrow<string>('MAIL_USER')}`
 			}
 		})
 	}

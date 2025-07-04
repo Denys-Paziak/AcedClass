@@ -1,3 +1,3 @@
-import { User } from "src/modules/user/entities/User.entity";
+import { User } from "../modules/user/entities/User.entity";
 
 export type ITokenUser = Pick<User, 'id' | 'role'>

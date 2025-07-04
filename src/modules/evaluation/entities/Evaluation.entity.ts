@@ -1,6 +1,6 @@
-import { EEvaluationTypes } from 'src/interfaces/EEvaluationTypes'
-import { Document } from 'src/modules/document/entities/Document.entity'
-import { User } from 'src/modules/user/entities/User.entity'
+import { EEvaluationTypes } from '../../../interfaces/EEvaluationTypes'
+import { Document } from '../../../modules/document/entities/Document.entity'
+import { User } from '../../../modules/user/entities/User.entity'
 import { Column, CreateDateColumn, Entity, Index, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm'
 
 @Entity({ name: 'evaluation' })

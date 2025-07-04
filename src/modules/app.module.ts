@@ -4,8 +4,9 @@ import { APP_GUARD } from '@nestjs/core'
 import { ScheduleModule } from '@nestjs/schedule'
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler'
 import { TypeOrmModule } from '@nestjs/typeorm'
-import { getPostgresConfig } from 'src/configs/postgres.config'
-import { getThrottlerConfig } from 'src/configs/throttler.config'
+
+import { getPostgresConfig } from '../configs/postgres.config'
+import { getThrottlerConfig } from '../configs/throttler.config'
 
 import { AuthModule } from './auth/auth.module'
 import { ComplaintModule } from './complaint/complaint.module'

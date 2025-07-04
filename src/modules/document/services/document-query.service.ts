@@ -1,11 +1,12 @@
 import { Injectable, NotFoundException } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { plainToInstance } from 'class-transformer'
-import { EEvaluationTypes } from 'src/interfaces/EEvaluationTypes'
-import { MAX_RECOMMENDATION_ITEMS } from 'src/magic/constants'
-import { Evaluation } from 'src/modules/evaluation/entities/Evaluation.entity'
-import { DataSource, Not, Repository } from 'typeorm'
+import { DataSource, In, Not, Repository } from 'typeorm'
 
+import { EDocumentStatuses } from '../../../interfaces/EDocumentStatuses'
+import { EEvaluationTypes } from '../../../interfaces/EEvaluationTypes'
+import { MAX_RECOMMENDATION_ITEMS } from '../../../magic/constants'
+import { Evaluation } from '../../../modules/evaluation/entities/Evaluation.entity'
 import { GetAllDocumentsQueryDto } from '../dtos/GetAllDocumentsQuery.dto'
 import { SearchDocumentsDto } from '../dtos/SearchDocuments.dto'
 import { Document } from '../entities/Document.entity'
@@ -40,7 +41,10 @@ export class DocumentQueryService {
 			: false
 
 		const document = await this.documentRepository.findOne({
-			where: { systemName: documentSystemName },
+			where: {
+				systemName: documentSystemName,
+				status: In([EDocumentStatuses.APPROVED, EDocumentStatuses.FLAGGED, EDocumentStatuses.PENDING])
+			},
 			select: {
 				id: true,
 				linkFile: true,
@@ -71,7 +75,8 @@ export class DocumentQueryService {
 			where: {
 				id: Not(document.id),
 				university: { id: document.university?.id },
-				courseName: document.courseName || undefined
+				courseName: document.courseName || undefined,
+				status: In([EDocumentStatuses.APPROVED, EDocumentStatuses.FLAGGED, EDocumentStatuses.PENDING])
 			},
 			order: { numberViews: 'DESC' },
 			select: {
@@ -87,7 +92,11 @@ export class DocumentQueryService {
 		})
 
 		const topUniversity = await this.documentRepository.find({
-			where: { id: Not(document.id), university: { id: document.university?.id } },
+			where: {
+				id: Not(document.id),
+				university: { id: document.university?.id },
+				status: In([EDocumentStatuses.APPROVED, EDocumentStatuses.FLAGGED, EDocumentStatuses.PENDING])
+			},
 			order: { numberViews: 'DESC' },
 			select: {
 				id: true,
@@ -233,6 +242,9 @@ export class DocumentQueryService {
 				'likes_count."documentId" = document.id'
 			)
 			.addSelect('COALESCE(likes_count."likesCount", 0)', 'likesCount')
+			.andWhere('document.status IN (:...statuses)', {
+				statuses: [EDocumentStatuses.APPROVED, EDocumentStatuses.FLAGGED, EDocumentStatuses.PENDING]
+			})
 
 		if (options.ids) {
 			qb.andWhere('document.id IN (:...ids)', { ids: options.ids })
@@ -268,10 +280,13 @@ export class DocumentQueryService {
 
 		const total = await this.documentRepository.createQueryBuilder('document').getCount()
 
-		const page = options.ids && options.ids.length === 0 ? [] : await qb
-			.take(options.limit || 10)
-			.skip((options.limit || 10) * ((options.page || 1) - 1))
-			.getRawMany()
+		const page =
+			options.ids && options.ids.length === 0
+				? []
+				: await qb
+						.take(options.limit || 10)
+						.skip((options.limit || 10) * ((options.page || 1) - 1))
+						.getRawMany()
 
 		return { page, total }
 	}

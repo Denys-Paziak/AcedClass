@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger'
 import { Expose, Type } from 'class-transformer'
-import { EDocumentStatuses } from 'src/interfaces/EDocumentStatuses'
+import { EDocumentStatuses } from '../interfaces/EDocumentStatuses'
 
 import { UniversityResponse } from './University.response'
 

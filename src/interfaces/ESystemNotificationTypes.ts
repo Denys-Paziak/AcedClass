@@ -3,5 +3,6 @@ export enum ESystemNotificationTypes {
     ADD_REVEALS = 'add reveals',
     FILE_APPROVED = 'file approved',
     FILE_REJECTED = 'file rejected',
-    FILE_FLAGGED = 'file flagged'
+    FILE_FLAGGED = 'file flagged',
+    PROCESSING_FAILED = 'processing failed'
 }

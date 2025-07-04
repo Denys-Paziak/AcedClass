@@ -1,9 +1,9 @@
 import { ApiProperty } from '@nestjs/swagger'
 import { Expose, Type } from 'class-transformer'
-import { EDocumentStatuses } from 'src/interfaces/EDocumentStatuses'
-import { ERegistrationTypes } from 'src/interfaces/ERegistrationTypes'
-import { ERoleNames } from 'src/interfaces/ERoleNames'
-import { UserResponse } from 'src/responses/User.response'
+import { EDocumentStatuses } from '../../../interfaces/EDocumentStatuses'
+import { ERegistrationTypes } from '../../../interfaces/ERegistrationTypes'
+import { ERoleNames } from '../../../interfaces/ERoleNames'
+import { UserResponse } from '../../../responses/User.response'
 
 class SimpleDocument {
 	@Expose({ name: 'id' })
@@ -153,13 +153,21 @@ export class GetUserInfoResponse extends UserResponse {
 	})
 	dailyLimitUploads: number
 
-	@Expose({ name: 'availableUploads' })
+	@Expose({ name: 'bonusDailyLimitUploads' })
 	@ApiProperty({
-		description: "User's available uploads",
+		description: "User's bonus daily upload limit",
+		example: 4,
+		type: Number
+	})
+	bonusDailyLimitUploads: number
+
+	@Expose({ name: 'dailyCountUploads' })
+	@ApiProperty({
+		description: "Number of documents uploaded today",
 		example: 5,
 		type: Number
 	})
-	availableUploads: number
+	dailyCountUploads: number
 
 	@Expose({ name: 'accountBlocking' })
 	@ApiProperty({

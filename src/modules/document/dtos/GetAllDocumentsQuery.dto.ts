@@ -1,7 +1,7 @@
 import { ApiPropertyOptional } from '@nestjs/swagger'
 import { Type } from 'class-transformer'
 import { IsDate, IsEnum, IsInt, IsOptional, IsString, Min } from 'class-validator'
-import { EDocumentStatuses } from 'src/interfaces/EDocumentStatuses'
+import { EDocumentStatuses } from '../../../interfaces/EDocumentStatuses'
 
 export class GetAllDocumentsQueryDto {
 	@ApiPropertyOptional({

@@ -1,12 +1,13 @@
 import { BadRequestException, ForbiddenException, Injectable, UnauthorizedException } from '@nestjs/common'
 import * as bcrypt from 'bcrypt'
-import { ERegistrationTypes } from 'src/interfaces/ERegistrationTypes'
-import { ERoleNames } from 'src/interfaces/ERoleNames'
-import { ETokenTypes } from 'src/interfaces/ETokenTypes'
-import { UserCommandService } from 'src/modules/user/services/user-command.service'
-import { UserSystemService } from 'src/modules/user/services/user-system.service'
-import { generateRandomSuffix } from 'src/utils/generate-random-suffix.util'
 
+import { ERegistrationTypes } from '../../../interfaces/ERegistrationTypes'
+import { ERoleNames } from '../../../interfaces/ERoleNames'
+import { ETokenTypes } from '../../../interfaces/ETokenTypes'
+import { SystemSettingQueryService } from '../../../modules/system-setting/services/system-setting-query.service'
+import { UserCommandService } from '../../../modules/user/services/user-command.service'
+import { UserSystemService } from '../../../modules/user/services/user-system.service'
+import { generateRandomSuffix } from '../../../utils/generate-random-suffix.util'
 import { MailService } from '../../mail/mail.service'
 import { TokenService } from '../../token/token.service'
 import { ForgotPasswordDto } from '../dtos/ForgotPassword.dto'
@@ -20,7 +21,8 @@ export class AuthService {
 		private readonly tokenService: TokenService,
 		private readonly mailService: MailService,
 		private readonly userSystemService: UserSystemService,
-		private readonly userCommandService: UserCommandService
+		private readonly userCommandService: UserCommandService,
+		private readonly systemSettingQueryService: SystemSettingQueryService
 	) {}
 
 	async register(data: RegistrationDto) {
@@ -52,12 +54,15 @@ export class AuthService {
 			throw new ForbiddenException(existsUser.reasonBlocking || 'Your account has been banned.')
 		}
 
+		const { limit } = (await this.systemSettingQueryService.getSettings(['daily limit uploads']))('daily limit uploads')
+
 		const userFromDB = await this.userSystemService.createAndCheck({
 			email: data.email,
 			password: hashPassword,
 			role: ERoleNames.USER,
 			registrationType: ERegistrationTypes.PASSWORD,
-			username
+			username,
+			dailyLimitUploads: limit
 		})
 
 		const refreshToken = await this.tokenService.generateRefreshToken({
@@ -143,7 +148,7 @@ export class AuthService {
 			},
 			new UnauthorizedException('Incorrect login or password')
 		)
-		
+
 		if (userFromDB.accountBlocking && userFromDB.accountBlocking > new Date()) {
 			throw new ForbiddenException(userFromDB.reasonBlocking || 'Your account has been banned.')
 		}

@@ -1,9 +1,9 @@
-import { EDocumentStatuses } from 'src/interfaces/EDocumentStatuses'
-import { Complaint } from 'src/modules/complaint/entities/Complaint.entity'
-import { UnlockedDocument } from 'src/modules/document/entities/Unlocked-document.entity'
-import { Evaluation } from 'src/modules/evaluation/entities/Evaluation.entity'
-import { University } from 'src/modules/university/entities/University.entity'
-import { User } from 'src/modules/user/entities/User.entity'
+import { EDocumentStatuses } from '../../../interfaces/EDocumentStatuses'
+import { Complaint } from '../../../modules/complaint/entities/Complaint.entity'
+import { UnlockedDocument } from '../../../modules/document/entities/Unlocked-document.entity'
+import { Evaluation } from '../../../modules/evaluation/entities/Evaluation.entity'
+import { University } from '../../../modules/university/entities/University.entity'
+import { User } from '../../../modules/user/entities/User.entity'
 import {
 	Column,
 	CreateDateColumn,
@@ -32,12 +32,18 @@ export class Document {
 
 	@Column({ type: 'varchar', name: 'link_file', length: 1024, default: '', select: false })
 	linkFile: string
+	
+	@Column({ type: 'varchar', name: 'link_short_file', length: 1024, default: '' })
+	linkShortFile: string
 
 	@Column({ type: 'text', name: 'links_blur_file', default: '' })
 	linksBlurFile: string
 
 	@Column({ type: 'varchar', name: 'link_preview', length: 1024, default: '' })
 	linkPreview: string
+
+	@Column({ type: 'varchar', length: 255, default: '' })
+	processingResult: string
 
 	@ManyToOne(() => University, university => university.documents, {
 		onDelete: 'SET NULL',
@@ -56,7 +62,7 @@ export class Document {
 	@Column({ type: 'int', name: 'page_count', default: 0 })
 	pageCount: number
 
-	@Column({ type: 'enum', enum: EDocumentStatuses, default: EDocumentStatuses.PENDING })
+	@Column({ type: 'enum', enum: EDocumentStatuses, default: EDocumentStatuses.PROCESSING })
 	@Index()
 	status: EDocumentStatuses
 
