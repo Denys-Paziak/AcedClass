@@ -1,9 +1,11 @@
 from abc import ABC, abstractmethod
 
+
 class BaseHandler(ABC):
-    def __init__(self, file_path, user_id):
+    def __init__(self, file_path, user_id, doc_id):
         self.file_path = file_path
         self.user_id = user_id
+        self.doc_id = doc_id
 
     @abstractmethod
     def process(self):

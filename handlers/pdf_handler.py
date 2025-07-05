@@ -4,4 +4,4 @@ from .base_handler import BaseHandler
 
 class PDFHandler(BaseHandler):
     def process(self):
-        return run_pdf_pipeline(self.file_path, self.user_id)
+        return run_pdf_pipeline(self.file_path, self.user_id, self.doc_id)

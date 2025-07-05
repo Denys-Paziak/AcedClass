@@ -470,3 +470,223 @@
 2025-06-13 12:49:35,885 — INFO — Processed SHA-256: 0efbfd072d377a665f397d67883878d08b26ccc811c5d554f867896b061c241e
 2025-06-13 12:49:35,885 — INFO — Watermark detected: True
 2025-06-13 12:49:35,885 — INFO — Processed file saved: E:\Work\AcedClass\cleaned\BUSN100_Quiz_1_flattened_cleaned_watermarked.pdf
+2025-06-23 18:13:12,774 — INFO — Received file: uploads/BUSN100_Quiz_1.pdf
+2025-06-23 18:13:12,776 — INFO — Original SHA-256: 6be4c6d99eadc0d2a8908cde70326ea10279c2dcc944abbaeda2703e93971302
+2025-06-23 18:16:06,763 — INFO — Received file: uploads/BUSN100_Quiz_1.pdf
+2025-06-23 18:16:06,763 — INFO — Original SHA-256: 6be4c6d99eadc0d2a8908cde70326ea10279c2dcc944abbaeda2703e93971302
+2025-06-23 18:16:25,999 — INFO — Received file: uploads/sample.pdf
+2025-06-23 18:16:26,000 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-06-23 18:16:43,162 — INFO — Processed SHA-256: 470d49524d3ee85fe89e0a31df406cc26219ec0214ec803b0f06e27010db0ff3
+2025-06-23 18:16:43,162 — INFO — Watermark detected: True
+2025-06-23 18:16:43,162 — INFO — Processed file saved: E:\Work\AcedClass\cleaned\sample_flattened_cleaned_watermarked.pdf
+2025-06-23 21:08:03,776 — INFO — Received file: uploads/BUSN100_Quiz_1.pdf
+2025-06-23 21:08:03,779 — INFO — Original SHA-256: 6be4c6d99eadc0d2a8908cde70326ea10279c2dcc944abbaeda2703e93971302
+2025-06-23 21:10:00,060 — INFO — Processed SHA-256: a9a7e03172bf538c29eab1fee667a338a2a5a3e188f01e64237a724fe267158d
+2025-06-23 21:10:00,060 — INFO — Watermark detected: True
+2025-06-23 21:10:00,060 — INFO — Processed file saved: E:\Work\AcedClass\cleaned\BUSN100_Quiz_1_flattened_cleaned_watermarked.pdf
+2025-06-30 14:53:26,431 — INFO — Received file: uploads\sample.pdf
+2025-06-30 14:53:26,440 — INFO — Start processing: uploads\sample.pdf
+2025-06-30 14:53:26,441 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-06-30 14:53:45,252 — ERROR — Background processing error: No text extracted from file!
+2025-06-30 16:08:16,651 — INFO — Received file: uploads\sample.pdf
+2025-06-30 16:08:16,657 — INFO — Start processing: uploads\sample.pdf
+2025-06-30 16:08:16,658 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-06-30 16:08:36,042 — ERROR — Background processing error: No text extracted from file!
+2025-06-30 16:31:13,695 — INFO — Received file: uploads\sample.pdf
+2025-06-30 16:31:13,702 — INFO — Start processing: uploads\sample.pdf
+2025-06-30 16:31:13,703 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-06-30 16:31:32,293 — ERROR — Background processing error: No text extracted from file!
+2025-06-30 16:35:28,381 — INFO — Received file: uploads\sample.pdf
+2025-06-30 16:35:28,387 — INFO — Start processing: uploads\sample.pdf
+2025-06-30 16:35:28,387 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-06-30 16:35:46,505 — ERROR — Background processing error: No text extracted from file!
+2025-06-30 16:39:06,569 — INFO — Received file: uploads\sample.pdf
+2025-06-30 16:39:06,575 — INFO — Start processing: uploads\sample.pdf
+2025-06-30 16:39:06,575 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-06-30 16:39:25,369 — INFO — Processed SHA-256: 15e8c5fcf989377e8342b02846887af9acbf62f456dec878ee8f8a11f7dd3dde
+2025-06-30 16:39:25,369 — INFO — Watermark detected: True
+2025-06-30 16:39:25,369 — INFO — Processed file saved: E:\Work\AcedClass\cleaned\sample_flattened_cleaned.pdf
+2025-06-30 16:47:53,801 — INFO — Received file: uploads\BUSN100_Quiz_1.pdf
+2025-06-30 16:47:53,807 — INFO — Start processing: uploads\BUSN100_Quiz_1.pdf
+2025-06-30 16:47:53,808 — INFO — Original SHA-256: 6be4c6d99eadc0d2a8908cde70326ea10279c2dcc944abbaeda2703e93971302
+2025-06-30 16:49:35,206 — INFO — Processed SHA-256: a60c48514bea39327d823e78307966dfd4a255c2dcc6ba7fe08f7bd2e6690314
+2025-06-30 16:49:35,206 — INFO — Watermark detected: True
+2025-06-30 16:49:35,206 — INFO — Processed file saved: E:\Work\AcedClass\cleaned\BUSN100_Quiz_1_flattened_cleaned.pdf
+2025-06-30 17:51:19,621 — INFO — Received file: uploads\BUSN100_Quiz_1.pdf
+2025-06-30 17:51:19,627 — INFO — Start processing: uploads\BUSN100_Quiz_1.pdf
+2025-06-30 17:51:19,628 — INFO — Original SHA-256: 6be4c6d99eadc0d2a8908cde70326ea10279c2dcc944abbaeda2703e93971302
+2025-06-30 17:52:54,076 — INFO — Processed SHA-256: c52940a183013efb45a42f2425d069741cd7320b415739fae7a86a13cf1fb036
+2025-06-30 17:52:54,076 — INFO — Watermark detected: True
+2025-06-30 17:52:54,076 — INFO — Processed file saved: E:\Work\AcedClass\cleaned\BUSN100_Quiz_1_flattened_cleaned.pdf
+2025-06-30 17:54:09,565 — INFO — Received file: uploads\BUSN100_Quiz_1.pdf
+2025-06-30 17:54:09,571 — INFO — Start processing: uploads\BUSN100_Quiz_1.pdf
+2025-06-30 17:54:09,573 — INFO — Original SHA-256: 6be4c6d99eadc0d2a8908cde70326ea10279c2dcc944abbaeda2703e93971302
+2025-06-30 17:55:44,767 — INFO — Processed SHA-256: 61a365c04c5cf8a584e69237663cdacc412f9751ab5fa1da8ba8a5e58f67fbe5
+2025-06-30 17:55:44,767 — INFO — Watermark detected: True
+2025-06-30 17:55:44,767 — INFO — Processed file saved: E:\Work\AcedClass\cleaned\BUSN100_Quiz_1_flattened_cleaned.pdf
+2025-06-30 17:56:28,472 — INFO — Received file: uploads\BUSN100_Quiz_1.pdf
+2025-06-30 17:56:28,479 — INFO — Start processing: uploads\BUSN100_Quiz_1.pdf
+2025-06-30 17:56:28,479 — INFO — Original SHA-256: 6be4c6d99eadc0d2a8908cde70326ea10279c2dcc944abbaeda2703e93971302
+2025-06-30 17:58:01,277 — INFO — Processed SHA-256: 6e4a3e15f2e6d603bf9ca534eff9b74d0aebd2703b71ff7af83f2b9db320320e
+2025-06-30 17:58:01,278 — INFO — Watermark detected: True
+2025-06-30 17:58:01,278 — INFO — Processed file saved: E:\Work\AcedClass\cleaned\BUSN100_Quiz_1_flattened_cleaned.pdf
+2025-06-30 18:11:45,025 — INFO — Received file: uploads\BUSN100_Quiz_1.pdf
+2025-06-30 18:11:45,031 — INFO — Start processing: uploads\BUSN100_Quiz_1.pdf
+2025-06-30 18:11:45,032 — INFO — Original SHA-256: 6be4c6d99eadc0d2a8908cde70326ea10279c2dcc944abbaeda2703e93971302
+2025-06-30 18:13:18,269 — INFO — Processed SHA-256: 614748f267d8ad3fae6d25299639ac014a4545bebc60058349678f603760c6e0
+2025-06-30 18:13:18,269 — INFO — Watermark detected: True
+2025-06-30 18:13:18,269 — INFO — Processed file saved: E:\Work\AcedClass\cleaned\BUSN100_Quiz_1_flattened_cleaned.pdf
+2025-07-01 12:21:53,467 — INFO — Received file: uploads\BUSN100_Quiz_1.pdf
+2025-07-01 12:21:53,476 — INFO — Start processing: uploads\BUSN100_Quiz_1.pdf
+2025-07-01 12:21:53,476 — INFO — Original SHA-256: 6be4c6d99eadc0d2a8908cde70326ea10279c2dcc944abbaeda2703e93971302
+2025-07-01 12:23:34,017 — INFO — Processed SHA-256: 0e4032598ed0623fc5ad5a94d00247cdba6ab6188c4d1c823a3366ed1e8f64b6
+2025-07-01 12:23:34,017 — INFO — Watermark detected: True
+2025-07-01 12:23:34,017 — INFO — Processed file saved: E:\Work\AcedClass\cleaned\BUSN100_Quiz_1_flattened_cleaned.pdf
+2025-07-01 12:25:36,063 — INFO — Received file: uploads\BUSN100_Quiz_1.pdf
+2025-07-01 12:25:36,069 — INFO — Start processing: uploads\BUSN100_Quiz_1.pdf
+2025-07-01 12:25:36,069 — INFO — Original SHA-256: 6be4c6d99eadc0d2a8908cde70326ea10279c2dcc944abbaeda2703e93971302
+2025-07-01 12:27:12,334 — INFO — Processed SHA-256: bb1fa32b12aec0136946f0c5eda18d54fdcb81b2b8d1ae7a3121381f6c72cad5
+2025-07-01 12:27:12,334 — INFO — Watermark detected: True
+2025-07-01 12:27:12,334 — INFO — Processed file saved: E:\Work\AcedClass\cleaned\BUSN100_Quiz_1_flattened_cleaned.pdf
+2025-07-01 14:31:20,539 — INFO — Received file: uploads\BUSN100_Quiz_1.pdf
+2025-07-01 14:31:20,546 — INFO — Start processing: uploads\BUSN100_Quiz_1.pdf
+2025-07-01 14:31:20,547 — INFO — Original SHA-256: 6be4c6d99eadc0d2a8908cde70326ea10279c2dcc944abbaeda2703e93971302
+2025-07-01 14:32:57,554 — INFO — Processed SHA-256: c0330879903006440f03cdb904c72baab565a1338fd8fe951460a20a6d0c528c
+2025-07-01 14:32:57,554 — INFO — Watermark detected: True
+2025-07-01 14:32:57,554 — INFO — Processed file saved: E:\Work\AcedClass\cleaned\BUSN100_Quiz_1_flattened_cleaned.pdf
+2025-07-01 14:36:40,134 — INFO — Received file: uploads\BUSN100_Quiz_1.pdf
+2025-07-01 14:36:40,143 — INFO — Start processing: uploads\BUSN100_Quiz_1.pdf
+2025-07-01 14:36:40,143 — INFO — Original SHA-256: 6be4c6d99eadc0d2a8908cde70326ea10279c2dcc944abbaeda2703e93971302
+2025-07-01 14:38:14,350 — INFO — Processed SHA-256: b91cdcce01be66eb15fba7cb89cee790341390272f6ece857886249f73f220a7
+2025-07-01 14:38:14,350 — INFO — Watermark detected: True
+2025-07-01 14:38:14,350 — INFO — Processed file saved: E:\Work\AcedClass\cleaned\BUSN100_Quiz_1_flattened_cleaned.pdf
+2025-07-01 14:39:02,573 — INFO — Received file: uploads\BUSN100_Quiz_1.pdf
+2025-07-01 14:39:02,582 — INFO — Start processing: uploads\BUSN100_Quiz_1.pdf
+2025-07-01 14:39:02,583 — INFO — Original SHA-256: 6be4c6d99eadc0d2a8908cde70326ea10279c2dcc944abbaeda2703e93971302
+2025-07-01 14:40:35,284 — INFO — Processed SHA-256: 03d8c03210fa2010d27d5bd9cedabda7ac66d1e8e694e2f7d167ee8bbe8f93fa
+2025-07-01 14:40:35,284 — INFO — Watermark detected: True
+2025-07-01 14:40:35,284 — INFO — Processed file saved: E:\Work\AcedClass\cleaned\BUSN100_Quiz_1_flattened_cleaned.pdf
+2025-07-01 14:46:38,713 — INFO — Received file: uploads\BUSN100_Quiz_1.pdf
+2025-07-01 14:46:38,719 — INFO — Start processing: uploads\BUSN100_Quiz_1.pdf
+2025-07-01 14:46:38,720 — INFO — Original SHA-256: 6be4c6d99eadc0d2a8908cde70326ea10279c2dcc944abbaeda2703e93971302
+2025-07-01 14:48:17,695 — INFO — Processed SHA-256: 7d37eace4cd9d382507a6774dc22524410916e9a76f9c3d67b9f2fb3c6a20083
+2025-07-01 14:48:17,696 — INFO — Watermark detected: True
+2025-07-01 14:48:17,696 — INFO — Processed file saved: E:\Work\AcedClass\cleaned\BUSN100_Quiz_1_flattened_cleaned.pdf
+2025-07-01 14:57:04,698 — INFO — Received file: uploads\BUSN100_Quiz_1.pdf
+2025-07-01 14:57:04,703 — INFO — Start processing: uploads\BUSN100_Quiz_1.pdf
+2025-07-01 14:57:04,704 — INFO — Original SHA-256: 6be4c6d99eadc0d2a8908cde70326ea10279c2dcc944abbaeda2703e93971302
+2025-07-01 14:57:13,698 — INFO — Received file: uploads\BUSN100_Quiz_1.pdf
+2025-07-01 14:57:13,699 — INFO — Start processing: uploads\BUSN100_Quiz_1.pdf
+2025-07-01 14:57:13,700 — INFO — Original SHA-256: 6be4c6d99eadc0d2a8908cde70326ea10279c2dcc944abbaeda2703e93971302
+2025-07-01 14:59:37,912 — INFO — Processed SHA-256: d6ec764b13c15ff593a2b5035bcff373564a9aace15d0e23c5754464b8aacc03
+2025-07-01 14:59:37,914 — INFO — Watermark detected: True
+2025-07-01 14:59:37,914 — INFO — Processed file saved: E:\Work\AcedClass\cleaned\BUSN100_Quiz_1_flattened_cleaned.pdf
+2025-07-01 14:59:49,187 — INFO — Processed SHA-256: 1494e36170a5fb13584b11c4feb8175c4eeed0b84a8cc1712d1eac4ec3c29171
+2025-07-01 14:59:49,187 — INFO — Watermark detected: True
+2025-07-01 14:59:49,187 — INFO — Processed file saved: E:\Work\AcedClass\cleaned\BUSN100_Quiz_1_flattened_cleaned.pdf
+2025-07-01 15:38:35,385 — ERROR — Upload error: [Errno 2] No such file or directory: 'uploads\\123121\\gdfg45tgsdf\\BUSN100_Quiz_1.pdf'
+2025-07-01 15:39:06,002 — ERROR — Upload error: [Errno 2] No such file or directory: 'uploads\\123121\\gdfg45tgsdf\\BUSN100_Quiz_1.pdf'
+2025-07-01 15:39:38,929 — ERROR — Upload error: [Errno 2] No such file or directory: 'uploads\\123121\\gdfg45tgsdf\\BUSN100_Quiz_1.pdf'
+2025-07-01 15:40:43,242 — ERROR — Upload error: [WinError 3] The system cannot find the path specified: 'uploads\\123121\\gdfg45tgsdf'
+2025-07-01 15:40:59,045 — ERROR — Upload error: [WinError 183] Cannot create a file when that file already exists: 'uploads'
+2025-07-01 15:41:07,254 — ERROR — Upload error: [WinError 183] Cannot create a file when that file already exists: 'uploads'
+2025-07-01 15:41:14,364 — ERROR — Upload error: [WinError 3] The system cannot find the path specified: 'uploads\\123121\\gdfg45tgsdf'
+2025-07-01 15:42:16,594 — ERROR — Upload error: module 'os' has no attribute 'mkdirs'
+2025-07-01 15:42:31,793 — INFO — Received file: uploads\123121\gdfg45tgsdf\BUSN100_Quiz_1.pdf
+2025-07-01 15:42:31,800 — INFO — Start processing: uploads\123121\gdfg45tgsdf\BUSN100_Quiz_1.pdf
+2025-07-01 15:42:31,801 — INFO — Original SHA-256: 6be4c6d99eadc0d2a8908cde70326ea10279c2dcc944abbaeda2703e93971302
+2025-07-01 15:44:12,731 — INFO — Processed SHA-256: fd4b390b9b627f8d8f2b76987113c65f06cc1361c4c13e2fabfdb5b11972dabc
+2025-07-01 15:44:12,731 — INFO — Watermark detected: True
+2025-07-01 15:44:12,732 — INFO — Processed file saved: E:\Work\AcedClass\cleaned\BUSN100_Quiz_1_flattened_cleaned.pdf
+2025-07-01 15:58:37,299 — INFO — Received file: uploads\80123376342\c9ld34pex-hs4k9hcgf\BUSN100_Quiz_1.pdf
+2025-07-01 15:58:37,304 — INFO — Start processing: uploads\80123376342\c9ld34pex-hs4k9hcgf\BUSN100_Quiz_1.pdf
+2025-07-01 15:58:37,304 — INFO — Original SHA-256: 6be4c6d99eadc0d2a8908cde70326ea10279c2dcc944abbaeda2703e93971302
+2025-07-01 15:58:37,304 — ERROR — Background processing error: BaseHandler.__init__() takes 3 positional arguments but 4 were given
+2025-07-01 16:12:09,633 — INFO — Received file: uploads\123123\fop84yunmf34t79yw4fh089gkj3n45t\BUSN100_Quiz_1.pdf
+2025-07-01 16:12:09,638 — INFO — Start processing: uploads\123123\fop84yunmf34t79yw4fh089gkj3n45t\BUSN100_Quiz_1.pdf
+2025-07-01 16:12:09,639 — INFO — Original SHA-256: 6be4c6d99eadc0d2a8908cde70326ea10279c2dcc944abbaeda2703e93971302
+2025-07-01 16:12:09,639 — ERROR — Background processing error: BaseHandler.__init__() takes 3 positional arguments but 4 were given
+2025-07-01 16:12:11,593 — INFO — Received file: uploads\123123\fop84yunmf34t79yw4fh089gkj3n45t\BUSN100_Quiz_1.pdf
+2025-07-01 16:12:11,593 — INFO — Start processing: uploads\123123\fop84yunmf34t79yw4fh089gkj3n45t\BUSN100_Quiz_1.pdf
+2025-07-01 16:12:11,594 — INFO — Original SHA-256: 6be4c6d99eadc0d2a8908cde70326ea10279c2dcc944abbaeda2703e93971302
+2025-07-01 16:12:11,594 — ERROR — Background processing error: BaseHandler.__init__() takes 3 positional arguments but 4 were given
+2025-07-01 16:13:10,457 — INFO — Received file: uploads\123123\fop84yunmf34t79yw4fh089gkj3n45t\BUSN100_Quiz_1.pdf
+2025-07-01 16:13:10,458 — INFO — Start processing: uploads\123123\fop84yunmf34t79yw4fh089gkj3n45t\BUSN100_Quiz_1.pdf
+2025-07-01 16:13:10,459 — INFO — Original SHA-256: 6be4c6d99eadc0d2a8908cde70326ea10279c2dcc944abbaeda2703e93971302
+2025-07-01 16:13:10,459 — ERROR — Background processing error: BaseHandler.__init__() takes 3 positional arguments but 4 were given
+2025-07-01 16:14:28,410 — INFO — Received file: uploads\123123\fop84yunmf34t79yw4fh089gkj3n45t\BUSN100_Quiz_1.pdf
+2025-07-01 16:14:28,416 — INFO — Start processing: uploads\123123\fop84yunmf34t79yw4fh089gkj3n45t\BUSN100_Quiz_1.pdf
+2025-07-01 16:14:28,418 — INFO — Original SHA-256: 6be4c6d99eadc0d2a8908cde70326ea10279c2dcc944abbaeda2703e93971302
+2025-07-01 16:16:04,520 — INFO — Processed SHA-256: 2283236702663b34d27597bd6042f5168420e6c18e7c43b7e333e155922f077d
+2025-07-01 16:16:04,520 — INFO — Watermark detected: True
+2025-07-01 16:16:04,520 — INFO — Processed file saved: E:\Work\AcedClass\cleaned\BUSN100_Quiz_1_flattened_cleaned.pdf
+2025-07-01 16:24:47,224 — INFO — Received file: uploads\123123\fop84yunmf34t79yw4fh089gkj3n45t\BUSN100_Quiz_1.pdf
+2025-07-01 16:24:47,230 — INFO — Start processing: uploads\123123\fop84yunmf34t79yw4fh089gkj3n45t\BUSN100_Quiz_1.pdf
+2025-07-01 16:24:47,230 — INFO — Original SHA-256: 6be4c6d99eadc0d2a8908cde70326ea10279c2dcc944abbaeda2703e93971302
+2025-07-01 16:26:24,252 — INFO — Processed SHA-256: b2e62cbf023d80a71c8375ad9485f8d45b10500c81662b776a26f3d4f3d07f40
+2025-07-01 16:26:24,252 — INFO — Watermark detected: True
+2025-07-01 16:26:24,252 — INFO — Processed file saved: E:\Work\AcedClass\cleaned\BUSN100_Quiz_1_flattened_cleaned.pdf
+2025-07-01 16:32:49,752 — INFO — Received file: uploads\123123\fop84yunmf34t79yw4fh089gkj3n45t\BUSN100_Quiz_1.pdf
+2025-07-01 16:32:49,757 — INFO — Start processing: uploads\123123\fop84yunmf34t79yw4fh089gkj3n45t\BUSN100_Quiz_1.pdf
+2025-07-01 16:32:49,757 — INFO — Original SHA-256: 6be4c6d99eadc0d2a8908cde70326ea10279c2dcc944abbaeda2703e93971302
+2025-07-01 16:34:20,717 — ERROR — Background processing error: [WinError 2] The system cannot find the file specified
+2025-07-01 17:03:45,562 — INFO — Received file: uploads\123123\fop84yunmf34t79yw4fh089gkj3n45t\BUSN100_Quiz_1.pdf
+2025-07-01 17:03:45,568 — INFO — Start processing: uploads\123123\fop84yunmf34t79yw4fh089gkj3n45t\BUSN100_Quiz_1.pdf
+2025-07-01 17:03:45,568 — INFO — Original SHA-256: 6be4c6d99eadc0d2a8908cde70326ea10279c2dcc944abbaeda2703e93971302
+2025-07-01 17:05:18,664 — ERROR — Background processing error: [WinError 2] The system cannot find the file specified
+2025-07-01 17:08:34,101 — INFO — Received file: uploads\123123\fop84yunmf34t79yw4fh089gkj3n45t\BUSN100_Quiz_1.pdf
+2025-07-01 17:08:34,108 — INFO — Start processing: uploads\123123\fop84yunmf34t79yw4fh089gkj3n45t\BUSN100_Quiz_1.pdf
+2025-07-01 17:08:34,108 — INFO — Original SHA-256: 6be4c6d99eadc0d2a8908cde70326ea10279c2dcc944abbaeda2703e93971302
+2025-07-01 17:10:06,268 — ERROR — Background processing error: [WinError 2] The system cannot find the file specified
+2025-07-01 17:15:01,022 — INFO — Received file: uploads\123123\fop84yunmf34t79yw4fh089gkj3n45t\BUSN100_Quiz_1.pdf
+2025-07-01 17:15:01,025 — INFO — Start processing: uploads\123123\fop84yunmf34t79yw4fh089gkj3n45t\BUSN100_Quiz_1.pdf
+2025-07-01 17:15:01,028 — INFO — Original SHA-256: 6be4c6d99eadc0d2a8908cde70326ea10279c2dcc944abbaeda2703e93971302
+2025-07-01 17:16:32,781 — ERROR — Background processing error: [WinError 2] The system cannot find the file specified
+2025-07-01 17:18:55,338 — INFO — Received file: uploads\123123\fop84yunmf34t79yw4fh089gkj3n45t\BUSN100_Quiz_1.pdf
+2025-07-01 17:18:55,345 — INFO — Start processing: uploads\123123\fop84yunmf34t79yw4fh089gkj3n45t\BUSN100_Quiz_1.pdf
+2025-07-01 17:18:55,345 — INFO — Original SHA-256: 6be4c6d99eadc0d2a8908cde70326ea10279c2dcc944abbaeda2703e93971302
+2025-07-01 17:20:31,723 — INFO — Processed SHA-256: 889b3003abf2b97aab1dbd13b789bea66d09aa9ea504b6c869563f8bb9766091
+2025-07-01 17:20:31,724 — INFO — Watermark detected: True
+2025-07-01 17:20:31,724 — INFO — Processed file saved: uploads\123123\fop84yunmf34t79yw4fh089gkj3n45t\cleaned\BUSN100_Quiz_1_flattened_cleaned.pdf
+2025-07-01 18:04:14,986 — INFO — Received file: uploads\53435431231234\giohuer780gh34ipu\BUSN100_Quiz_1.pdf
+2025-07-01 18:04:14,990 — INFO — Start processing: uploads\53435431231234\giohuer780gh34ipu\BUSN100_Quiz_1.pdf
+2025-07-01 18:04:14,991 — INFO — Original SHA-256: 6be4c6d99eadc0d2a8908cde70326ea10279c2dcc944abbaeda2703e93971302
+2025-07-01 18:05:54,838 — ERROR — Background processing error: HTTPConnectionPool(host='127.0.0.1', port=80): Max retries exceeded with url: /webhook/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x0000025E2ADB22A0>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))
+2025-07-01 18:09:45,823 — INFO — Received file: uploads\53435431231234\giohuer780gh34ipu\BUSN100_Quiz_1.pdf
+2025-07-01 18:09:45,823 — INFO — Start processing: uploads\53435431231234\giohuer780gh34ipu\BUSN100_Quiz_1.pdf
+2025-07-01 18:09:45,823 — INFO — Original SHA-256: 6be4c6d99eadc0d2a8908cde70326ea10279c2dcc944abbaeda2703e93971302
+2025-07-01 18:11:24,424 — INFO — Processed SHA-256: 0ff20186535e9d30ba3a371ba19261d4da47db9ca03967f8856a1759b35a986a
+2025-07-01 18:11:24,424 — INFO — Watermark detected: True
+2025-07-01 18:11:24,424 — INFO — Processed file saved: uploads\53435431231234\giohuer780gh34ipu\cleaned\BUSN100_Quiz_1_flattened_cleaned.pdf
+2025-07-02 14:32:45,313 — INFO — Received file: uploads\1111\f423fasd\sample.pdf
+2025-07-02 14:32:45,316 — INFO — Start processing: uploads\1111\f423fasd\sample.pdf
+2025-07-02 14:32:45,316 — INFO — Original SHA-256: 4361e431d424248681fba54144de715f2c6f35e0c06db3f5fe53442f46bb0957
+2025-07-02 14:33:02,230 — ERROR — Background processing error: No text extracted from file!
+2025-07-02 14:46:07,394 — INFO — Received file: uploads\1111\f423fasd\BUSN100_Quiz_1.pdf
+2025-07-02 14:46:07,396 — INFO — Start processing: uploads\1111\f423fasd\BUSN100_Quiz_1.pdf
+2025-07-02 14:46:07,396 — INFO — Original SHA-256: 6be4c6d99eadc0d2a8908cde70326ea10279c2dcc944abbaeda2703e93971302
+2025-07-02 14:47:45,442 — INFO — Processed SHA-256: 7f0a65a94cbf729d6bae3e0e4bb59422628a1b84b8c7f90b3b86b90f46fd3a0b
+2025-07-02 14:47:45,442 — INFO — Watermark detected: True
+2025-07-02 14:47:45,442 — INFO — Processed file saved: uploads\1111\f423fasd\cleaned\BUSN100_Quiz_1_flattened_cleaned.pdf
+2025-07-02 14:49:31,351 — INFO — Received file: uploads\111000\f423fasdaa1\BUSN100_Quiz_1.pdf
+2025-07-02 14:49:31,354 — INFO — Start processing: uploads\111000\f423fasdaa1\BUSN100_Quiz_1.pdf
+2025-07-02 14:49:31,354 — INFO — Original SHA-256: 6be4c6d99eadc0d2a8908cde70326ea10279c2dcc944abbaeda2703e93971302
+2025-07-02 14:51:09,466 — INFO — Processed SHA-256: 03d8c03210fa2010d27d5bd9cedabda7ac66d1e8e694e2f7d167ee8bbe8f93fa
+2025-07-02 14:51:09,466 — INFO — Watermark detected: True
+2025-07-02 14:51:09,466 — INFO — Processed file saved: uploads\111000\f423fasdaa1\cleaned\BUSN100_Quiz_1_flattened_cleaned.pdf
+2025-07-02 19:29:58,331 — ERROR — Глобальна помилка у /add-watermark/: [Errno 2] No such file or directory: '/tmp\\fb41b556-96ef-4899-b831-fcc48464c91d.pdf.7B39A2bE'
+2025-07-02 19:30:02,907 — ERROR — Глобальна помилка у /add-watermark/: [Errno 2] No such file or directory: '/tmp\\fb41b556-96ef-4899-b831-fcc48464c91d.pdf.e74C97d6'
+2025-07-02 19:30:56,280 — ERROR — Глобальна помилка у /add-watermark/: [Errno 2] No such file or directory: '/tmp\\fb41b556-96ef-4899-b831-fcc48464c91d.pdf.De724473'
+2025-07-02 19:31:22,563 — ERROR — Глобальна помилка у /add-watermark/: [Errno 2] No such file or directory: '/tmp\\fb41b556-96ef-4899-b831-fcc48464c91d.pdf.3e94FaBf'
+2025-07-02 19:32:42,967 — ERROR — Глобальна помилка у /add-watermark/: [Errno 2] No such file or directory: 'E:/tmp\\fb41b556-96ef-4899-b831-fcc48464c91d.pdf.4C48F686'
+2025-07-02 19:34:09,001 — ERROR — Глобальна помилка у /add-watermark/: [Errno 2] No such file or directory: 'E:/tmp\\fb41b556-96ef-4899-b831-fcc48464c91d.pdf.9AdA9957'
+2025-07-02 19:34:27,796 — ERROR — Глобальна помилка у /add-watermark/: [Errno 2] No such file or directory: '/tmp\\fb41b556-96ef-4899-b831-fcc48464c91d.pdf.FBa5F3E1'
+2025-07-02 19:35:43,554 — INFO — Завантажено файл з S3: E:\Work\AcedClass\tmp\fb41b556-96ef-4899-b831-fcc48464c91d.pdf
+2025-07-02 19:35:43,580 — ERROR — Глобальна помилка у /add-watermark/: name 'FileResponse' is not defined
+2025-07-02 19:36:51,368 — INFO — Завантажено файл з S3: E:\Work\AcedClass\tmp\fb41b556-96ef-4899-b831-fcc48464c91d.pdf
+2025-07-03 16:42:54,207 — INFO — Received file: uploads\111111111\543265473245\BUSN100_Quiz_1.pdf
+2025-07-03 16:42:54,209 — ERROR — Upload error: join() argument must be str, bytes, or os.PathLike object, not 'Form'
+2025-07-03 16:43:47,666 — INFO — Received file: uploads\123123\d2d3f23f2\BUSN100_Quiz_1.pdf
+2025-07-03 16:43:47,667 — ERROR — Upload error: join() argument must be str, bytes, or os.PathLike object, not 'Form'
+2025-07-03 16:44:10,592 — INFO — Received file: uploads\123123\d2d3f23f2\BUSN100_Quiz_1.pdf
+2025-07-03 16:44:10,593 — ERROR — Upload error: join() argument must be str, bytes, or os.PathLike object, not 'Form'

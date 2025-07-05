@@ -42,9 +42,10 @@ def detect_watermarks(file_path):
     return found, list(detected_phrases)
 
 
-def detect_watermarks_heuristic(file_path):
+def detect_watermarks_heuristic(file_path, output_txt_path=None):
     print(f"[OCR] Heuristic watermark scan (EasyOCR): {file_path}")
     detected = set()
+    all_text_lines = []
     reader = easyocr.Reader(['en'], gpu=False)
 
     try:
@@ -60,9 +61,11 @@ def detect_watermarks_heuristic(file_path):
 
         results = reader.readtext(img_np)
         for (bbox, text, conf) in results:
-            text = text.strip().lower()
+            text = text.strip()
             if not text or len(text) < 4:
                 continue
+
+            all_text_lines.append(text)
 
             # Отримати центр прямокутника
             (x0, y0), (x1, y1), (_, _), (_, _) = bbox
@@ -70,14 +73,25 @@ def detect_watermarks_heuristic(file_path):
             cy = (y0 + y1) / 2
 
             is_large = abs(y1 - y0) > 20
-            is_positioned_like_watermark = cy < 0.4 * h_img or cy > 0.6 * h_img or cx < 0.2 * w_img or cx > 0.8 * w_img
+            is_positioned_like_watermark = (
+                    cy < 0.4 * h_img or cy > 0.6 * h_img or
+                    cx < 0.2 * w_img or cx > 0.8 * w_img
+            )
 
             print(
                 f"  ↪ '{text}' at ({cx:.0f}, {cy:.0f}), size={abs(y1 - y0):.0f}, pos=wm?{is_positioned_like_watermark}")
 
             if is_large and is_positioned_like_watermark:
                 print(f"[HEURISTIC] Watermark candidate: '{text}' on page {page_index + 1}")
-                detected.add(text)
+                detected.add(text.lower())
+
+    if output_txt_path:
+        try:
+            with open(output_txt_path, "w", encoding="utf-8") as f:
+                f.write("\n".join(all_text_lines))
+            print(f"[TXT] Saved all recognized text to: {output_txt_path}")
+        except Exception as e:
+            print(f"[TXT] Failed to save text: {e}")
 
     found = bool(detected)
     return found, list(detected)

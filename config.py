@@ -3,6 +3,7 @@ import os
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 UPLOAD_DIR = os.path.join(BASE_DIR, "uploads")
 CLEANED_DIR = os.path.join(BASE_DIR, "cleaned")
+TMP_DIR = os.path.join(BASE_DIR, "tmp")
 LOG_FILE = os.path.join(BASE_DIR, "logs", "processing.log")
 
 ENABLE_OCR = True

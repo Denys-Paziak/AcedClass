@@ -1,0 +1,28 @@
+# ENV files
+.env
+.env.*
+
+# AWS / GCP credentials
+credentials/
+credentials/credentials.json
+
+# Byte-compiled / cache files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+
+# VSCode / PyCharm / other IDEs
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
