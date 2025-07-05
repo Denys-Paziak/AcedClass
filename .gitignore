@@ -5,6 +5,7 @@
 # AWS / GCP credentials
 credentials/
 credentials/credentials.json
+credentials.json
 
 # Byte-compiled / cache files
 __pycache__/
